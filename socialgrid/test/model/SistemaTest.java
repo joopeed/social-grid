@@ -24,7 +24,7 @@ public class SistemaTest {
 	}
 	
 	@Test
-	public void iniciaPlanejamentoComRequisitos() throws IOException {		
+	public void iniciaPlanejamento_SemRequisitos() throws IOException {		
 		Set<Disciplina> disciplinas = new HashSet<Disciplina>();
 		Set<Disciplina> todasDisciplinas = controlador.getDisciplinasAlocadas();
 		
@@ -86,16 +86,17 @@ public class SistemaTest {
 	}
 
 	@Test
-	public void adicionaDisciplinaNoPlanejamento() {
-		assertFalse(controlador.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("inglês")));
-		controlador.adicionaDisciplina("inglês", 1);
-		assertTrue(controlador.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("inglês")));
+	public void adicionaDisciplinaNoPlanejamento_SemRequisitos() {
+		assertFalse(controlador.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("engenharia de software ii")));
+		controlador.adicionaDisciplina("engenharia de software ii", 1);
+		assertTrue(controlador.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("engenharia de software ii")));
 	}
 	
 	@Test
-	public void removeDisciplinaDoPlanejamento() {
-		assertTrue(controlador.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("projeto em computação ii")));
-		controlador.removeDisciplina("projeto em computação ii", 7);
-		assertFalse(controlador.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("projeto em computação ii")));
+	public void removeDisciplinaDoPlanejamento_SemRequisitos() {
+		assertTrue(controlador.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("cálculo diferencial e integral i")));
+		controlador.removeDisciplina("cálculo diferencial e integral i", 0);
+		assertFalse(controlador.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("cálculo diferencial e integral i")));
+		assertTrue(controlador.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("cálculo diferencial e integral ii")));
 	}
 }
