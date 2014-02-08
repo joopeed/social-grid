@@ -27,15 +27,12 @@ public class Plano {
 		return disciplinas;
 	}
 
-
-	public void adicionaDisciplina(String nome, int idxPeriodo) {
-		// TODO Auto-generated method stub
-		
+	public void adicionaDisciplina(Disciplina disciplina, int idxPeriodo) {
+		periodos.get(idxPeriodo).adicionaDisciplina(disciplina);
 	}
 
-	public void removeDisciplina(String nome, int idxPeriodo) {
-		// TODO Auto-generated method stub
-		
+	public void removeDisciplina(Disciplina disciplina, int idxPeriodo) {
+		periodos.get(idxPeriodo).removeDisciplina(disciplina);
 	}
 
 }

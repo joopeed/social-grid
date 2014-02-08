@@ -22,11 +22,11 @@ public class Planejador {
 	}
 
 	public void adicionaDisciplina(String nome, int idxPeriodo) {
-		plano.adicionaDisciplina(nome, idxPeriodo);
+		plano.adicionaDisciplina(grade.getDisciplinaPorNome(nome), idxPeriodo);
 	}
 
 	public void removeDisciplina(String nome, int idxPeriodo) {
-		plano.removeDisciplina(nome, idxPeriodo);
+		plano.removeDisciplina(grade.getDisciplinaPorNome(nome), idxPeriodo);
 	}
 
 }

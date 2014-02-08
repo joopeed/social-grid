@@ -9,4 +9,14 @@ public class Periodo {
 		return null;
 	}
 
+	public void adicionaDisciplina(Disciplina disciplina) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void removeDisciplina(Disciplina disciplina) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
