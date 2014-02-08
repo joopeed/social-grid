@@ -1,0 +1,51 @@
+Cálculo Diferencial e Integral I, 4 créditos
+Álgebra Vetorial e Geometria Analítica, 4 créditos
+Leitura e Produção de Textos, 4 créditos
+Programação I, 4 créditos
+Introdução à Computação, 4 créditos
+Laboratório de Programação I, 4 créditos
+
+Cálculo Diferencial e Integral II, 4 créditos
+Matemática Discreta, 4 créditos
+Metodologia Científica, 4 créditos
+Programação II, 4 créditos
+Teoria dos Grafos, 2 créditos
+Fundamentos de Física Clássica, 4 créditos
+Laboratório de Programação II, 4 créditos
+
+Álgebra Linear, 4 créditos
+Probabilidade e Estatística, 4 créditos
+Teoria da Computação, 4 créditos
+Estruturas de Dados e Algoritmos, 4 créditos
+Fundamentos de Física Moderna, 4 créditos
+Gerência da Informação, 4 créditos
+Laboratório de Estruturas de Dados e Algoritmos, 4 créditos
+
+Métodos Estatísticos, 4 créditos
+Paradigmas de Linguagens de Programação, 2 créditos
+Lógica Matemática, 4 créditos
+Organização e Arquitetura de Computadores I, 4 créditos
+Engenharia de Software I, 4 créditos
+Sistemas de Informação I, 4 créditos
+Laboratório de Organização e Arquitetura de Computadores, 4 créditos
+
+Informática e Sociedade, 2 créditos
+Análise e Técnicas de Algoritmos, 4 créditos
+Compiladores, 4 créditos
+Redes de Computadores, 4 créditos
+Bancos de Dados I, 4 créditos
+Sistemas de Informação II, 4 créditos
+Laboratório de Engenharia de Software, 2 créditos
+
+Direito e Cidadania, 4 créditos
+Sistemas Operacionais, 4 créditos
+Interconexão de Redes de Computadores, 2 créditos
+Banco de Dados II, 4 créditos
+Inteligência Artificial I, 4 créditos
+Laboratório de Interconexão de Redes de Computadores, 2 créditos
+
+Métodos e Software Numéricos, 4 créditos
+Avaliação de Desempenho de Sistemas Discretos, 4 créditos
+Projeto em Computação I, 4 créditos
+
+Projeto em Computação II, 6 créditos
