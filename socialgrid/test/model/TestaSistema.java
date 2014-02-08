@@ -2,6 +2,7 @@ package model;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,8 +12,9 @@ import org.junit.Test;
 import controllers.Controlador;
 
 public class TestaSistema {
+	
 	@Test
-	public void iniciaPlanejamentoComRequisitos() {
+	public void iniciaPlanejamentoComRequisitos() throws IOException {
 		Controlador controlador = new Controlador();
 		controlador.iniciarPlano();
 		
@@ -31,4 +33,6 @@ public class TestaSistema {
 		
 		assertTrue(disciplinas.equals(todasDisciplinas));
 	}
+	
+	
 }
