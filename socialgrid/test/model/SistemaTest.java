@@ -84,22 +84,18 @@ public class SistemaTest {
 		assertTrue(algebra.getDependentes().contains(metedosSoftNum));
 		assertTrue(algebra.getRequisitos().contains(vetorial));
 	}
-	
+
 	@Test
 	public void adicionaDisciplinaNoPlanejamento() {
-		Disciplina disciplina = new Disciplina("programação ii", 4);
-		
-		//controlador.adicionaDisciplina("programação ii", 1);
-		
-		assertTrue(controlador.getDisciplinasAlocadas().contains(disciplina));
+		assertFalse(controlador.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("inglês")));
+		controlador.adicionaDisciplina("inglês", 1);
+		assertTrue(controlador.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("inglês")));
 	}
 	
 	@Test
 	public void removeDisciplinaDoPlanejamento() {
-		Disciplina disciplina = new Disciplina("programação ii", 4);
-		
-		controlador.removeDisciplina("programação ii", 1);
-		
-		assertTrue(controlador.getDisciplinasAlocadas().contains(disciplina));
+		assertTrue(controlador.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("projeto em computação ii")));
+		controlador.removeDisciplina("projeto em computação ii", 7);
+		assertFalse(controlador.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("projeto em computação ii")));
 	}
 }

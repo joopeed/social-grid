@@ -7,26 +7,22 @@ import java.util.Set;
 
 public class Periodo {
 	
-	List<Disciplina> disciplinas;
+	private List<Disciplina> disciplinas;
 	
 	public Periodo(){
 		disciplinas = new ArrayList<Disciplina>();
-		
 	}
 
 	public Set<Disciplina> getDisciplinas() {
 		return new HashSet<Disciplina>(disciplinas);
-
 	}
 
 	public void adicionaDisciplina(Disciplina disciplina) {
 		disciplinas.add(disciplina);
-
 	}
 
 	public void removeDisciplina(Disciplina disciplina) {
 		disciplinas.remove(disciplina);
-		
 	}
 
 }
