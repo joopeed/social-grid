@@ -50,3 +50,5 @@ projeto em computação i:projeto em computação ii:4
 
 projeto em computação ii:nenhum:6
 
+inglês:nenhum:4
+engenharia de software ii:nenhum:4
