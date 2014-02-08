@@ -15,14 +15,13 @@ public class Periodo {
 	}
 
 	public Set<Disciplina> getDisciplinas() {
-		Set<Disciplina> disciplinasSet = new HashSet<Disciplina>(disciplinas);
-		return disciplinasSet;
-		
+		return new HashSet<Disciplina>(disciplinas);
+
 	}
 
 	public void adicionaDisciplina(Disciplina disciplina) {
 		disciplinas.add(disciplina);
-		
+
 	}
 
 	public void removeDisciplina(Disciplina disciplina) {
