@@ -8,15 +8,20 @@ import java.util.Set;
 public class Planejador {
 
 	private Grade grade;
-	
+	private Plano plano;
 	
 	public Planejador() throws IOException {
-		this.grade = Grade.getInstancia();
+		grade = Grade.getInstancia();
+		plano = new Plano();
 	}
 
 
-	public Set<Disciplina> getTodasDisciplinas() {
-		return grade.getTodasDisciplinas();
+	public Set<Disciplina> getDisciplinasAlocadas() {
+		return plano.getDisciplinasAlocadas();
+	}
+
+	public void adicionaDisciplina(String nome, int idxPeriodo) {
+		
 	}
 
 }
