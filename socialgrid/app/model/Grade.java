@@ -10,33 +10,21 @@ public class Grade {
 	private static Grade GRADE_UNICA = null;
 	private Set<Disciplina> disciplinas;
 	
-	public static Grade getInstancia()  throws IOException {
+	public static Grade getInstancia() throws IOException {
 		if (GRADE_UNICA == null) {
 			GRADE_UNICA = new Grade();
 		}
 		return GRADE_UNICA;
 	}
 	
-	/**
-	 * Construtor do classe
-	 * @throws IOException
-	 * 		se o arquivo de disciplina não foi encontrado ou
-	 * 		apresenta algum erro
-	 */
 	private Grade() throws IOException {
 		disciplinas = new HashSet<Disciplina>();
 		preencheGrade();
 	}
 
-	/**
-	 * Popula a grade de acordo com um arquivo
-	 * @throws IOException
-	 * 		se o arquivo de disciplina não foi encontrado ou
-	 * 		apresenta algum erro
-	 */
 	private void preencheGrade() throws IOException {
 		Carregador carregador = new Carregador();
-		carregador.preencheGrade(disciplinas);
+		disciplinas = carregador.preencheGrade();
 	}
 
 	public Disciplina getDisciplinaPorNome(String nome) {

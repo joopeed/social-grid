@@ -7,11 +7,19 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import controllers.Controlador;
 
-public class TestaSistema {
+public class SistemaTest {
+	
+	private Grade grade;
+	
+	@Before
+	public void setUp() throws IOException {
+		grade = Grade.getInstancia();
+	}
 	
 	@Test
 	public void iniciaPlanejamentoComRequisitos() throws IOException {
@@ -19,7 +27,6 @@ public class TestaSistema {
 		controlador.iniciarPlano();
 		
 		Set<Disciplina> disciplinas = new HashSet<Disciplina>();
-		Grade grade = Grade.getInstancia();
 		
 		disciplinas.add(grade.getDisciplinaPorNome("cálculo diferencial e integral i"));
 		disciplinas.add(grade.getDisciplinaPorNome("álgebra vetorial e geometria analítica"));
@@ -28,6 +35,14 @@ public class TestaSistema {
 		disciplinas.add(grade.getDisciplinaPorNome("introdução à computação"));
 		disciplinas.add(grade.getDisciplinaPorNome("laboratório de programação i"));
 		
+		disciplinas.add(grade.getDisciplinaPorNome("cálculo diferencial e integral ii"));
+		disciplinas.add(grade.getDisciplinaPorNome("programação ii"));
+		disciplinas.add(grade.getDisciplinaPorNome("laboratório de programação ii"));
+		disciplinas.add(grade.getDisciplinaPorNome("teoria dos grafos"));
+		disciplinas.add(grade.getDisciplinaPorNome("matemática discreta"));
+		disciplinas.add(grade.getDisciplinaPorNome("metodologia científica"));
+		disciplinas.add(grade.getDisciplinaPorNome("fundamentos de física clássica"));
+				
 		disciplinas.add(grade.getDisciplinaPorNome("álgebra linear"));
 		disciplinas.add(grade.getDisciplinaPorNome("probabilidade e estatística"));
 		disciplinas.add(grade.getDisciplinaPorNome("teoria da computação"));
@@ -63,14 +78,21 @@ public class TestaSistema {
 		disciplinas.add(grade.getDisciplinaPorNome("avaliação de desempenho de sistemas discretos"));
 		disciplinas.add(grade.getDisciplinaPorNome("projeto em computação i"));
 		
-		disciplinas.add(grade.getDisciplinaPorNome("projeto em computação ii"));
-				
+		disciplinas.add(grade.getDisciplinaPorNome("projeto em computação ii"));		
 		
 		Planejador planejador = new Planejador();
 		Set<Disciplina> todasDisciplinas = planejador.getTodasDisciplinas();
 		
 		assertTrue(disciplinas.equals(todasDisciplinas));
+		
+		Disciplina algebra = grade.getDisciplinaPorNome("álgebra linear");
+		Disciplina metedosEst = grade.getDisciplinaPorNome("métodos estatísticos");
+		Disciplina metedosSoftNum = grade.getDisciplinaPorNome("métodos e software numéricos");
+		Disciplina vetorial = grade.getDisciplinaPorNome("álgebra vetorial e geometria analítica");
+
+		assertTrue(algebra.getDependentes().contains(metedosEst));
+		assertTrue(algebra.getDependentes().contains(metedosSoftNum));
+		assertTrue(algebra.getRequisitos().contains(vetorial));
 	}
-	
 	
 }

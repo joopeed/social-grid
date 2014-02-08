@@ -5,6 +5,14 @@ programação i:programação ii,laboratório de programação ii,teoria dos gra
 introdução à computação:programação ii,laboratório de programação ii,teoria da computação:4
 laboratório de programação i:programação ii,laboratório de programação ii,teoria dos grafos:4
 
+cálculo diferencial e integral ii:análise e técnicas de algoritmos,probabilidade e estatística,fundamentos de física moderna:4
+programação ii:estruturas de dados e algoritmos,laboratório de estruturas de dados e algoritmos,engenharia de software i:4
+laboratório de programação ii:estruturas de dados e algoritmos,laboratório de estruturas de dados e algoritmos,engenharia de software i:4
+teoria dos grafos:estruturas de dados e algoritmos,laboratório de estruturas de dados e algoritmos,teoria da computação:2
+matemática discreta:teoria da computação:4
+metodologia científica:projeto em computação i:4
+fundamentos de física clássica:fundamentos de física moderna:4
+
 álgebra linear:métodos estatísticos,métodos e software numéricos:4
 probabilidade e estatística:engenharia de software i,métodos estatísticos,avaliação de desempenho de sistemas discretos:4
 teoria da computação:lógica matemática,paradigmas de linguagens de programação:4
