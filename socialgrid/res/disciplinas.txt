@@ -1,4 +1,4 @@
-cálculo ciferencial e integral I:cálculo diferencial e integral ii,fundamentos de física clássica:4
+cálculo diferencial e integral i:cálculo diferencial e integral ii,fundamentos de física clássica:4
 álgebra vetorial e geometria analítica:álgebra linear,fundamentos de física clássica:4
 leitura e produção de textos:nenhum:4
 programação i:programação ii,laboratório de programação ii,teoria dos grafos:4
@@ -7,7 +7,7 @@ laboratório de programação i:programação ii,laboratório de programação i
 
 cálculo diferencial e integral ii:fundamentos de física moderna:4
 matemática discreta:teoria da computação:4
-metodologia científica:projeto em computação I:4
+metodologia científica:projeto em computação i:4
 programação ii:estruturas de dados e algoritmos,laboratório de estruturas de dados e algoritmos,engenharia de software i,análise e técnicas de algoritmos:4
 teoria dos grafos:teoria da computação,estruturas de dados e algoritmos,laboratório de estruturas de dados e algoritmos:2
 fundamentos de física clássica:fundamentos de física moderna:4
