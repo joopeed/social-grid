@@ -12,7 +12,8 @@ public class Plano {
 	
 	public Plano() {
 		periodos = new ArrayList<Periodo>();
-		// preencher períodos
+		for (int i = 0 ; i < 10 ; i++)
+			periodos.add(new Periodo());
 	}
 	
 	
@@ -34,5 +35,4 @@ public class Plano {
 	public void removeDisciplina(Disciplina disciplina, int idxPeriodo) {
 		periodos.get(idxPeriodo).removeDisciplina(disciplina);
 	}
-
 }

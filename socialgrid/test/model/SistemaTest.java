@@ -89,7 +89,7 @@ public class SistemaTest {
 	public void adicionaDisciplinaNoPlanejamento() {
 		Disciplina disciplina = new Disciplina("programação ii", 4);
 		
-		controlador.adicionaDisciplina("programação ii", 1);
+		//controlador.adicionaDisciplina("programação ii", 1);
 		
 		assertTrue(controlador.getDisciplinasAlocadas().contains(disciplina));
 	}

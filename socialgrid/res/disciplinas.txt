@@ -49,3 +49,4 @@ avaliação de desempenho de sistemas discretos:nenhum:4
 projeto em computação i:projeto em computação ii:4
 
 projeto em computação ii:nenhum:6
+
