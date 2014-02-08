@@ -20,5 +20,10 @@ public class Controlador {
 	public void adicionaDisciplina(String nome, int idxPeriodo) {
 		planejador.adicionaDisciplina(nome, idxPeriodo);
 	}
+
+	public void removeDisciplina(String nome, int idxPeriodo) {
+		planejador.removeDisciplina(nome, idxPeriodo);
+		
+	}
 	
 }

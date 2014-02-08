@@ -10,6 +10,7 @@ public class Planejador {
 	private Grade grade;
 	private Plano plano;
 	
+	
 	public Planejador() throws IOException {
 		grade = Grade.getInstancia();
 		plano = new Plano();
@@ -21,7 +22,11 @@ public class Planejador {
 	}
 
 	public void adicionaDisciplina(String nome, int idxPeriodo) {
-		
+		plano.adicionaDisciplina(nome, idxPeriodo);
+	}
+
+	public void removeDisciplina(String nome, int idxPeriodo) {
+		plano.removeDisciplina(nome, idxPeriodo);
 	}
 
 }

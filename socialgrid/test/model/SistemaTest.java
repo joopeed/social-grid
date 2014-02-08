@@ -94,4 +94,12 @@ public class SistemaTest {
 		assertTrue(controlador.getDisciplinasAlocadas().contains(disciplina));
 	}
 	
+	@Test
+	public void removeDisciplinaDoPlanejamento() {
+		Disciplina disciplina = new Disciplina("programação ii", 4);
+		
+		controlador.removeDisciplina("programação ii", 1);
+		
+		assertTrue(controlador.getDisciplinasAlocadas().contains(disciplina));
+	}
 }
