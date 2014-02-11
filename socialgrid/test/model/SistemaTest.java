@@ -24,7 +24,7 @@ public class SistemaTest {
 	}
 	
 	@Test
-	public void iniciaPlanejamento_SemRequisitos() throws IOException {		
+	public void iniciaPlanejamento() throws IOException {		
 		Set<Disciplina> disciplinas = new HashSet<Disciplina>();
 		Set<Disciplina> todasDisciplinas = controlador.getDisciplinasAlocadas();
 		
@@ -74,17 +74,26 @@ public class SistemaTest {
 		disciplinas.add(grade.getDisciplinaPorNome("projeto em computação ii"));		
 		
 		assertTrue(disciplinas.equals(todasDisciplinas));
+		
+		Disciplina algebra = grade.getDisciplinaPorNome("álgebra linear");
+		Disciplina metedosEst = grade.getDisciplinaPorNome("métodos estatísticos");
+		Disciplina metedosSoftNum = grade.getDisciplinaPorNome("métodos e software numéricos");
+		Disciplina vetorial = grade.getDisciplinaPorNome("álgebra vetorial e geometria analítica");
+
+		assertTrue(algebra.getDependentes().contains(metedosEst));
+		assertTrue(algebra.getDependentes().contains(metedosSoftNum));
+		assertTrue(algebra.getRequisitos().contains(vetorial));
 	}
 
 	@Test
-	public void adicionaDisciplinaNoPlanejamento_SemRequisitos() {
+	public void adicionaDisciplinaNoPlanejamento() {
 		assertFalse(controlador.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("engenharia de software ii")));
 		controlador.adicionaDisciplina("engenharia de software ii", 1);
 		assertTrue(controlador.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("engenharia de software ii")));
 	}
 	
 	@Test
-	public void removeDisciplinaDoPlanejamento_SemRequisitos() {
+	public void removeDisciplinaDoPlanejamento() {
 		assertTrue(controlador.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("cálculo diferencial e integral i")));
 		controlador.removeDisciplina("cálculo diferencial e integral i", 0);
 		assertFalse(controlador.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("cálculo diferencial e integral i")));
