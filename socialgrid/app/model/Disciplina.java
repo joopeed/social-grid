@@ -21,6 +21,7 @@ public class Disciplina implements Comparable<Disciplina>  {
 	
 	public void acrescentaDependente(Disciplina disciplina) {
 		dependentes.add(disciplina);
+		disciplina.acrescentaRequisitos(this);
 	}
 	
 	public void acrescentaRequisitos(Disciplina disciplina) {

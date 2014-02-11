@@ -50,7 +50,6 @@ public class Carregador {
 				}
 				Disciplina dependente = buscaDisciplina(disciplinas, nome_dependente);
 				disciplinaAtual.acrescentaDependente(dependente);
-				dependente.acrescentaRequisitos(disciplinaAtual);
 			}
 		}
 			
