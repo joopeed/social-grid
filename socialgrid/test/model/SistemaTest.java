@@ -74,15 +74,6 @@ public class SistemaTest {
 		disciplinas.add(grade.getDisciplinaPorNome("projeto em computação ii"));		
 		
 		assertTrue(disciplinas.equals(todasDisciplinas));
-		
-		Disciplina algebra = grade.getDisciplinaPorNome("álgebra linear");
-		Disciplina metedosEst = grade.getDisciplinaPorNome("métodos estatísticos");
-		Disciplina metedosSoftNum = grade.getDisciplinaPorNome("métodos e software numéricos");
-		Disciplina vetorial = grade.getDisciplinaPorNome("álgebra vetorial e geometria analítica");
-
-		assertTrue(algebra.getDependentes().contains(metedosEst));
-		assertTrue(algebra.getDependentes().contains(metedosSoftNum));
-		assertTrue(algebra.getRequisitos().contains(vetorial));
 	}
 
 	@Test

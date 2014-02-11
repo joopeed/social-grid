@@ -1,7 +1,9 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Disciplina implements Comparable<Disciplina>  {
@@ -10,6 +12,7 @@ public class Disciplina implements Comparable<Disciplina>  {
 
 	private Set<Disciplina> dependentes; 
 	private Set<Disciplina> requisitos;
+	private List<Dica> dicas;
 	
 	public Disciplina(String novo_nome, int quantidadeCreditos) {
 		nome = novo_nome;
@@ -17,6 +20,7 @@ public class Disciplina implements Comparable<Disciplina>  {
 		
 		dependentes = new HashSet<Disciplina>();
 		requisitos = new HashSet<Disciplina>();
+		dicas = new ArrayList<Dica>();
 	}
 	
 	public void acrescentaDependente(Disciplina disciplina) {
@@ -64,5 +68,13 @@ public class Disciplina implements Comparable<Disciplina>  {
 		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
+	}
+
+	public void addDica(Dica dica) {
+		dicas.add(dica);		
+	}
+
+	public List<Dica> getDicas() {
+		return dicas;
 	}
 }
