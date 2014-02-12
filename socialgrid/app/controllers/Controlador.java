@@ -30,8 +30,8 @@ public class Controlador {
 		plano.addDisciplina(grade.getDisciplinaPorNome(nome), idxPeriodo);
 	}
 
-	public void removeDisciplina(String nome, int idxPeriodo) {
-		plano.removeDisciplina(grade.getDisciplinaPorNome(nome), idxPeriodo);
+	public void removeDisciplina(String nome) {
+		plano.removeDisciplina(grade.getDisciplinaPorNome(nome));
 		
 	}
 	

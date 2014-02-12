@@ -25,4 +25,8 @@ public class Periodo {
 		disciplinas.remove(disciplina);
 	}
 
+	public boolean contemDisciplina(Disciplina disciplina) {
+		return disciplinas.contains(disciplina);
+	}
+
 }

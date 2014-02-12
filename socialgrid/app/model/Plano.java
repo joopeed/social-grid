@@ -90,7 +90,19 @@ public class Plano {
 		periodos.get(idxPeriodo).adicionaDisciplina(disciplina);
 	}
 
-	public void removeDisciplina(Disciplina disciplina, int idxPeriodo) {
-		periodos.get(idxPeriodo).removeDisciplina(disciplina);
+	public void removeDisciplina(Disciplina disciplina) {
+		for (Disciplina dependente: disciplina.getDependentes()) {
+			removeDisciplina(dependente);
+		}
+		desalocaDisciplina(disciplina);
+	}
+	
+	private void desalocaDisciplina(Disciplina disciplina) {
+		for (Periodo periodo: periodos) {
+			if (periodo.contemDisciplina(disciplina)) {
+				periodo.removeDisciplina(disciplina);
+				return;
+			}
+		}
 	}
 }

@@ -90,11 +90,34 @@ public class SistemaTest {
 	}
 	
 	@Test
-	public void removeDisciplinaDoPlanejamento() {
-		assertTrue(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("cálculo diferencial e integral i")));
-		assertTrue(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("cálculo diferencial e integral ii")));
-		controlador.removeDisciplina("cálculo diferencial e integral i", 0);
-		assertFalse(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("cálculo diferencial e integral i")));
-		assertTrue(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("cálculo diferencial e integral ii")));
+	public void removeDisciplinaDoPlanejamento0() {
+		assertTrue(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("projeto em computação ii")));
+		controlador.removeDisciplina("projeto em computação ii");
+		assertFalse(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("projeto em computação ii")));
 	}
+	
+	@Test
+	public void removeDisciplinaDoPlanejamento1() {
+		assertTrue(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("teoria da computação")));
+		assertTrue(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("lógica matemática")));
+		assertTrue(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("análise e técnicas de algoritmos")));
+		assertTrue(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("inteligência artificial i")));
+		controlador.removeDisciplina("lógica matemática");
+		assertTrue(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("teoria da computação")));
+		assertFalse(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("lógica matemática")));
+		assertFalse(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("análise e técnicas de algoritmos")));
+		assertFalse(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("inteligência artificial i")));
+	}
+	
+	@Test
+	public void removeDisciplinaDoPlanejamento2() {
+		assertTrue(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("redes de computadores")));
+		assertTrue(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("interconexão de redes de computadores")));
+		assertTrue(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("laboratório de interconexão de redes de computadores")));
+		controlador.removeDisciplina("redes de computadores");
+		assertFalse(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("redes de computadores")));
+		assertFalse(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("interconexão de redes de computadores")));
+		assertFalse(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("laboratório de interconexão de redes de computadores")));
+	}
+	
 }

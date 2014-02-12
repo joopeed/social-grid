@@ -32,7 +32,7 @@ laboratório de organização e arquitetura de computadores:compiladores,redes d
 informática e sociedade:nenhum:2
 análise e técnicas de algoritmos:inteligência artificial i,métodos e software numéricos:4
 compiladores:nenhum:4
-redes de computadores:interconexão de redes de computadores:4
+redes de computadores:interconexão de redes de computadores,laboratório de interconexão de redes de computadores:4
 bancos de dados i:banco de dados ii:4
 sistemas de informação ii:banco de dados ii:4
 laboratório de engenharia de software:projeto em computação i:2
