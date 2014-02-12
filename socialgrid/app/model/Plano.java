@@ -87,8 +87,23 @@ public class Plano {
 	}
 
 	public void addDisciplina(Disciplina disciplina, int idxPeriodo) {
-		periodos.get(idxPeriodo).adicionaDisciplina(disciplina);
+		boolean temRequisitos = true;
+		for (Disciplina requisito: disciplina.getRequisitos()) {
+			temRequisitos &= temDisciplinaAlocada(requisito, idxPeriodo);
+		}
+		if(temRequisitos) periodos.get(idxPeriodo).adicionaDisciplina(disciplina);
 	}
+
+	private boolean temDisciplinaAlocada(Disciplina disciplina, int idxPeriodo) {
+		for (int i = 0; i < idxPeriodo; i++) {
+			Periodo periodo = periodos.get(i);
+			if (periodo.contemDisciplina(disciplina)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 
 	public void removeDisciplina(Disciplina disciplina) {
 		for (Disciplina dependente: disciplina.getDependentes()) {

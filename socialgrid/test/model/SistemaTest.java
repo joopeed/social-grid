@@ -120,4 +120,49 @@ public class SistemaTest {
 		assertFalse(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("laboratório de interconexão de redes de computadores")));
 	}
 	
+	
+	@Test
+	public void adicionaDisciplinaDoPlanejamento0() {
+		controlador.removeDisciplina("cálculo diferencial e integral ii");
+		assertFalse(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("cálculo diferencial e integral ii")));
+		controlador.removeDisciplina("cálculo diferencial e integral i");
+		assertFalse(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("cálculo diferencial e integral i")));
+		controlador.addDisciplina("cálculo diferencial e integral ii", 1);
+		assertFalse(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("cálculo diferencial e integral ii")));
+		controlador.addDisciplina("cálculo diferencial e integral i", 0);
+		assertTrue(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("cálculo diferencial e integral i")));
+		controlador.addDisciplina("cálculo diferencial e integral ii", 1);
+		assertTrue(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("cálculo diferencial e integral ii")));
+		
+	}
+	
+	@Test
+	public void adicionaDisciplinaDoPlanejamento1() {
+		controlador.removeDisciplina("programação i");
+		controlador.removeDisciplina("introdução à computação");
+		controlador.removeDisciplina("laboratório de programação i");
+		controlador.removeDisciplina("programação ii");
+		controlador.removeDisciplina("laboratório de programação ii");
+		assertFalse(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("programação i")));
+		assertFalse(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("introdução à computação")));
+		assertFalse(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("laboratório de programação i")));
+		assertFalse(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("programação i")));
+		assertFalse(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("laboratório de programação ii")));
+		controlador.addDisciplina("programação ii", 1);
+		assertFalse(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("programação i")));
+		controlador.addDisciplina("programação i", 0);
+		assertTrue(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("programação i")));
+		controlador.addDisciplina("programação ii", 1);
+		assertFalse(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("programação ii")));
+		controlador.addDisciplina("introdução à computação", 0);
+		assertTrue(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("introdução à computação")));
+		controlador.addDisciplina("programação ii", 1);
+		assertFalse(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("programação ii")));
+		controlador.addDisciplina("laboratório de programação i", 0);
+		assertTrue(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("laboratório de programação i")));
+		controlador.addDisciplina("programação ii", 1);
+		assertTrue(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("programação ii")));
+	}
+	
+	
 }
