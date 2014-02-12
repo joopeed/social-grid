@@ -1,7 +1,6 @@
 package model;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,8 +21,6 @@ public class Grade {
 	}
 
 	public Disciplina getDisciplinaPorNome(String nome) {
-		Disciplina disciplina;
-		
 		for(Disciplina disc: disciplinas) {
 			if (disc.getNome().equals(nome))
 				return disc;

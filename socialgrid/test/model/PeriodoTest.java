@@ -9,8 +9,6 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
-import controllers.Controlador;
-
 public class PeriodoTest {
 
 	private Grade grade;

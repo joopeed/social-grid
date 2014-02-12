@@ -3,7 +3,6 @@ package model;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
