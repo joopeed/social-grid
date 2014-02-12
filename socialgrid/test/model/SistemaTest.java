@@ -14,12 +14,10 @@ import controllers.Controlador;
 
 public class SistemaTest {
 	
-	private Grade grade;
 	private Controlador controlador;
 	
 	@Before
 	public void setUp() throws IOException {
-		grade = Grade.getInstancia();
 		controlador = new Controlador();
 	}
 	
@@ -28,57 +26,57 @@ public class SistemaTest {
 		Set<Disciplina> disciplinas = new HashSet<Disciplina>();
 		Set<Disciplina> todasDisciplinas = controlador.getDisciplinasAlocadas();
 		
-		disciplinas.add(grade.getDisciplinaPorNome("cálculo diferencial e integral i"));
-		disciplinas.add(grade.getDisciplinaPorNome("álgebra vetorial e geometria analítica"));
-		disciplinas.add(grade.getDisciplinaPorNome("leitura e produção de textos"));
-		disciplinas.add(grade.getDisciplinaPorNome("programação i"));
-		disciplinas.add(grade.getDisciplinaPorNome("introdução à computação"));
-		disciplinas.add(grade.getDisciplinaPorNome("laboratório de programação i"));
-		disciplinas.add(grade.getDisciplinaPorNome("cálculo diferencial e integral ii"));
-		disciplinas.add(grade.getDisciplinaPorNome("programação ii"));
-		disciplinas.add(grade.getDisciplinaPorNome("laboratório de programação ii"));
-		disciplinas.add(grade.getDisciplinaPorNome("teoria dos grafos"));
-		disciplinas.add(grade.getDisciplinaPorNome("matemática discreta"));
-		disciplinas.add(grade.getDisciplinaPorNome("metodologia científica"));
-		disciplinas.add(grade.getDisciplinaPorNome("fundamentos de física clássica"));
-		disciplinas.add(grade.getDisciplinaPorNome("álgebra linear"));
-		disciplinas.add(grade.getDisciplinaPorNome("probabilidade e estatística"));
-		disciplinas.add(grade.getDisciplinaPorNome("teoria da computação"));
-		disciplinas.add(grade.getDisciplinaPorNome("estruturas de dados e algoritmos"));
-		disciplinas.add(grade.getDisciplinaPorNome("fundamentos de física moderna"));
-		disciplinas.add(grade.getDisciplinaPorNome("gerência da informação"));
-		disciplinas.add(grade.getDisciplinaPorNome("laboratório de estruturas de dados e algoritmos"));
-		disciplinas.add(grade.getDisciplinaPorNome("métodos estatísticos"));
-		disciplinas.add(grade.getDisciplinaPorNome("paradigmas de linguagens de programação"));
-		disciplinas.add(grade.getDisciplinaPorNome("lógica matemática"));
-		disciplinas.add(grade.getDisciplinaPorNome("organização e arquitetura de computadores i"));
-		disciplinas.add(grade.getDisciplinaPorNome("engenharia de software i"));
-		disciplinas.add(grade.getDisciplinaPorNome("sistemas de informação i"));
-		disciplinas.add(grade.getDisciplinaPorNome("laboratório de organização e arquitetura de computadores"));
-		disciplinas.add(grade.getDisciplinaPorNome("informática e sociedade"));
-		disciplinas.add(grade.getDisciplinaPorNome("análise e técnicas de algoritmos"));
-		disciplinas.add(grade.getDisciplinaPorNome("compiladores"));
-		disciplinas.add(grade.getDisciplinaPorNome("redes de computadores"));
-		disciplinas.add(grade.getDisciplinaPorNome("bancos de dados i"));
-		disciplinas.add(grade.getDisciplinaPorNome("sistemas de informação ii"));
-		disciplinas.add(grade.getDisciplinaPorNome("laboratório de engenharia de software"));
-		disciplinas.add(grade.getDisciplinaPorNome("direito e cidadania"));
-		disciplinas.add(grade.getDisciplinaPorNome("sistemas operacionais"));
-		disciplinas.add(grade.getDisciplinaPorNome("interconexão de redes de computadores"));
-		disciplinas.add(grade.getDisciplinaPorNome("banco de dados ii"));
-		disciplinas.add(grade.getDisciplinaPorNome("inteligência artificial i"));
-		disciplinas.add(grade.getDisciplinaPorNome("laboratório de interconexão de redes de computadores"));
-		disciplinas.add(grade.getDisciplinaPorNome("métodos e software numéricos"));
-		disciplinas.add(grade.getDisciplinaPorNome("avaliação de desempenho de sistemas discretos"));
-		disciplinas.add(grade.getDisciplinaPorNome("projeto em computação i"));
-		disciplinas.add(grade.getDisciplinaPorNome("projeto em computação ii"));		
+		disciplinas.add(controlador.getDisciplinaPorNome("cálculo diferencial e integral i"));
+		disciplinas.add(controlador.getDisciplinaPorNome("álgebra vetorial e geometria analítica"));
+		disciplinas.add(controlador.getDisciplinaPorNome("leitura e produção de textos"));
+		disciplinas.add(controlador.getDisciplinaPorNome("programação i"));
+		disciplinas.add(controlador.getDisciplinaPorNome("introdução à computação"));
+		disciplinas.add(controlador.getDisciplinaPorNome("laboratório de programação i"));
+		disciplinas.add(controlador.getDisciplinaPorNome("cálculo diferencial e integral ii"));
+		disciplinas.add(controlador.getDisciplinaPorNome("programação ii"));
+		disciplinas.add(controlador.getDisciplinaPorNome("laboratório de programação ii"));
+		disciplinas.add(controlador.getDisciplinaPorNome("teoria dos grafos"));
+		disciplinas.add(controlador.getDisciplinaPorNome("matemática discreta"));
+		disciplinas.add(controlador.getDisciplinaPorNome("metodologia científica"));
+		disciplinas.add(controlador.getDisciplinaPorNome("fundamentos de física clássica"));
+		disciplinas.add(controlador.getDisciplinaPorNome("álgebra linear"));
+		disciplinas.add(controlador.getDisciplinaPorNome("probabilidade e estatística"));
+		disciplinas.add(controlador.getDisciplinaPorNome("teoria da computação"));
+		disciplinas.add(controlador.getDisciplinaPorNome("estruturas de dados e algoritmos"));
+		disciplinas.add(controlador.getDisciplinaPorNome("fundamentos de física moderna"));
+		disciplinas.add(controlador.getDisciplinaPorNome("gerência da informação"));
+		disciplinas.add(controlador.getDisciplinaPorNome("laboratório de estruturas de dados e algoritmos"));
+		disciplinas.add(controlador.getDisciplinaPorNome("métodos estatísticos"));
+		disciplinas.add(controlador.getDisciplinaPorNome("paradigmas de linguagens de programação"));
+		disciplinas.add(controlador.getDisciplinaPorNome("lógica matemática"));
+		disciplinas.add(controlador.getDisciplinaPorNome("organização e arquitetura de computadores i"));
+		disciplinas.add(controlador.getDisciplinaPorNome("engenharia de software i"));
+		disciplinas.add(controlador.getDisciplinaPorNome("sistemas de informação i"));
+		disciplinas.add(controlador.getDisciplinaPorNome("laboratório de organização e arquitetura de computadores"));
+		disciplinas.add(controlador.getDisciplinaPorNome("informática e sociedade"));
+		disciplinas.add(controlador.getDisciplinaPorNome("análise e técnicas de algoritmos"));
+		disciplinas.add(controlador.getDisciplinaPorNome("compiladores"));
+		disciplinas.add(controlador.getDisciplinaPorNome("redes de computadores"));
+		disciplinas.add(controlador.getDisciplinaPorNome("bancos de dados i"));
+		disciplinas.add(controlador.getDisciplinaPorNome("sistemas de informação ii"));
+		disciplinas.add(controlador.getDisciplinaPorNome("laboratório de engenharia de software"));
+		disciplinas.add(controlador.getDisciplinaPorNome("direito e cidadania"));
+		disciplinas.add(controlador.getDisciplinaPorNome("sistemas operacionais"));
+		disciplinas.add(controlador.getDisciplinaPorNome("interconexão de redes de computadores"));
+		disciplinas.add(controlador.getDisciplinaPorNome("banco de dados ii"));
+		disciplinas.add(controlador.getDisciplinaPorNome("inteligência artificial i"));
+		disciplinas.add(controlador.getDisciplinaPorNome("laboratório de interconexão de redes de computadores"));
+		disciplinas.add(controlador.getDisciplinaPorNome("métodos e software numéricos"));
+		disciplinas.add(controlador.getDisciplinaPorNome("avaliação de desempenho de sistemas discretos"));
+		disciplinas.add(controlador.getDisciplinaPorNome("projeto em computação i"));
+		disciplinas.add(controlador.getDisciplinaPorNome("projeto em computação ii"));		
 		
 		assertTrue(disciplinas.equals(todasDisciplinas));
 		
-		Disciplina algebra = grade.getDisciplinaPorNome("álgebra linear");
-		Disciplina metedosEst = grade.getDisciplinaPorNome("métodos estatísticos");
-		Disciplina metedosSoftNum = grade.getDisciplinaPorNome("métodos e software numéricos");
-		Disciplina vetorial = grade.getDisciplinaPorNome("álgebra vetorial e geometria analítica");
+		Disciplina algebra = controlador.getDisciplinaPorNome("álgebra linear");
+		Disciplina metedosEst = controlador.getDisciplinaPorNome("métodos estatísticos");
+		Disciplina metedosSoftNum = controlador.getDisciplinaPorNome("métodos e software numéricos");
+		Disciplina vetorial = controlador.getDisciplinaPorNome("álgebra vetorial e geometria analítica");
 
 		assertTrue(algebra.getDependentes().contains(metedosEst));
 		assertTrue(algebra.getDependentes().contains(metedosSoftNum));
@@ -87,16 +85,17 @@ public class SistemaTest {
 
 	@Test
 	public void adicionaDisciplinaNoPlanejamento() {
-		assertFalse(controlador.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("engenharia de software ii")));
-		controlador.adicionaDisciplina("engenharia de software ii", 1);
-		assertTrue(controlador.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("engenharia de software ii")));
+		assertFalse(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("engenharia de software ii")));
+		controlador.addDisciplina("engenharia de software ii", 1);
+		assertTrue(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("engenharia de software ii")));
 	}
 	
 	@Test
 	public void removeDisciplinaDoPlanejamento() {
-		assertTrue(controlador.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("cálculo diferencial e integral i")));
+		assertTrue(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("cálculo diferencial e integral i")));
+		assertTrue(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("cálculo diferencial e integral ii")));
 		controlador.removeDisciplina("cálculo diferencial e integral i", 0);
-		assertFalse(controlador.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("cálculo diferencial e integral i")));
-		assertTrue(controlador.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("cálculo diferencial e integral ii")));
+		assertFalse(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("cálculo diferencial e integral i")));
+		assertTrue(controlador.getDisciplinasAlocadas().contains(controlador.getDisciplinaPorNome("cálculo diferencial e integral ii")));
 	}
 }

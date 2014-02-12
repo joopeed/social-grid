@@ -7,21 +7,15 @@ import java.util.Set;
 
 public class Grade {
 
-	private static Grade GRADE_UNICA = null;
 	private Set<Disciplina> disciplinas;
+
 	
-	public static Grade getInstancia() throws IOException {
-		if (GRADE_UNICA == null) {
-			GRADE_UNICA = new Grade();
-		}
-		return GRADE_UNICA;
-	}
-	
-	private Grade() throws IOException {
+	public Grade() throws IOException {
 		disciplinas = new HashSet<Disciplina>();
 		preencheGrade();
 	}
 
+	
 	private void preencheGrade() throws IOException {
 		Carregador carregador = new Carregador();
 		disciplinas = carregador.preencheGrade();

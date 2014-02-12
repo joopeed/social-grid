@@ -18,7 +18,7 @@ public class PeriodoTest {
 	
 	@Before
 	public void setUp() throws IOException {
-		grade = Grade.getInstancia();
+		grade = new Grade();
 		primeiroPeriodo = new Periodo();
 		primeiroPeriodo.adicionaDisciplina(grade.getDisciplinaPorNome("cálculo diferencial e integral i"));
 		primeiroPeriodo.adicionaDisciplina(grade.getDisciplinaPorNome("álgebra vetorial e geometria analítica"));
