@@ -4,11 +4,14 @@ public class Usuario {
 	private String email;
 	private String nome;
 	private String senha;
+	
+	private Plano plano;
 
-	public Usuario(String nome, String email, String senha) {
+	public Usuario(String nome, String email, String senha, Plano plano) {
 		setNome(nome);
 		setEmail(email);
 		setSenha(senha);
+		setPlano(plano);
 	}
 
 	public String getNome() {
@@ -33,6 +36,14 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public Plano getPlano() {
+		return plano;
+	}
+	
+	public void setPlano(Plano plano) {
+		this.plano = plano;
 	}
 
 	public boolean autenticar(String senha) {

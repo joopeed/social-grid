@@ -10,8 +10,8 @@ public class CadastroUsuario {
 		usuarios = new HashSet<Usuario>();
 	}
 	
-	public boolean cadastrarUsuario(String nome, String email, String senha) {
-		Usuario usuario = new Usuario(nome, email, senha);
+	public boolean cadastrarUsuario(String nome, String email, String senha, Plano plano) {
+		Usuario usuario = new Usuario(nome, email, senha, plano);
 		
 		return usuarios.add(usuario);
 	}

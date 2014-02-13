@@ -2,21 +2,25 @@ package model;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 public class UsuariosTest {
 	Usuario usuarioA, usuarioB, usuarioC;
+	Grade grade;
 	CadastroUsuario cadastro;
 
 	@Before
-	public void setUp() {
+	public void setUp() throws IOException {
+		grade = new Grade();
 		cadastro = new CadastroUsuario();
 		
-		usuarioA = new Usuario("Foo", "foo@gmail.com", "123456");
-		usuarioB = new Usuario("Boo", "boo@gmail.com", "654321");
-		usuarioC = new Usuario("FOo", "foo@gmail.com", "159753");
+		usuarioA = new Usuario("Foo", "foo@gmail.com", "123456", new Plano(grade));
+		usuarioB = new Usuario("Boo", "boo@gmail.com", "654321", new Plano(grade));
+		usuarioC = new Usuario("FOo", "foo@gmail.com", "159753", new Plano(grade));
 	}
 	
 	@Test
@@ -36,15 +40,15 @@ public class UsuariosTest {
 	@Test
 	public void testCadastroEBuscaDeUsuario() {
 		assertNull(cadastro.getUsuarioPorEmail(usuarioA.getEmail()));
-		assertTrue(cadastro.cadastrarUsuario(usuarioA.getNome(), usuarioA.getEmail(), usuarioA.getSenha()));
+		assertTrue(cadastro.cadastrarUsuario(usuarioA.getNome(), usuarioA.getEmail(), usuarioA.getSenha(), new Plano(grade)));
 		assertNotNull(cadastro.getUsuarioPorEmail(usuarioA.getEmail()));
 		
 		assertEquals(usuarioA, cadastro.getUsuarioPorEmail(usuarioA.getEmail()));
 		
-		assertFalse(cadastro.cadastrarUsuario(usuarioA.getNome(), usuarioA.getEmail(), usuarioA.getSenha()));
-		assertFalse(cadastro.cadastrarUsuario(usuarioB.getNome(), usuarioA.getEmail(), usuarioB.getSenha()));
+		assertFalse(cadastro.cadastrarUsuario(usuarioA.getNome(), usuarioA.getEmail(), usuarioA.getSenha(), new Plano(grade)));
+		assertFalse(cadastro.cadastrarUsuario(usuarioB.getNome(), usuarioA.getEmail(), usuarioB.getSenha(), new Plano(grade)));
 		
-		assertTrue(cadastro.cadastrarUsuario(usuarioB.getNome(), usuarioB.getEmail(), usuarioB.getSenha()));
+		assertTrue(cadastro.cadastrarUsuario(usuarioB.getNome(), usuarioB.getEmail(), usuarioB.getSenha(), new Plano(grade)));
 		assertEquals(usuarioB, cadastro.getUsuarioPorEmail(usuarioB.getEmail()));
 	}
 	
