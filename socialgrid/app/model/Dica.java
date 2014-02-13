@@ -3,9 +3,23 @@ package model;
 public class Dica {
 
 	private String texto;
+	private int likes;
 	
 	public Dica(String novo_texto) {
 		texto = novo_texto;
+		likes = 0;
+	}
+	
+	public void adicionaLike(){
+		likes++;
+	}
+	
+	public void removeLike(){
+		likes--;
+	}
+	
+	public int getLikes(){
+		return likes;
 	}
 
 	
