@@ -21,6 +21,10 @@ public class Dica {
 	public int getLikes(){
 		return likes;
 	}
+	
+	public String getTexto(){
+		return texto;
+	}
 
 	
 	@Override
