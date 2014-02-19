@@ -3,36 +3,47 @@ package controllers;
 import java.io.IOException;
 import java.util.Set;
 
+import model.CadastroUsuario;
 import model.Disciplina;
 import model.Grade;
 import model.Plano;
+import model.Usuario;
 
 public class Controlador {
 	private Grade grade;
-	private Plano plano;
-	
+	private CadastroUsuario cadastro;
 	
 	public Controlador() throws IOException {
 		grade = new Grade();
-		plano = new Plano(grade);
+		cadastro = new CadastroUsuario();
 	}
 	
+	public boolean cadastrarUsuario(String nome, String email, String senha) {
+		return cadastro.cadastrarUsuario(nome, email, senha, new Plano(grade));
+	}
+	
+	public Usuario autenticarUsuario(String email, String senha) {
+		return cadastro.autenticarUsuario(email, senha);
+	}
+	
+	public Usuario getUsuarioPorEmail(String email) {
+		return cadastro.getUsuarioPorEmail(email);
+	}
 	
 	public Disciplina getDisciplinaPorNome(String nome) {
 		return grade.getDisciplinaPorNome(nome);
 	}
 	
-	public Set<Disciplina> getDisciplinasAlocadas() {
-		return plano.getDisciplinasAlocadas();
+	public Set<Disciplina> getDisciplinasAlocadas(Usuario usuario) {
+		return usuario.getPlano().getDisciplinasAlocadas();
 	}
 
-	public void addDisciplina(String nome, int idxPeriodo) {
-		plano.addDisciplina(grade.getDisciplinaPorNome(nome), idxPeriodo);
+	public void addDisciplina(Usuario usuario, String nome, int idxPeriodo) {
+		usuario.getPlano().addDisciplina(grade.getDisciplinaPorNome(nome), idxPeriodo);
 	}
 
-	public void removeDisciplina(String nome) {
-		plano.removeDisciplina(grade.getDisciplinaPorNome(nome));
-		
+	public void removeDisciplina(Usuario usuario, String nome) {
+		usuario.getPlano().removeDisciplina(grade.getDisciplinaPorNome(nome));
 	}
 	
 }

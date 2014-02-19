@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -35,6 +36,23 @@ public class DicaTest {
 		dicas.add(dica1);
 		
 		assertTrue(dicas.equals(disciplina.getDicas()));
+	}
+	
+	@Test
+	public void AdicionaERemoveLikeEmDica(){
+		Dica dica1 = new Dica("Procurar tutoriais.");
+		
+		assertEquals(0, dica1.getLikes());
+		
+		dica1.adicionaLike();
+		dica1.adicionaLike();
+		
+		assertEquals(2, dica1.getLikes());
+		
+		dica1.removeLike();
+		
+		assertEquals(1, dica1.getLikes());
+		
 	}
 
 }

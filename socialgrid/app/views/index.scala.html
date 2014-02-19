@@ -1,7 +1,33 @@
 @(message: String)
+@import helper._
+@main("Início") {
 
-@main("Welcome to Play") {
+<!DOCTYPE html>
+	<html>
+	    <head>
+			<div class="hero-unit">
+			    <h1>SocialGrid</h1>
+			    <p>Ciência da Computação - Universidade Federal de Campina Grande</p>
+			</div>
+	    </head>
+	    
+	    <body>
 
-    @play20.welcome(message, style = "Java")
+		<div class="container" style="margin-left: 60px; margin-top: 30px;">
+
+		    <ul class="nav nav-tabs">
+			    <li class="active"><a href="#Início" data-toggle="tab">Início</a></li>
+			    <li><a href="#MinhaGrade" data-toggle="tab">Minha Grade</a></li>
+			    <li><a href="#Disciplinas" data-toggle="tab">Disciplinas</a></li>
+		    </ul>
+
+		</div>
+
+	  <script src="../../public/javascripts/bootstrap.min.js"></script>
+	  <script src="../../public/javascripts/jquery-1.9.0.min.js"></script>
+
+	  </body>
+	</html>
+    
 
 }

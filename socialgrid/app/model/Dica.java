@@ -6,6 +6,7 @@ package model;
 public class Dica {
 	
 	private String texto;
+	private int likes;
 	
 	/**
 	 * Construtor
@@ -13,6 +14,23 @@ public class Dica {
 	 */
 	public Dica(String novo_texto) {
 		texto = novo_texto;
+		likes = 0;
+	}
+	
+	public void adicionaLike(){
+		likes++;
+	}
+	
+	public void removeLike(){
+		likes--;
+	}
+	
+	public int getLikes(){
+		return likes;
+	}
+	
+	public String getTexto(){
+		return texto;
 	}
 
 	@Override

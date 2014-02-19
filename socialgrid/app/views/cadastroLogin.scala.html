@@ -1,0 +1,46 @@
+@(message: String)
+@import helper._
+@main("Identificação") {
+
+<!DOCTYPE html>
+	<html>
+	
+	    <head>
+			<div class="hero-unit">
+			    <h1>SocialGrid</h1>
+			    <p>Ciência da Computação - Universidade Federal de Campina Grande</p>
+			</div>
+	    </head>
+	    
+	    <body>
+			<div class="form-actions">
+			<form class="form-horizontal">
+			  <div class="control-group">
+			    <label class="control-label" for="inputEmail">Login</label>
+			    <div class="controls">
+			      <input type="text" id="inputEmail" placeholder="Username">
+			    </div>
+			  </div>
+			  <div class="control-group">
+			    <label class="control-label" for="inputPassword">Senha</label>
+			    <div class="controls">
+			      <input type="password" id="inputPassword" placeholder="Senha">
+			    </div>
+			  </div>
+			    @form(routes.Application.index()){
+			  <div class="control-group">
+			    <div class="controls">
+			    
+				  <button type="submit" class="btn btn-primary">Cadastrar</button>
+				  <button type="button" class="btn">Entrar</button>
+				</div>
+			    </div>
+				  }
+			  </div>
+			</form>
+	  	</body>
+	  	
+	</html>
+    
+
+}
