@@ -1,14 +1,20 @@
 package model;
 
+/**
+ * Representa uma dica que é associada a um objeto Disciplina.
+ */
 public class Dica {
-
+	
 	private String texto;
 	
+	/**
+	 * Construtor
+	 * @param novo_texto Texto da dica.
+	 */
 	public Dica(String novo_texto) {
 		texto = novo_texto;
 	}
 
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

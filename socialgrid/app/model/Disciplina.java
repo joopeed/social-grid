@@ -6,14 +6,22 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Representa uma disciplina no sistema.
+ */
 public class Disciplina implements Comparable<Disciplina>  {
+	
 	private String nome;
 	private int creditos;
-
 	private Set<Disciplina> dependentes; 
 	private Set<Disciplina> requisitos;
 	private List<Dica> dicas;
 	
+	/**
+	 * Construtor
+	 * @param novo_nome Nome da disciplina.
+	 * @param quantidadeCreditos Quantidade de créditos da disciplina.
+	 */
 	public Disciplina(String novo_nome, int quantidadeCreditos) {
 		nome = novo_nome;
 		creditos = quantidadeCreditos;
@@ -23,11 +31,19 @@ public class Disciplina implements Comparable<Disciplina>  {
 		dicas = new ArrayList<Dica>();
 	}
 	
+	/**
+	 * Adiciona uma disciplina dependente.
+	 * @param disciplina Disciplina dependente à ser adicionada.
+	 */
 	public void acrescentaDependente(Disciplina disciplina) {
 		dependentes.add(disciplina);
 		disciplina.acrescentaRequisitos(this);
 	}
 	
+	/**
+	 * Adiciona uma disciplina requisito.
+	 * @param disciplina Disciplina requisito à ser adicionada.
+	 */
 	public void acrescentaRequisitos(Disciplina disciplina) {
 		requisitos.add(disciplina);
 	}
@@ -70,6 +86,10 @@ public class Disciplina implements Comparable<Disciplina>  {
 		return true;
 	}
 
+	/**
+	 * Adiciona uma dica na disciplina
+	 * @param dica Dica a ser adicionada.
+	 */
 	public void addDica(Dica dica) {
 		dicas.add(dica);		
 	}

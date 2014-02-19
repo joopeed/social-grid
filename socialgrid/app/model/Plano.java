@@ -5,12 +5,18 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Implementa o plano de formação com períodos a serem preenchidos com disciplinas.
+ */
 public class Plano {
 	
 	private List<Periodo> periodos;
 	private Grade grade;
-	
-	
+
+	/**
+	 * Construtor
+	 * @param nova_grade grade com todas as disciplinas do período do curso.
+	 */
 	public Plano(Grade nova_grade) {
 		grade = nova_grade;
 		periodos = new ArrayList<Periodo>();
@@ -19,7 +25,9 @@ public class Plano {
 		iniciaPrePlano();
 	}
 	
-	
+	/**
+	 * Inicia o plano com as disciplinas sugeridas.
+	 */
 	private void iniciaPrePlano() {		
 		addDisciplina(grade.getDisciplinaPorNome("cálculo diferencial e integral i"), 0);
 		addDisciplina(grade.getDisciplinaPorNome("álgebra vetorial e geometria analítica"), 0);
@@ -75,6 +83,10 @@ public class Plano {
 		
 	}
 	
+	/**
+	 * Pega todas as disciplinas já alocadas no sistema.
+	 * @return Conjunto com as disciplinas alucadas.
+	 */
 	public Set<Disciplina> getDisciplinasAlocadas() {
 		Set<Disciplina> disciplinas = new HashSet<Disciplina>();
 		for (Periodo periodo: periodos) {
@@ -86,6 +98,11 @@ public class Plano {
 		return disciplinas;
 	}
 
+	/**
+	 * Aloca uma disciplina para um período.
+	 * @param disciplina Disciplina à ser alocada.
+	 * @param idxPeriodo Índice do período que recebe-rá a disciplina.
+	 */
 	public void addDisciplina(Disciplina disciplina, int idxPeriodo) {
 		boolean temRequisitos = true;
 		for (Disciplina requisito: disciplina.getRequisitos()) {
@@ -105,6 +122,10 @@ public class Plano {
 	}
 
 
+	/**
+	 * Remove uma disciplina alocada.
+	 * @param disciplina Disciplina à ser removida.
+	 */
 	public void removeDisciplina(Disciplina disciplina) {
 		for (Disciplina dependente: disciplina.getDependentes()) {
 			removeDisciplina(dependente);
