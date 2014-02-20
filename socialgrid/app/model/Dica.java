@@ -17,10 +17,16 @@ public class Dica {
 		likes = 0;
 	}
 	
+	/**
+	 * Adiciona um like na dica.
+	 */
 	public void adicionaLike(){
 		likes++;
 	}
 	
+	/**
+	 * Remove um like da dica.
+	 */
 	public void removeLike(){
 		likes--;
 	}
