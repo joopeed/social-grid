@@ -12,7 +12,8 @@ public class Plano {
 	
 	private List<Periodo> periodos;
 	private Grade grade;
-
+	private int qntPeriodos;
+	
 	/**
 	 * Construtor
 	 * @param nova_grade grade com todas as disciplinas do período do curso.
@@ -20,7 +21,8 @@ public class Plano {
 	public Plano(Grade nova_grade) {
 		grade = nova_grade;
 		periodos = new ArrayList<Periodo>();
-		for (int i = 0 ; i < 10 ; i++)
+		qntPeriodos = 10;
+		for (int i = 0 ; i < qntPeriodos ; i++)
 			periodos.add(new Periodo());
 		iniciaPrePlano();
 	}
@@ -140,5 +142,32 @@ public class Plano {
 				return;
 			}
 		}
+	}
+
+	/**
+	 * Calcula a diferença entre os planos.
+	 * @param plano2 Plano à ser comparado.
+	 * @return Direrença entre os planos.
+	 */
+	public int getDiferencaDePlanos(Plano plano2) {
+		int diferenca = 0;
+		Set<Disciplina> maisDisciplinas;
+		Set<Disciplina> menosDisciplinas;
+		
+		if (getDisciplinasAlocadas().size() > plano2.getDisciplinasAlocadas().size()) {
+			maisDisciplinas = getDisciplinasAlocadas();
+			menosDisciplinas = plano2.getDisciplinasAlocadas();
+		} else {
+			maisDisciplinas = plano2.getDisciplinasAlocadas();
+			menosDisciplinas = getDisciplinasAlocadas();
+		}
+		
+		for (Disciplina disciplina: maisDisciplinas) {
+			if (!menosDisciplinas.contains(disciplina)) {
+				diferenca++;
+			}
+		}
+
+		return diferenca;
 	}
 }
