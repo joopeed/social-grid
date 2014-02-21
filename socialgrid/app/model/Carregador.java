@@ -24,6 +24,8 @@ public class Carregador {
 		String caminho = new File("res/disciplinas.txt").getCanonicalPath();
 		BufferedReader reader = new BufferedReader(new FileReader(new File(caminho)));
 		
+		long id = 1l;
+		
 		while(reader.ready()){
 			String[] info = reader.readLine().split(":");
 			if (info.length == LINHA_BRANCA) {
@@ -33,6 +35,7 @@ public class Carregador {
 			String creditos = info[2];
 			
 			Disciplina d = new Disciplina(nome, Integer.parseInt(creditos));
+			d.id = id++;
 			disciplinas.add(d);
 		}
 			
