@@ -1,4 +1,4 @@
-package model;
+package controllers;
 
 public class CadastroUsuarioException extends Exception {
 

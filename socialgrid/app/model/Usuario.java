@@ -1,5 +1,6 @@
 package model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -18,7 +19,7 @@ public class Usuario extends Model {
 	private String nome;
 	@Required
 	private String senha;
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private Plano plano;
 
 	public Usuario(String nome, String email, String senha, Plano plano) {

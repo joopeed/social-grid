@@ -8,8 +8,8 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 import play.db.ebean.Model;
 
@@ -23,9 +23,9 @@ public class Plano extends Model {
 	
 	@Id
 	public Long id;
-	@OneToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Periodo> periodos;
-	@ManyToOne
+	@OneToOne
 	private Grade grade;
 	private int qntPeriodos;
 	
@@ -36,16 +36,16 @@ public class Plano extends Model {
 	public Plano(Grade nova_grade) {
 		grade = nova_grade;
 		periodos = new ArrayList<Periodo>();
-		qntPeriodos = 10;
-		for (int i = 0 ; i < qntPeriodos ; i++)
-			periodos.add(new Periodo());
-		iniciaPrePlano();
 	}
 	
 	/**
 	 * Inicia o plano com as disciplinas sugeridas.
 	 */
-	private void iniciaPrePlano() {		
+	public void iniciaPrePlano() {
+		qntPeriodos = 10;
+		for (int i = 0 ; i < qntPeriodos ; i++)
+			periodos.add(new Periodo());
+		
 		addDisciplina(grade.getDisciplinaPorNome("cálculo diferencial e integral i"), 0);
 		addDisciplina(grade.getDisciplinaPorNome("álgebra vetorial e geometria analítica"), 0);
 		addDisciplina(grade.getDisciplinaPorNome("leitura e produção de textos"), 0);

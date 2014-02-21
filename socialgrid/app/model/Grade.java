@@ -2,12 +2,12 @@ package model;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 import play.db.ebean.Model;
 
@@ -21,7 +21,7 @@ public class Grade extends Model {
 	
 	@Id
 	public Long id;
-	@OneToMany(cascade=CascadeType.ALL)
+	@ManyToMany
 	private Set<Disciplina> disciplinas;
 
 	/**
@@ -30,16 +30,28 @@ public class Grade extends Model {
 	 */
 	public Grade() throws IOException {
 		disciplinas = new HashSet<Disciplina>();
-		preencheGrade();
 	}
 
 	/**
 	 * Preenche a grade com disciplinas.
 	 * @throws IOException Erro na leitura do arquivo.
 	 */
-	private void preencheGrade() throws IOException {
+	public void preencheGrade() throws IOException {
 		Carregador carregador = new Carregador();
-		disciplinas = carregador.preencheGrade();
+		
+		Set<Disciplina> disciplinas = carregador.preencheGrade();
+		
+		for (Disciplina disciplina : disciplinas) {
+			disciplina.save();
+		}
+		
+		carregador.adicionaDependentesERequisitos(disciplinas);
+		
+		for (Disciplina disciplina : disciplinas) {
+			disciplina.update();
+		}
+		
+		this.disciplinas = disciplinas;
 	}
 
 	/**

@@ -22,7 +22,7 @@ public class Periodo extends Model {
 	
 	@Id
 	public Long id;
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Disciplina> disciplinas;
 	
 	/**

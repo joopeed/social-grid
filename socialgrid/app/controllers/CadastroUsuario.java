@@ -1,5 +1,7 @@
-package model;
+package controllers;
 
+import model.Plano;
+import model.Usuario;
 import play.db.ebean.Model.Finder;
 
 public class CadastroUsuario {

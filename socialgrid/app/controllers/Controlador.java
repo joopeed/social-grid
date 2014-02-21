@@ -3,8 +3,6 @@ package controllers;
 import java.io.IOException;
 import java.util.Set;
 
-import model.CadastroUsuario;
-import model.CadastroUsuarioException;
 import model.Disciplina;
 import model.Grade;
 import model.Plano;
@@ -16,13 +14,17 @@ public class Controlador {
 	
 	public Controlador() throws IOException {
 		grade = new Grade();
+		grade.preencheGrade();
 		grade.save();
 		
 		cadastro = new CadastroUsuario();
 	}
 	
 	public void cadastrarUsuario(String nome, String email, String senha) throws CadastroUsuarioException {
-		cadastro.cadastrarUsuario(nome, email, senha, new Plano(grade));
+		Plano plano = new Plano(grade);
+		plano.iniciaPrePlano();
+//		plano.save();
+		cadastro.cadastrarUsuario(nome, email, senha, plano);
 	}
 	
 	public Usuario autenticarUsuario(String email, String senha) {
@@ -46,6 +48,7 @@ public class Controlador {
 	}
 
 	public void removeDisciplina(Usuario usuario, String nome) {
+		System.out.println(grade.getDisciplinaPorNome(nome).getNome());
 		usuario.getPlano().removeDisciplina(grade.getDisciplinaPorNome(nome));
 	}
 	

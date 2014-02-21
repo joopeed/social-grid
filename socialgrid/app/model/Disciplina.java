@@ -24,18 +24,20 @@ public class Disciplina extends Model implements Comparable<Disciplina> {
 	private static final long serialVersionUID = -1290335955963203228L;
 
 	@Id
-	public String nome;
+	public Long id;
+	private String nome;
 	private int creditos;
 	@ManyToMany
-	@JoinTable(name="disciplinas_dependentes", joinColumns=@JoinColumn(name="disciplina_id", referencedColumnName="nome"),
-	inverseJoinColumns=@JoinColumn(name="dependente_id", referencedColumnName="nome"))
+	@JoinTable(name="disciplinas_dependentes", joinColumns=@JoinColumn(name="disciplina_id", referencedColumnName="id"),
+	inverseJoinColumns=@JoinColumn(name="dependente_id", referencedColumnName="id"))
 	private Set<Disciplina> dependentes;
 	@ManyToMany
-	@JoinTable(name="disciplinas_requisitos", joinColumns=@JoinColumn(name="disciplina_id", referencedColumnName="nome"),
-			inverseJoinColumns=@JoinColumn(name="requisito_id", referencedColumnName="nome"))
+	@JoinTable(name="disciplinas_requisitos", joinColumns=@JoinColumn(name="disciplina_id", referencedColumnName="id"),
+			inverseJoinColumns=@JoinColumn(name="requisito_id", referencedColumnName="id"))
 	private Set<Disciplina> requisitos;
 	@ManyToMany(cascade = CascadeType.REMOVE)
 	private List<Dica> dicas;
+
 	
 	/**
 	 * Construtor

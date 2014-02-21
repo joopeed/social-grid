@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import play.test.WithApplication;
+import controllers.CadastroUsuarioException;
 import controllers.Controlador;
 
 public class SistemaTest extends WithApplication {

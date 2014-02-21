@@ -39,8 +39,8 @@ public class Carregador {
 			disciplinas.add(d);
 		}
 			
-		reader.close();	
-		disciplinas = adicionaDependentesERequisitos(disciplinas);
+		reader.close();
+//		disciplinas = adicionaDependentesERequisitos(disciplinas);
 		
 		return disciplinas;
 	}
@@ -51,7 +51,7 @@ public class Carregador {
 	 * @return Conjunto de disciplinas com dependências e requisitos.
 	 * @throws IOException Erro na leitura do arquivo.
 	 */
-	private Set<Disciplina> adicionaDependentesERequisitos(Set<Disciplina> disciplinas) throws IOException {
+	protected Set<Disciplina> adicionaDependentesERequisitos(Set<Disciplina> disciplinas) throws IOException {
 		String caminho = new File("res/disciplinas.txt").getCanonicalPath();
 		BufferedReader reader = new BufferedReader(new FileReader(new File(caminho)));
 		
