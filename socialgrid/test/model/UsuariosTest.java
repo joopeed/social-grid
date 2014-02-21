@@ -1,5 +1,7 @@
 package model;
 
+import static play.test.Helpers.*;
+
 import static org.junit.Assert.*;
 
 import java.io.IOException;
@@ -15,6 +17,8 @@ public class UsuariosTest {
 
 	@Before
 	public void setUp() throws IOException {
+		start(fakeApplication(inMemoryDatabase()));
+		
 		grade = new Grade();
 		cadastro = new CadastroUsuario();
 		
@@ -40,15 +44,33 @@ public class UsuariosTest {
 	@Test
 	public void testCadastroEBuscaDeUsuario() {
 		assertNull(cadastro.getUsuarioPorEmail(usuarioA.getEmail()));
-		assertTrue(cadastro.cadastrarUsuario(usuarioA.getNome(), usuarioA.getEmail(), usuarioA.getSenha(), new Plano(grade)));
+		
+		try {
+			cadastro.cadastrarUsuario(usuarioA.getNome(), usuarioA.getEmail(), usuarioA.getSenha(), new Plano(grade));
+		} catch (CadastroUsuarioException e) {
+			fail();
+		}
+		
 		assertNotNull(cadastro.getUsuarioPorEmail(usuarioA.getEmail()));
 		
 		assertEquals(usuarioA, cadastro.getUsuarioPorEmail(usuarioA.getEmail()));
 		
-		assertFalse(cadastro.cadastrarUsuario(usuarioA.getNome(), usuarioA.getEmail(), usuarioA.getSenha(), new Plano(grade)));
-		assertFalse(cadastro.cadastrarUsuario(usuarioB.getNome(), usuarioA.getEmail(), usuarioB.getSenha(), new Plano(grade)));
+		try {
+			cadastro.cadastrarUsuario(usuarioA.getNome(), usuarioA.getEmail(), usuarioA.getSenha(), new Plano(grade));
+			fail();
+		} catch (CadastroUsuarioException e) { }
 		
-		assertTrue(cadastro.cadastrarUsuario(usuarioB.getNome(), usuarioB.getEmail(), usuarioB.getSenha(), new Plano(grade)));
+		try {
+			cadastro.cadastrarUsuario(usuarioB.getNome(), usuarioA.getEmail(), usuarioB.getSenha(), new Plano(grade));
+			fail();
+		} catch (CadastroUsuarioException e) { }
+		
+		try {
+			cadastro.cadastrarUsuario(usuarioB.getNome(), usuarioB.getEmail(), usuarioB.getSenha(), new Plano(grade));
+		} catch (CadastroUsuarioException e) {
+			fail();
+		}
+
 		assertEquals(usuarioB, cadastro.getUsuarioPorEmail(usuarioB.getEmail()));
 	}
 	

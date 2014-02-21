@@ -31,8 +31,9 @@ public class Carregador {
 			}
 			String nome = info[0];
 			String creditos = info[2];
-						
-			disciplinas.add(new Disciplina(nome, Integer.parseInt(creditos)));
+			
+			Disciplina d = new Disciplina(nome, Integer.parseInt(creditos));
+			disciplinas.add(d);
 		}
 			
 		reader.close();	

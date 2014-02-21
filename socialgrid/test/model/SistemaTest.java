@@ -1,6 +1,7 @@
 package model;
 
 import static org.junit.Assert.*;
+import static play.test.Helpers.*;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -9,17 +10,21 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
+import play.test.WithApplication;
 import controllers.Controlador;
 
-public class SistemaTest {
+public class SistemaTest extends WithApplication {
 	
 	private Controlador controlador;
 	private Usuario usuario;
 	
 	@Before
-	public void setUp() throws IOException {
+	public void setUp() throws IOException, CadastroUsuarioException {
+        start(fakeApplication(inMemoryDatabase()));
+
 		controlador = new Controlador();
 		controlador.cadastrarUsuario("Nome", "email@email.com", "123456");
+		
 		usuario = controlador.getUsuarioPorEmail("email@email.com");
 	}
 	

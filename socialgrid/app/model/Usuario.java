@@ -1,10 +1,24 @@
 package model;
 
-public class Usuario {
-	private String email;
-	private String nome;
-	private String senha;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+import play.data.validation.Constraints.Required;
+import play.db.ebean.Model;
+
+@Entity
+public class Usuario extends Model {
 	
+	private static final long serialVersionUID = -4882979229999226419L;
+	
+	@Id
+	private String email;
+	@Required
+	private String nome;
+	@Required
+	private String senha;
+	@OneToOne
 	private Plano plano;
 
 	public Usuario(String nome, String email, String senha, Plano plano) {

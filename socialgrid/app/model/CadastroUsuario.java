@@ -1,19 +1,22 @@
 package model;
 
-import java.util.HashSet;
-import java.util.Set;
+import play.db.ebean.Model.Finder;
 
 public class CadastroUsuario {
-	private Set<Usuario> usuarios;
+	private Finder<String, Usuario> finder;
 	
 	public CadastroUsuario() {
-		usuarios = new HashSet<Usuario>();
+		finder = new Finder<String, Usuario>(String.class, Usuario.class);
 	}
 	
-	public boolean cadastrarUsuario(String nome, String email, String senha, Plano plano) {
+	public void cadastrarUsuario(String nome, String email, String senha, Plano plano) throws CadastroUsuarioException {
 		Usuario usuario = new Usuario(nome, email, senha, plano);
 		
-		return usuarios.add(usuario);
+		if (finder.byId(email) != null) {
+			throw new CadastroUsuarioException();
+		}
+		
+		usuario.save();
 	}
 	
 	public Usuario autenticarUsuario(String email, String senha) {
@@ -30,14 +33,6 @@ public class CadastroUsuario {
 	}
 	
 	public Usuario getUsuarioPorEmail(String email) {
-		Usuario usuarioEncontrado = null;
-		
-		for (Usuario usuario : usuarios) {
-			if (usuario.getEmail().equals(email)) {
-				usuarioEncontrado = usuario;
-			}
-		}
-		
-		return usuarioEncontrado;
+		return finder.byId(email);
 	}
 }

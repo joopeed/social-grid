@@ -6,15 +6,35 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
+import play.db.ebean.Model;
+
 /**
  * Representa uma disciplina no sistema.
  */
-public class Disciplina implements Comparable<Disciplina>  {
+@Entity
+public class Disciplina extends Model implements Comparable<Disciplina> {
 	
-	private String nome;
+	private static final long serialVersionUID = -1290335955963203228L;
+
+	@Id
+	public String nome;
 	private int creditos;
-	private Set<Disciplina> dependentes; 
+	@ManyToMany
+	@JoinTable(name="disciplinas_dependentes", joinColumns=@JoinColumn(name="disciplina_id", referencedColumnName="nome"),
+	inverseJoinColumns=@JoinColumn(name="dependente_id", referencedColumnName="nome"))
+	private Set<Disciplina> dependentes;
+	@ManyToMany
+	@JoinTable(name="disciplinas_requisitos", joinColumns=@JoinColumn(name="disciplina_id", referencedColumnName="nome"),
+			inverseJoinColumns=@JoinColumn(name="requisito_id", referencedColumnName="nome"))
 	private Set<Disciplina> requisitos;
+	@ManyToMany(cascade = CascadeType.REMOVE)
 	private List<Dica> dicas;
 	
 	/**

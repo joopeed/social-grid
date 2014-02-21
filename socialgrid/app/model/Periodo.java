@@ -5,11 +5,24 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import play.db.ebean.Model;
+
 /**
  * Implementa um período do sistema.
  */
-public class Periodo {
+@Entity
+public class Periodo extends Model {
 	
+	private static final long serialVersionUID = 4715181805704107893L;
+	
+	@Id
+	public Long id;
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	private List<Disciplina> disciplinas;
 	
 	/**

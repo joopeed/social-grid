@@ -5,12 +5,27 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import play.db.ebean.Model;
+
 /**
  * Implementa o plano de formação com períodos a serem preenchidos com disciplinas.
  */
-public class Plano {
+@Entity
+public class Plano extends Model {
 	
+	private static final long serialVersionUID = 5092375276705062916L;
+	
+	@Id
+	public Long id;
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Periodo> periodos;
+	@ManyToOne
 	private Grade grade;
 	private int qntPeriodos;
 	

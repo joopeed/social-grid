@@ -4,11 +4,24 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import play.db.ebean.Model;
+
 /**
  * Armazena todas as disciplinas do sistema.
  */
-public class Grade {
+@Entity
+public class Grade extends Model {
 	
+	private static final long serialVersionUID = -809721958825402175L;
+	
+	@Id
+	public Long id;
+	@OneToMany(cascade=CascadeType.ALL)
 	private Set<Disciplina> disciplinas;
 
 	/**

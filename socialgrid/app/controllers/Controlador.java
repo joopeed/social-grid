@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Set;
 
 import model.CadastroUsuario;
+import model.CadastroUsuarioException;
 import model.Disciplina;
 import model.Grade;
 import model.Plano;
@@ -15,11 +16,13 @@ public class Controlador {
 	
 	public Controlador() throws IOException {
 		grade = new Grade();
+		grade.save();
+		
 		cadastro = new CadastroUsuario();
 	}
 	
-	public boolean cadastrarUsuario(String nome, String email, String senha) {
-		return cadastro.cadastrarUsuario(nome, email, senha, new Plano(grade));
+	public void cadastrarUsuario(String nome, String email, String senha) throws CadastroUsuarioException {
+		cadastro.cadastrarUsuario(nome, email, senha, new Plano(grade));
 	}
 	
 	public Usuario autenticarUsuario(String email, String senha) {

@@ -1,10 +1,20 @@
 package model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+import play.db.ebean.Model;
+
 /**
  * Representa uma dica que é associada a um objeto Disciplina.
  */
-public class Dica {
+@Entity
+public class Dica extends Model {
 	
+	private static final long serialVersionUID = 5306648628423069991L;
+	
+	@Id
+	public Long id;
 	private String texto;
 	private int likes;
 	
