@@ -48,7 +48,6 @@ public class Controlador {
 	}
 
 	public void removeDisciplina(Usuario usuario, String nome) {
-		System.out.println(grade.getDisciplinaPorNome(nome).getNome());
 		usuario.getPlano().removeDisciplina(grade.getDisciplinaPorNome(nome));
 	}
 	
