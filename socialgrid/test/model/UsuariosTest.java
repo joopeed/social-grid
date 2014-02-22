@@ -9,9 +9,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import controllers.CadastroUsuario;
-import controllers.CadastroUsuarioException;
-
 public class UsuariosTest {
 	Usuario usuarioA, usuarioB, usuarioC;
 	Grade grade;

@@ -1,6 +1,7 @@
 package model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static play.test.Helpers.*;
 
 import java.io.IOException;
 
@@ -14,7 +15,10 @@ public class PlanoTest {
 	
 	@Before
 	public void SetUp() throws IOException {
+		start(fakeApplication(inMemoryDatabase()));
+		
 		grade = new Grade();
+		grade.preencheGrade();
 		plano1 = new Plano(grade);
 	}
 	

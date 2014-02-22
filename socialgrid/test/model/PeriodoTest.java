@@ -1,6 +1,8 @@
 package model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static play.test.Helpers.*;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -16,7 +18,11 @@ public class PeriodoTest {
 	
 	@Before
 	public void setUp() throws IOException {
+		start(fakeApplication(inMemoryDatabase()));
+
 		grade = new Grade();
+		grade.preencheGrade();
+		
 		primeiroPeriodo = new Periodo();
 		primeiroPeriodo.adicionaDisciplina(grade.getDisciplinaPorNome("cálculo diferencial e integral i"));
 		primeiroPeriodo.adicionaDisciplina(grade.getDisciplinaPorNome("álgebra vetorial e geometria analítica"));

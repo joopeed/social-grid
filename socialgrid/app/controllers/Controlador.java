@@ -3,6 +3,8 @@ package controllers;
 import java.io.IOException;
 import java.util.Set;
 
+import model.CadastroUsuario;
+import model.CadastroUsuarioException;
 import model.Disciplina;
 import model.Grade;
 import model.Plano;
