@@ -1,6 +1,36 @@
 @(periodos: List[model.Periodo], disciplinas_ofertadas: List[model.Disciplina])
 @import helper._
 @main("Início") {
+<script>
+    $(function() {
+        $(".disciplina").draggable({
+            revert: "invalid"
+        });
+
+        $( ".coluna" ).droppable({
+            drop: function( event, ui ) {
+                var disciplina = ui.draggable[0].id;
+            	var periodo = event.target.id.replace('periodo_', '');
+            
+                location.href = '/aplicacao/alocarDisciplina/' + disciplina + '/' + periodo;
+            }
+        });
+
+        $( "#disciplinas" ).droppable({
+            drop: function( event, ui ) {
+                var disciplina = ui.draggable[0].id;
+				var transfere = window.confirm("Ao desalocar esta disciplina você estará desalocando" +
+				"\nas disciplinas dela dependentes");
+				if (transfere) {
+					location.href = '/aplicacao/desalocarDisciplina/' + disciplina;
+				}
+				else {
+					location.href = '/'
+				}
+            }
+        });
+    });
+</script>
 	<header>
 		<div class="hero-unit">
 		    <h1>SocialGrid</h1>
