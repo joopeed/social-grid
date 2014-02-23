@@ -1,4 +1,4 @@
-@(periodos: List[model.Periodo])
+@(periodos: List[model.Periodo], disciplinas_ofertadas: List[model.Disciplina])
 @import helper._
 @main("Início") {
 	<header>
@@ -21,10 +21,19 @@
             }
             </br>
             </div>
-            
         }
-
     </div>
     <br/>
+        <div id="disciplinas">
+        <div class="titulo">
+            <nome-principal>Disciplinas Ofertadas</nome-principal>
+        </div>
+        @for(disciplina <- disciplinas_ofertadas) {
+                <div class="disciplina float-left" id="@disciplina.getNome()">
+                    <nome>@disciplina.getNome()</nome><br/>
+                    <descricao>@disciplina.getCreditos() créditos</descricao>
+                </div>
+        }
+    </div>
     </div>
 }
