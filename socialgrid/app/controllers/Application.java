@@ -5,7 +5,7 @@ import play.mvc.Result;
 
 public class Application extends Controller {
 
-	public static Sistema CONTROLADOR = new Sistema();
+	public static Sistema SISTEMA = new Sistema();
 	
     public static Result aplicacao() {
         return ok(views.html.index.render());
@@ -13,7 +13,18 @@ public class Application extends Controller {
       
     public static Result login() {
     	if (request().body().asFormUrlEncoded() != null) {
+    		String[] email = request().body().asFormUrlEncoded().get("email");
+    		String[] senha = request().body().asFormUrlEncoded().get("senha");
     		
+    		if (email != null && senha != null) {
+    			if (SISTEMA.autenticarUsuario(email[0], senha[0]) != null) {
+    				session("usuario", email[0]);
+    			}
+    		}
+    	}
+    	
+    	if (session("usuario") != null) {
+    		return redirect("/aplicacao");
     	}
     	
     	return ok(views.html.login.render());
@@ -25,9 +36,9 @@ public class Application extends Controller {
     		String[] email = request().body().asFormUrlEncoded().get("email");
     		String[] senha = request().body().asFormUrlEncoded().get("senha");
     		
-    		if (nome != null || email != null || senha != null) {
+    		if (nome != null && email != null && senha != null) {
     			try {
-    				CONTROLADOR.cadastrarUsuario(nome[0], email[0], senha[0]);
+    				SISTEMA.cadastrarUsuario(nome[0], email[0], senha[0]);
     				flash("cadastro", "Cadastro efetuado com sucesso!");
     				return redirect("/");
     			} catch (CadastroUsuarioException e) {
