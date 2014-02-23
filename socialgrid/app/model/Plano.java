@@ -185,4 +185,8 @@ public class Plano extends Model {
 
 		return diferenca;
 	}
+	
+	public List<Periodo> getPeriodos() {
+		return periodos;
+	} 
 }

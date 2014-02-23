@@ -12,10 +12,10 @@ public class Application extends Controller {
     	if (session("usuario") == null) {
     		return redirect("/");
     	}
-    	
+    	  
     	Usuario usuario = SISTEMA.getUsuarioPorEmail(session("usuario"));
     	
-        return ok(views.html.index.render(usuario));
+        return ok(views.html.index.render(usuario.getPlano().getPeriodos()));
     }
       
     public static Result login() {
@@ -62,4 +62,6 @@ public class Application extends Controller {
     	
     	return ok(views.html.cadastro.render());
     }
+    
+    public static List<>
 }
