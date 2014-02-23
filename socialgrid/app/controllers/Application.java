@@ -62,6 +62,5 @@ public class Application extends Controller {
     	
     	return ok(views.html.cadastro.render());
     }
-    
-    public static List<>
+
 }
