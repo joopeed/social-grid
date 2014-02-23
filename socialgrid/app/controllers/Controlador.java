@@ -58,10 +58,12 @@ public class Controlador {
 
 	public void addDisciplina(Usuario usuario, String nome, int idxPeriodo) {
 		usuario.getPlano().addDisciplina(getGrade().getDisciplinaPorNome(nome), idxPeriodo);
+		usuario.update();
 	}
 
 	public void removeDisciplina(Usuario usuario, String nome) {
 		usuario.getPlano().removeDisciplina(getGrade().getDisciplinaPorNome(nome));
+		usuario.update();
 	}
 	
 }

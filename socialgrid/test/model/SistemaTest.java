@@ -131,12 +131,16 @@ public class SistemaTest extends WithApplication {
 	public void adicionaDisciplinaDoPlanejamento0() {
 		controlador.removeDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "cálculo diferencial e integral ii");
 		assertFalse(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("cálculo diferencial e integral ii")));
+		
 		controlador.removeDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "cálculo diferencial e integral i");
 		assertFalse(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("cálculo diferencial e integral i")));
+		
 		controlador.addDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "cálculo diferencial e integral ii", 1);
 		assertFalse(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("cálculo diferencial e integral ii")));
+		
 		controlador.addDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "cálculo diferencial e integral i", 0);
 		assertTrue(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("cálculo diferencial e integral i")));
+		
 		controlador.addDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "cálculo diferencial e integral ii", 1);
 		assertTrue(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("cálculo diferencial e integral ii")));
 		
