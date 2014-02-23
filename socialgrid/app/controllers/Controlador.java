@@ -7,23 +7,35 @@ import model.Disciplina;
 import model.Grade;
 import model.Plano;
 import model.Usuario;
+import play.db.ebean.Model.Finder;
 
 public class Controlador {
 	private Grade grade;
 	private CadastroUsuario cadastro;
 	
-	public Controlador() throws IOException {
-		grade = new Grade();
-		grade.preencheGrade();
-		grade.save();
-		
+	public Controlador() {
+		carregarGrade();
 		cadastro = new CadastroUsuario();
+	}
+	
+	private void carregarGrade() {
+		Finder<Integer, Grade> gradeFinder = new Finder<Integer, Grade>(Integer.class, Grade.class);
+
+		if (gradeFinder.findRowCount() > 0) {
+			grade = gradeFinder.all().get(0);
+		} else {
+			try {
+				grade = new Grade();
+				grade.preencheGrade();
+				grade.save();
+			} catch (IOException e) { }
+		}
 	}
 	
 	public void cadastrarUsuario(String nome, String email, String senha) throws CadastroUsuarioException {
 		Plano plano = new Plano(grade);
 		plano.iniciaPrePlano();
-//		plano.save();
+		
 		cadastro.cadastrarUsuario(nome, email, senha, plano);
 	}
 	
