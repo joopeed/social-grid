@@ -20,7 +20,7 @@ public class Controlador {
 	}
 	
 	private void carregarGrade() {
-		if (gradeFinder.findRowCount() < 0) {
+		if (gradeFinder.findRowCount() < 1) {
 			try {
 				Grade grade = new Grade();
 				grade.preencheGrade();
