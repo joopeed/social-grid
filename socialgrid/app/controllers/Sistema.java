@@ -9,11 +9,11 @@ import model.Plano;
 import model.Usuario;
 import play.db.ebean.Model.Finder;
 
-public class Controlador {
+public class Sistema {
 	private CadastroUsuario cadastro;
 	private Finder<Integer, Grade> gradeFinder;
 	
-	public Controlador() {
+	public Sistema() {
 		gradeFinder = new Finder<Integer, Grade>(Integer.class, Grade.class);
 		carregarGrade();
 		cadastro = new CadastroUsuario();

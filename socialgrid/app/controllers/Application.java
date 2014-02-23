@@ -5,7 +5,7 @@ import play.mvc.Result;
 
 public class Application extends Controller {
 
-	public static Controlador CONTROLADOR = new Controlador();
+	public static Sistema CONTROLADOR = new Sistema();
 	
     public static Result aplicacao() {
         return ok(views.html.index.render());

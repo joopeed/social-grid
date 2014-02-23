@@ -13,17 +13,17 @@ import org.junit.Test;
 import play.db.ebean.Model.Finder;
 import play.test.WithApplication;
 import controllers.CadastroUsuarioException;
-import controllers.Controlador;
+import controllers.Sistema;
 
 public class SistemaTest extends WithApplication {
 	
-	private Controlador controlador;
+	private Sistema controlador;
 	
 	@Before
 	public void setUp() throws IOException, CadastroUsuarioException {
         start(fakeApplication(inMemoryDatabase()));
 
-		controlador = new Controlador();
+		controlador = new Sistema();
 		controlador.cadastrarUsuario("Nome", "email@email.com", "123456");
 	}
 	
