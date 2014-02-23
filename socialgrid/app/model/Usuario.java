@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import play.data.validation.Constraints.Email;
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 
@@ -13,7 +14,7 @@ public class Usuario extends Model {
 	
 	private static final long serialVersionUID = -4882979229999226419L;
 	
-	@Id
+	@Id @Required @Email
 	private String email;
 	@Required
 	private String nome;
