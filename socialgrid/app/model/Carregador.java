@@ -4,8 +4,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Lê o arquivo de disciplinas e criar cada disciplina no sistema.
@@ -19,8 +19,8 @@ public class Carregador {
 	 * @return Conjunto de disciplinas com dependências e requisitos.
 	 * @throws IOException Erro na leitura do arquivo.
 	 */
-	public Set<Disciplina> preencheGrade() throws IOException {
-		Set<Disciplina> disciplinas = new HashSet<Disciplina>();
+	public List<Disciplina> preencheGrade() throws IOException {
+		List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 		String caminho = new File("res/disciplinas.txt").getCanonicalPath();
 		BufferedReader reader = new BufferedReader(new FileReader(new File(caminho)));
 		
@@ -51,7 +51,7 @@ public class Carregador {
 	 * @return Conjunto de disciplinas com dependências e requisitos.
 	 * @throws IOException Erro na leitura do arquivo.
 	 */
-	protected Set<Disciplina> adicionaDependentesERequisitos(Set<Disciplina> disciplinas) throws IOException {
+	protected List<Disciplina> adicionaDependentesERequisitos(List<Disciplina> disciplinas) throws IOException {
 		String caminho = new File("res/disciplinas.txt").getCanonicalPath();
 		BufferedReader reader = new BufferedReader(new FileReader(new File(caminho)));
 		
@@ -83,7 +83,7 @@ public class Carregador {
 	 * @param nome Nome da disciplina procurada.
 	 * @return Objeto Disciplina procurado.
 	 */
-	private Disciplina buscaDisciplina(Set<Disciplina> disciplinas, String nome) {
+	private Disciplina buscaDisciplina(List<Disciplina> disciplinas, String nome) {
 		for(Disciplina disc: disciplinas) {
 			if (disc.getNome().equals(nome))
 				return disc;

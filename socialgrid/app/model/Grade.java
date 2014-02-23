@@ -1,8 +1,8 @@
 package model;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -22,14 +22,14 @@ public class Grade extends Model {
 	@Id
 	public Long id;
 	@ManyToMany
-	private Set<Disciplina> disciplinas;
+	private List<Disciplina> disciplinas;
 
 	/**
 	 * Construtor
 	 * @throws IOException Erro na leitura do arquivo.
 	 */
 	public Grade() throws IOException {
-		disciplinas = new HashSet<Disciplina>();
+		disciplinas = new ArrayList<Disciplina>();
 	}
 
 	/**
@@ -39,7 +39,7 @@ public class Grade extends Model {
 	public void preencheGrade() throws IOException {
 		Carregador carregador = new Carregador();
 		
-		Set<Disciplina> disciplinas = carregador.preencheGrade();
+		List<Disciplina> disciplinas = carregador.preencheGrade();
 		
 		for (Disciplina disciplina : disciplinas) {
 			disciplina.save();
@@ -72,7 +72,7 @@ public class Grade extends Model {
 	 * Pega todas as disciplinas da grade.
 	 * @return Conjunto de disciplinas.
 	 */
-	public Set<Disciplina> getTodasDisciplinas() {
+	public List<Disciplina> getTodasDisciplinas() {
 		return disciplinas;
 	}
 	

@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 
 import model.Disciplina;
@@ -52,10 +53,6 @@ public class Sistema {
 		return getGrade().getDisciplinaPorNome(nome);
 	}
 	
-	public Set<Disciplina> getDisciplinasAlocadas(Usuario usuario) {
-		return usuario.getPlano().getDisciplinasAlocadas();
-	}
-
 	public void addDisciplina(Usuario usuario, String nome, int idxPeriodo) {
 		usuario.getPlano().addDisciplina(getGrade().getDisciplinaPorNome(nome), idxPeriodo);
 		usuario.update();
@@ -66,4 +63,11 @@ public class Sistema {
 		usuario.update();
 	}
 	
+	public List<Disciplina> getDisciplinasOfertadas(Usuario usuario) {
+		return usuario.getPlano().getDisciplinasOfertadas();
+	}
+
+	public Set<Disciplina> getDisciplinasAlocadas(Usuario usuario) {
+		return usuario.getPlano().getDisciplinasAlocadas();
+	}
 }

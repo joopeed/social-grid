@@ -29,7 +29,7 @@ public class SistemaTest extends WithApplication {
 	
 	@Test
 	public void iniciaPlanejamento() throws IOException {		
-		Set<Disciplina> disciplinas = new HashSet<Disciplina>();
+		Set<Disciplina> disciplinas = new HashSet<Disciplina>();		
 		Set<Disciplina> todasDisciplinas = controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com"));
 		
 		disciplinas.add(controlador.getDisciplinaPorNome("cálculo diferencial e integral i"));

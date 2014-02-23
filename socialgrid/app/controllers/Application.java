@@ -15,7 +15,7 @@ public class Application extends Controller {
     	  
     	Usuario usuario = SISTEMA.getUsuarioPorEmail(session("usuario"));
     	
-        return ok(views.html.index.render(usuario.getPlano().getPeriodos()));
+        return ok(views.html.index.render(usuario.getPlano().getPeriodos(), usuario.getPlano().getDisciplinasOfertadas()));
     }
       
     public static Result login() {

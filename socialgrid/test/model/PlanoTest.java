@@ -1,9 +1,13 @@
 package model;
 
-import static org.junit.Assert.assertEquals;
-import static play.test.Helpers.*;
+import static org.junit.Assert.*;
+import static play.test.Helpers.fakeApplication;
+import static play.test.Helpers.inMemoryDatabase;
+import static play.test.Helpers.start;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -41,4 +45,12 @@ public class PlanoTest {
 		assertEquals(1, plano1.getDiferencaDePlanos(plano2));
 	}
 
+	@Test
+	public void disciplinasOfertadas() {
+		List<Disciplina> naoAlocadas = new ArrayList<Disciplina>();
+		naoAlocadas.add(grade.getDisciplinaPorNome("inglês"));
+		naoAlocadas.add(grade.getDisciplinaPorNome("engenharia de software ii"));
+		
+		assertTrue(plano1.getDisciplinasOfertadas().containsAll(naoAlocadas));
+	}
 }

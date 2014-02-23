@@ -114,6 +114,22 @@ public class Plano extends Model {
 		
 		return disciplinas;
 	}
+	
+	/**
+	 * Pega as disciplinas da grade que não estão alocadas.
+	 * @return Disciplinas não alocadas.
+	 */
+	public List<Disciplina> getDisciplinasOfertadas() {
+		List<Disciplina> disciplinasOfertadas = grade.getTodasDisciplinas();
+		
+		for (Disciplina alocada: getDisciplinasAlocadas()) {
+			if (disciplinasOfertadas.contains(alocada)) {
+				disciplinasOfertadas.remove(alocada);
+			}
+		}
+		
+		return disciplinasOfertadas;
+	} 
 
 	/**
 	 * Aloca uma disciplina para um período.
@@ -188,5 +204,6 @@ public class Plano extends Model {
 	
 	public List<Periodo> getPeriodos() {
 		return periodos;
-	} 
+	}
+
 }
