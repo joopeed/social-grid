@@ -1,11 +1,15 @@
 package model;
 
-import static org.junit.Assert.*;
-import static play.test.Helpers.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static play.test.Helpers.fakeApplication;
+import static play.test.Helpers.inMemoryDatabase;
+import static play.test.Helpers.start;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -33,7 +37,7 @@ public class PeriodoTest {
 	
 	@Test
 	public void testaSeDisciplinasEstaoNoPeriodo() {
-		Set<Disciplina> disciplinas = new HashSet<Disciplina>();
+		List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 		
 		disciplinas.add(grade.getDisciplinaPorNome("cálculo diferencial e integral i"));
 		disciplinas.add(grade.getDisciplinaPorNome("álgebra vetorial e geometria analítica"));

@@ -36,8 +36,8 @@ public class Periodo extends Model {
 	 * Pega as disciplinas do período.
 	 * @return Conjunto de disciplinas no período.
 	 */
-	public Set<Disciplina> getDisciplinas() {
-		return new HashSet<Disciplina>(disciplinas);
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
 	}
 
 	/**
