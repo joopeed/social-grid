@@ -58,7 +58,7 @@ public class Sistema {
 		usuario.update();
 	}
 
-	public void removeDisciplina(Usuario usuario, String nome) {
+	public void desalocarDisciplina(Usuario usuario, String nome) {
 		usuario.getPlano().removeDisciplina(getGrade().getDisciplinaPorNome(nome));
 		usuario.update();
 	}

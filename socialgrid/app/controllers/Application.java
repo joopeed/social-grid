@@ -63,4 +63,9 @@ public class Application extends Controller {
     	return ok(views.html.cadastro.render());
     }
 
+    public static Result desalocarDisciplina(String nomeDisciplina) {
+    	SISTEMA.desalocarDisciplina(SISTEMA.getUsuarioPorEmail(session("usuario")), nomeDisciplina);
+    	return redirect("/aplicacao");
+    }
+    
 }
