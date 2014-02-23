@@ -10,30 +10,31 @@ import model.Usuario;
 import play.db.ebean.Model.Finder;
 
 public class Controlador {
-	private Grade grade;
 	private CadastroUsuario cadastro;
+	private Finder<Integer, Grade> gradeFinder;
 	
 	public Controlador() {
+		gradeFinder = new Finder<Integer, Grade>(Integer.class, Grade.class);
 		carregarGrade();
 		cadastro = new CadastroUsuario();
 	}
 	
 	private void carregarGrade() {
-		Finder<Integer, Grade> gradeFinder = new Finder<Integer, Grade>(Integer.class, Grade.class);
-
-		if (gradeFinder.findRowCount() > 0) {
-			grade = gradeFinder.all().get(0);
-		} else {
+		if (gradeFinder.findRowCount() < 0) {
 			try {
-				grade = new Grade();
+				Grade grade = new Grade();
 				grade.preencheGrade();
 				grade.save();
 			} catch (IOException e) { }
 		}
 	}
 	
+	public Grade getGrade() {
+		return gradeFinder.all().get(0);
+	}
+	
 	public void cadastrarUsuario(String nome, String email, String senha) throws CadastroUsuarioException {
-		Plano plano = new Plano(grade);
+		Plano plano = new Plano(getGrade());
 		plano.iniciaPrePlano();
 		
 		cadastro.cadastrarUsuario(nome, email, senha, plano);
@@ -48,7 +49,7 @@ public class Controlador {
 	}
 	
 	public Disciplina getDisciplinaPorNome(String nome) {
-		return grade.getDisciplinaPorNome(nome);
+		return getGrade().getDisciplinaPorNome(nome);
 	}
 	
 	public Set<Disciplina> getDisciplinasAlocadas(Usuario usuario) {
@@ -56,11 +57,11 @@ public class Controlador {
 	}
 
 	public void addDisciplina(Usuario usuario, String nome, int idxPeriodo) {
-		usuario.getPlano().addDisciplina(grade.getDisciplinaPorNome(nome), idxPeriodo);
+		usuario.getPlano().addDisciplina(getGrade().getDisciplinaPorNome(nome), idxPeriodo);
 	}
 
 	public void removeDisciplina(Usuario usuario, String nome) {
-		usuario.getPlano().removeDisciplina(grade.getDisciplinaPorNome(nome));
+		usuario.getPlano().removeDisciplina(getGrade().getDisciplinaPorNome(nome));
 	}
 	
 }
