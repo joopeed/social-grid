@@ -10,6 +10,7 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
+import play.db.ebean.Model.Finder;
 import play.test.WithApplication;
 import controllers.CadastroUsuarioException;
 import controllers.Controlador;
@@ -174,5 +175,15 @@ public class SistemaTest extends WithApplication {
 		assertTrue(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("programação ii")));
 	}
 	
+	@Test
+	public void removeDoPlanoSemRemoverDaGrade() {
+		Finder<Integer, Grade> gradeFinder = new Finder<Integer, Grade>(Integer.class, Grade.class);
+		
+		controlador.removeDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "programação i");
+		Grade grade = gradeFinder.all().get(0);
+		
+		assertNotNull(grade.getDisciplinaPorNome("programação i"));
+		assertNotNull(grade.getDisciplinaPorNome("programação ii"));
+	}
 	
 }

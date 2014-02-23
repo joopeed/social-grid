@@ -29,7 +29,7 @@ public class Controlador {
 		}
 	}
 	
-	public Grade getGrade() {
+	private Grade getGrade() {
 		return gradeFinder.all().get(0);
 	}
 	
