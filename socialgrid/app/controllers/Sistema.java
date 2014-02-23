@@ -53,7 +53,7 @@ public class Sistema {
 		return getGrade().getDisciplinaPorNome(nome);
 	}
 	
-	public void addDisciplina(Usuario usuario, String nome, int idxPeriodo) {
+	public void alocarDisciplina(Usuario usuario, String nome, int idxPeriodo) {
 		usuario.getPlano().addDisciplina(getGrade().getDisciplinaPorNome(nome), idxPeriodo);
 		usuario.update();
 	}

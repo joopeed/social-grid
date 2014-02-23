@@ -10,7 +10,7 @@ POST	/cadastro						controllers.Application.cadastro()
 GET		/logout		 					controllers.Application.logout()
 GET     /aplicacao                  	controllers.Application.aplicacao()
 GET     /aplicacao/desalocarDisciplina/:nomeDisciplina  controllers.Application.desalocarDisciplina(nomeDisciplina: String)
-
+GET     /aplicacao/alocarDisciplina/:nomeDisciplina/:idxPeriodo  controllers.Application.alocarDisciplina(nomeDisciplina: String, idxPeriodo: Integer)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

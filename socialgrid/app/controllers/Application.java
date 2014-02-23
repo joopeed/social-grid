@@ -68,4 +68,9 @@ public class Application extends Controller {
     	return redirect("/aplicacao");
     }
     
+    public static Result alocarDisciplina(String nomeDisciplina, int idxPeriodo) {
+    	SISTEMA.alocarDisciplina(SISTEMA.getUsuarioPorEmail(session("usuario")), nomeDisciplina, idxPeriodo);
+    	return redirect("/aplicacao");
+    }
+    
 }
