@@ -9,7 +9,10 @@
 		</div>
 	</header>
 	<div class="wrapper" style="height: 100%;">
-    <div id="colunas">
+    	<div id="colunas">
+    	<div class="titulo">
+            <h1>Meu Plano</h1>
+        </div>
         @for((periodo, i) <- periodos.zipWithIndex) {
             <div id="periodo_@(i + 1)" class="coluna">
             <nome-periodo>Período @(1 + periodos.indexOf(periodo))</nome-periodo>
@@ -26,10 +29,10 @@
     <br/>
         <div id="disciplinas">
         <div class="titulo">
-            <nome-principal>Disciplinas Ofertadas</nome-principal>
+            <h1>Disciplinas Ofertadas</h1>
         </div>
         @for(disciplina <- disciplinas_ofertadas) {
-                <div class="disciplina float-left" id="@disciplina.getNome()">
+                <div class="ofertada disciplina float-left" id="@disciplina.getNome()">
                     <nome>@disciplina.getNome()</nome><br/>
                     <descricao>@disciplina.getCreditos() créditos</descricao>
                 </div>
