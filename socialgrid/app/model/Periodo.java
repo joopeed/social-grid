@@ -65,4 +65,18 @@ public class Periodo extends Model {
 		return disciplinas.contains(disciplina);
 	}
 
+	/**
+	 * Pega quantidade total de créditos alocados no período.
+	 * @return Total de créditos.
+	 */
+	public int getTotalDeCreditos() {
+		int totalDeCreditos = 0;
+		
+		for (Disciplina disciplina: disciplinas) {
+			totalDeCreditos += disciplina.getCreditos();
+		}
+		
+		return totalDeCreditos;
+	}
+	
 }
