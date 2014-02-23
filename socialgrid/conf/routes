@@ -5,6 +5,7 @@
 # Pages
 GET		/		 					controllers.Application.login()
 POST	/		 					controllers.Application.login()
+GET		/logout		 				controllers.Application.logout()
 GET     /aplicacao                  controllers.Application.aplicacao()
 GET		/cadastro					controllers.Application.cadastro()
 POST	/cadastro					controllers.Application.cadastro()

@@ -1,21 +1,55 @@
+@(usuario: model.Usuario)
 @import helper._
 @main("Início") {
-	    <head>
-			<div class="hero-unit">
-			    <h1>SocialGrid</h1>
-			    <p>Ciência da Computação - Universidade Federal de Campina Grande</p>
-			</div>
-	    </head>
-	    
-	    <body>
-
-		<div class="container" style="margin-left: 60px; margin-top: 30px;">
-
-		    <ul class="nav nav-tabs">
-			    <li class="active"><a href="#Início" data-toggle="tab">Início</a></li>
-			    <li><a href="#MinhaGrade" data-toggle="tab">Minha Grade</a></li>
-			    <li><a href="#Disciplinas" data-toggle="tab">Disciplinas</a></li>
-		    </ul>
-
+	<header>
+		<div class="hero-unit">
+		    <h1>SocialGrid</h1>
+		    <p>Ciência da Computação - Universidade Federal de Campina Grande</p>
+		    <button type="button" class="btn" onclick="location.href = '@routes.Application.logout()';">Sair</button>
 		</div>
+	</header>
+	<div class="wrapper" style="height: 100%;">
+    <br/>    
+    <div id="colunas">
+        <div class="titulo">
+            <nome-principal>Meu Curso</nome-principal>
+            @if(flash.containsKey("error")){
+				<div class="alert alert-error">
+					<nome-erro>@flash.get("error")</nome-erro>
+				</div>
+			}
+			<br></br>
+			<nome-ajuda>
+    			Arraste disciplinas para o período ao qual gostaria de alocá-las e assim, planeje seu curso
+    		</nome-ajuda>
+    		<br>
+    		<nome-ajuda>
+				Para desalocar uma disciplina basta arrasta-la de volta às Disciplinas Ofertadas
+			</nome-ajuda>
+        </div>
+        @for((periodo, i) <- periodos.zipWithIndex) {
+            <div id="periodo_@(i + 1)" class="coluna">
+            <nome-periodo>Período @(1 + periodos.indexOf(periodo))</nome-periodo>
+            @for(disciplina <- periodo.getDisciplinas()){
+                <div class="disciplina" id="@disciplina.getNome()">
+                    <nome>@disciplina.getNome()</nome><br/>
+                    <descricao>@disciplina.getCreditos() créditos</descricao>
+                    <br>
+                    <descricao>Dificuldade: @disciplina.getDificuldade()</descricao>
+                </div>
+            }
+            <h3> @periodo.totalCreditos() créditos </h3> <br>
+            @if(periodo.abaixoCreditosMinimos()) {
+                Abaixo dos créditos mínimos.
+            }
+            <br>
+				Dificuldade: @periodo.dificuldadeMedia()
+            </br>
+            </div>
+            
+        }
+
+    </div>
+    <br/>
+    </div>
 }

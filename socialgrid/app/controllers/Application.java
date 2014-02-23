@@ -1,5 +1,6 @@
 package controllers;
 
+import model.Usuario;
 import play.mvc.Controller;
 import play.mvc.Result;
 
@@ -8,7 +9,13 @@ public class Application extends Controller {
 	public static Sistema SISTEMA = new Sistema();
 	
     public static Result aplicacao() {
-        return ok(views.html.index.render());
+    	if (session("usuario") == null) {
+    		return redirect("/");
+    	}
+    	
+    	Usuario usuario = SISTEMA.getUsuarioPorEmail(session("usuario"));
+    	
+        return ok(views.html.index.render(usuario));
     }
       
     public static Result login() {
@@ -28,6 +35,12 @@ public class Application extends Controller {
     	}
     	
     	return ok(views.html.login.render());
+    }
+    
+    public static Result logout() {
+    	session().remove("usuario");
+    	
+    	return redirect("/");
     }
     
     public static Result cadastro() {
