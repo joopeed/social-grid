@@ -1,7 +1,6 @@
 package model;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static play.test.Helpers.*;
 
 import java.io.IOException;
@@ -56,5 +55,10 @@ public class PeriodoTest {
 	public void removeDisciplina() {
 		primeiroPeriodo.removeDisciplina(grade.getDisciplinaPorNome("cálculo diferencial e integral i"));
 		assertFalse(primeiroPeriodo.getDisciplinas().contains(grade.getDisciplinaPorNome("inglês")));
+	}
+	
+	@Test
+	public void quantidadeDeCreditos() {
+		assertEquals(24, primeiroPeriodo.getTotalDeCreditos());
 	}
 }
