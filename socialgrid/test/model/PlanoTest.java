@@ -52,7 +52,7 @@ public class PlanoTest {
 	public void disciplinasOfertadas() {
 		List<Disciplina> naoAlocadas = new ArrayList<Disciplina>();
 		naoAlocadas.add(grade.getDisciplinaPorNome("Inglês"));
-		naoAlocadas.add(grade.getDisciplinaPorNome("engenharia de software ii"));
+		naoAlocadas.add(grade.getDisciplinaPorNome("Engenharia de Software II"));
 		
 		assertTrue(plano1.getDisciplinasOfertadas().containsAll(naoAlocadas));
 	}

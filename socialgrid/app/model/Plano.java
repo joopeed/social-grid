@@ -51,53 +51,53 @@ public class Plano extends Model {
 		addDisciplina(grade.getDisciplinaPorNome("Leitura e Produção de Textos"), 0);
 		addDisciplina(grade.getDisciplinaPorNome("Programação I"), 0);
 		addDisciplina(grade.getDisciplinaPorNome("Introdução à Computação"), 0);
-		addDisciplina(grade.getDisciplinaPorNome("Laboratório de Programação II"), 0);
+		addDisciplina(grade.getDisciplinaPorNome("Laboratório de Programação I"), 0);
 		
 		addDisciplina(grade.getDisciplinaPorNome("Cálculo Diferencial e Integral II"), 1);
 		addDisciplina(grade.getDisciplinaPorNome("Programação II"), 1);
 		addDisciplina(grade.getDisciplinaPorNome("Laboratório de Programação II"), 1);
 		addDisciplina(grade.getDisciplinaPorNome("Teoria dos Grafos"), 1);
 		addDisciplina(grade.getDisciplinaPorNome("Matemática Discreta"), 1);
-		addDisciplina(grade.getDisciplinaPorNome("metodologia científica"), 1);
-		addDisciplina(grade.getDisciplinaPorNome("fundamentos de física clássica"), 1);
+		addDisciplina(grade.getDisciplinaPorNome("Metodologia Científica"), 1);
+		addDisciplina(grade.getDisciplinaPorNome("Fundamentos de Física Clássica"), 1);
 		
-		addDisciplina(grade.getDisciplinaPorNome("álgebra linear"), 2);
-		addDisciplina(grade.getDisciplinaPorNome("probabilidade e estatística"), 2);
-		addDisciplina(grade.getDisciplinaPorNome("teoria da computação"), 2);
-		addDisciplina(grade.getDisciplinaPorNome("estruturas de dados e algoritmos"), 2);
-		addDisciplina(grade.getDisciplinaPorNome("fundamentos de física moderna"), 2);
-		addDisciplina(grade.getDisciplinaPorNome("gerência da informação"), 2);
-		addDisciplina(grade.getDisciplinaPorNome("laboratório de estruturas de dados e algoritmos"), 2);
+		addDisciplina(grade.getDisciplinaPorNome("Álgebra Linear I"), 2);
+		addDisciplina(grade.getDisciplinaPorNome("Probabilidade e Estatística"), 2);
+		addDisciplina(grade.getDisciplinaPorNome("Teoria da Computação"), 2);
+		addDisciplina(grade.getDisciplinaPorNome("Estrutura de Dados e Algoritmos"), 2);
+		addDisciplina(grade.getDisciplinaPorNome("Fundamentos de Física Moderna"), 2);
+		addDisciplina(grade.getDisciplinaPorNome("Gerência da Informação"), 2);
+		addDisciplina(grade.getDisciplinaPorNome("Laboratório de Estrutura de Dados e Algoritmos"), 2);
 		
-		addDisciplina(grade.getDisciplinaPorNome("métodos estatísticos"), 3);
-		addDisciplina(grade.getDisciplinaPorNome("paradigmas de linguagens de programação"), 3);
-		addDisciplina(grade.getDisciplinaPorNome("lógica matemática"), 3);
-		addDisciplina(grade.getDisciplinaPorNome("organização e arquitetura de computadores i"), 3);
-		addDisciplina(grade.getDisciplinaPorNome("engenharia de software i"), 3);
-		addDisciplina(grade.getDisciplinaPorNome("sistemas de informação i"), 3);
-		addDisciplina(grade.getDisciplinaPorNome("laboratório de organização e arquitetura de computadores"), 3);
+		addDisciplina(grade.getDisciplinaPorNome("Métodos Estatísticos"), 3);
+		addDisciplina(grade.getDisciplinaPorNome("Paradigmas de Linguagem de Programação"), 3);
+		addDisciplina(grade.getDisciplinaPorNome("Lógica Matemática"), 3);
+		addDisciplina(grade.getDisciplinaPorNome("Organização e Arquitetura de Computadores I"), 3);
+		addDisciplina(grade.getDisciplinaPorNome("Engenharia de Software I"), 3);
+		addDisciplina(grade.getDisciplinaPorNome("Sistemas de Informação I"), 3);
+		addDisciplina(grade.getDisciplinaPorNome("Laboratório de Organização e Arquitetura de Computadores"), 3);
 		
-		addDisciplina(grade.getDisciplinaPorNome("informática e sociedade"), 4);
-		addDisciplina(grade.getDisciplinaPorNome("análise e técnicas de algoritmos"), 4);
+		addDisciplina(grade.getDisciplinaPorNome("Informática e Sociedade"), 4);
+		addDisciplina(grade.getDisciplinaPorNome("Análise e Técnica de Algoritmos"), 4);
 		addDisciplina(grade.getDisciplinaPorNome("Compiladores"), 4);
-		addDisciplina(grade.getDisciplinaPorNome("redes de computadores"), 4);
-		addDisciplina(grade.getDisciplinaPorNome("bancos de dados i"), 4);
-		addDisciplina(grade.getDisciplinaPorNome("sistemas de informação ii"), 4);
-		addDisciplina(grade.getDisciplinaPorNome("laboratório de engenharia de software"), 4);
+		addDisciplina(grade.getDisciplinaPorNome("Redes de Computadores"), 4);
+		addDisciplina(grade.getDisciplinaPorNome("Banco de Dados I"), 4);
+		addDisciplina(grade.getDisciplinaPorNome("Sistemas de Informação II"), 4);
+		addDisciplina(grade.getDisciplinaPorNome("Laboratório de Engenharia de Software"), 4);
 		
-		addDisciplina(grade.getDisciplinaPorNome("direito e cidadania"), 5);
-		addDisciplina(grade.getDisciplinaPorNome("sistemas operacionais"), 5);
-		addDisciplina(grade.getDisciplinaPorNome("interconexão de redes de computadores"), 5);
-		addDisciplina(grade.getDisciplinaPorNome("banco de dados ii"), 5);
-		addDisciplina(grade.getDisciplinaPorNome("inteligência artificial i"), 5);
-		addDisciplina(grade.getDisciplinaPorNome("laboratório de interconexão de redes de computadores"), 5);
+		addDisciplina(grade.getDisciplinaPorNome("Direito e Cidadania"), 5);
+		addDisciplina(grade.getDisciplinaPorNome("Sistemas Operacionais"), 5);
+		addDisciplina(grade.getDisciplinaPorNome("Interconexão de Redes de Computadores"), 5);
+		addDisciplina(grade.getDisciplinaPorNome("Banco de Dados II"), 5);
+		addDisciplina(grade.getDisciplinaPorNome("Inteligência Artificial I"), 5);
+		addDisciplina(grade.getDisciplinaPorNome("Laboratório de Interconexão de Redes de Computadores"), 5);
 		
 		addDisciplina(grade.getDisciplinaPorNome("Métodos e Software Numéricos"), 6);
 		addDisciplina(grade.getDisciplinaPorNome("Avaliação de Desempenho de Sistemas Discretos"), 6);
 		addDisciplina(grade.getDisciplinaPorNome("Projeto em Computação I"), 6);
 		
 		addDisciplina(grade.getDisciplinaPorNome("Projeto em Computação II"), 7);
-		
+
 	}
 	
 	/**

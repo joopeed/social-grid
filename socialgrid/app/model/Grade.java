@@ -68,7 +68,7 @@ public class Grade extends Model {
 			if (disc.getNome().equals(nome))
 				return disc;
 		}
-		
+
 		return null;
 	}
 	

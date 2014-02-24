@@ -59,24 +59,6 @@ public class Carregador {
 					if (disciplinaNodeList.item(j).getNodeName().equals("codigo")) {
 						codigo = Long.valueOf(disciplinaNodeList.item(j).getTextContent());
 					}
-					
-					if (disciplinaNodeList.item(j).getNodeName().equals("codigosPrerequisitos")) {
-						NodeList prerequisitosNodeList = disciplinaNodeList.item(j).getChildNodes(); 
-						for (int k = 0; k < prerequisitosNodeList.getLength(); k++) {
-							if (!prerequisitosNodeList.item(k).getTextContent().trim().equals("")) {
-								System.out.println(prerequisitosNodeList.item(k).getTextContent());
-							}
-						}
-					}
-					
-					if (disciplinaNodeList.item(j).getNodeName().equals("codigosDependentes")) {
-						NodeList dependentesNodeList = disciplinaNodeList.item(j).getChildNodes();
-						for (int k = 0; k < dependentesNodeList.getLength(); k++) {
-							if (!dependentesNodeList.item(k).getTextContent().trim().equals("")) {
-								System.out.println(dependentesNodeList.item(k).getTextContent());
-							}
-						}
-					}
 				}
 				
 				disciplina = new Disciplina(nome, creditos);
