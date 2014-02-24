@@ -946,7 +946,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1112202</codigo>
-    <nome>PERCEPCAO DA FORMA</nome>
+    <nome>Percepção da Forma</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>0</creditos>
     <codigosPrerequisitos/>
@@ -955,7 +955,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1105237</codigo>
-    <nome>PERCEPCAO DA FORMA</nome>
+    <nome>Percepção da Forma</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -964,7 +964,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411214</codigo>
-    <nome>PRÁTICA DE ENSINO DE COMPUTAÇÃO</nome>
+    <nome>Prática de Ensino de Computação</nome>
     <cargaHoraria>45</cargaHoraria>
     <creditos>2</creditos>
     <codigosPrerequisitos/>
