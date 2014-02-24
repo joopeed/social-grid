@@ -1,46 +1,90 @@
 package model;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 /**
  * Lê o arquivo de disciplinas e criar cada disciplina no sistema.
  */
 public class Carregador {
 	
-	private final int LINHA_BRANCA = 1;
-	
 	/**
 	 * Cria um conjunto de objetos disciplinas a partir de um arquivo.
 	 * @return Conjunto de disciplinas com dependências e requisitos.
 	 * @throws IOException Erro na leitura do arquivo.
+	 * @throws ParserConfigurationException Erro na configuração do parser XML
+	 * @throws SAXException Erro no arquivo XML
 	 */
-	public List<Disciplina> preencheGrade() throws IOException {
+	public List<Disciplina> preencheGrade() throws IOException, ParserConfigurationException, SAXException {
 		List<Disciplina> disciplinas = new ArrayList<Disciplina>();
-		String caminho = new File("res/disciplinas.txt").getCanonicalPath();
-		BufferedReader reader = new BufferedReader(new FileReader(new File(caminho)));
 		
-		long id = 1l;
+		String caminho = new File("res/disciplinas.xml").getCanonicalPath();
 		
-		while(reader.ready()){
-			String[] info = reader.readLine().split(":");
-			if (info.length == LINHA_BRANCA) {
-				continue;
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		DocumentBuilder db = dbf.newDocumentBuilder();
+		Document disciplinasDocument = db.parse(new File(caminho));
+		
+		Node disciplinasRoot = disciplinasDocument.getDocumentElement();
+		NodeList disciplinasNodes = disciplinasRoot.getChildNodes();
+		
+		Disciplina disciplina;
+		
+		for (int i = 0; i < disciplinasNodes.getLength(); i++) {
+			if (disciplinasNodes.item(i).getNodeName().equals("disciplina")) {
+				long codigo = 0;
+				String nome = null;
+				int creditos = 0;
+				
+				NodeList disciplinaNodeList = disciplinasNodes.item(i).getChildNodes();
+				for (int j = 0; j < disciplinaNodeList.getLength(); j++) {
+					if (disciplinaNodeList.item(j).getNodeName().equals("nome")) {
+						nome = (disciplinaNodeList.item(j).getTextContent());
+					}
+					
+					if (disciplinaNodeList.item(j).getNodeName().equals("creditos")) {
+						creditos = Integer.valueOf(disciplinaNodeList.item(j).getTextContent());
+					}
+					
+					if (disciplinaNodeList.item(j).getNodeName().equals("codigo")) {
+						codigo = Long.valueOf(disciplinaNodeList.item(j).getTextContent());
+					}
+					
+					if (disciplinaNodeList.item(j).getNodeName().equals("codigosPrerequisitos")) {
+						NodeList prerequisitosNodeList = disciplinaNodeList.item(j).getChildNodes(); 
+						for (int k = 0; k < prerequisitosNodeList.getLength(); k++) {
+							if (!prerequisitosNodeList.item(k).getTextContent().trim().equals("")) {
+								System.out.println(prerequisitosNodeList.item(k).getTextContent());
+							}
+						}
+					}
+					
+					if (disciplinaNodeList.item(j).getNodeName().equals("codigosDependentes")) {
+						NodeList dependentesNodeList = disciplinaNodeList.item(j).getChildNodes();
+						for (int k = 0; k < dependentesNodeList.getLength(); k++) {
+							if (!dependentesNodeList.item(k).getTextContent().trim().equals("")) {
+								System.out.println(dependentesNodeList.item(k).getTextContent());
+							}
+						}
+					}
+				}
+				
+				disciplina = new Disciplina(nome, creditos);
+				disciplina.id = codigo;
+				
+				disciplinas.add(disciplina);
 			}
-			String nome = info[0];
-			String creditos = info[2];
-			
-			Disciplina d = new Disciplina(nome, Integer.parseInt(creditos));
-			d.id = id++;
-			disciplinas.add(d);
 		}
-			
-		reader.close();
-//		disciplinas = adicionaDependentesERequisitos(disciplinas);
 		
 		return disciplinas;
 	}
@@ -50,42 +94,64 @@ public class Carregador {
 	 * @param disciplinas Conjunto de disciplinas sem dependências e requisitos.
 	 * @return Conjunto de disciplinas com dependências e requisitos.
 	 * @throws IOException Erro na leitura do arquivo.
+	 * @throws ParserConfigurationException Erro na configuração do parser XML
+	 * @throws SAXException Erro no arquivo XML
 	 */
-	protected List<Disciplina> adicionaDependentesERequisitos(List<Disciplina> disciplinas) throws IOException {
-		String caminho = new File("res/disciplinas.txt").getCanonicalPath();
-		BufferedReader reader = new BufferedReader(new FileReader(new File(caminho)));
+	protected List<Disciplina> adicionaDependentesERequisitos(List<Disciplina> disciplinas) throws IOException, ParserConfigurationException, SAXException {
+		String caminho = new File("res/disciplinas.xml").getCanonicalPath();
 		
-		while(reader.ready()){
-			String[] info = reader.readLine().split(":");
-			if (info.length == LINHA_BRANCA) {
-				continue;
-			}
-			String[] dependentes = info[1].split(",");
-			Disciplina disciplinaAtual = buscaDisciplina(disciplinas, info[0]);
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		DocumentBuilder db = dbf.newDocumentBuilder();
+		Document disciplinasDocument = db.parse(new File(caminho));
+		
+		Node disciplinasRoot = disciplinasDocument.getDocumentElement();
+		NodeList disciplinasNodes = disciplinasRoot.getChildNodes();
+		
+		Disciplina disciplina;
+		
+		for (int i = 0; i < disciplinasNodes.getLength(); i++) {
+			if (disciplinasNodes.item(i).getNodeName().equals("disciplina")) {
+				long codigo = 0;
+				List<Integer> prerequisitos = new ArrayList<Integer>();
+				
+				NodeList disciplinaNodeList = disciplinasNodes.item(i).getChildNodes();
+				for (int j = 0; j < disciplinaNodeList.getLength(); j++) {
+					if (disciplinaNodeList.item(j).getNodeName().equals("codigo")) {
+						codigo = Long.valueOf(disciplinaNodeList.item(j).getTextContent());
+					}
 					
-			for (String nome_dependente: dependentes) {
-				if (nome_dependente.equals("nenhum")) {
-					break;
+					if (disciplinaNodeList.item(j).getNodeName().equals("codigosPrerequisitos")) {
+						NodeList prerequisitosNodeList = disciplinaNodeList.item(j).getChildNodes(); 
+						for (int k = 0; k < prerequisitosNodeList.getLength(); k++) {
+							if (!prerequisitosNodeList.item(k).getTextContent().trim().equals("")) {
+								prerequisitos.add(Integer.valueOf(prerequisitosNodeList.item(k).getTextContent()));
+							}
+						}
+					}
 				}
-				Disciplina dependente = buscaDisciplina(disciplinas, nome_dependente);
-				disciplinaAtual.acrescentaDependente(dependente);
+				
+				disciplina = buscaDisciplina(disciplinas, codigo);
+				
+				for (Integer prerequisito : prerequisitos) {
+					Disciplina disciplinaPrerequisito = buscaDisciplina(disciplinas, prerequisito);
+					disciplinaPrerequisito.acrescentaDependente(disciplina);
+					disciplina.acrescentaRequisitos(disciplinaPrerequisito);
+				}
 			}
 		}
-			
-		reader.close();
 		
 		return disciplinas;
 	}
 		
 	/**
-	 * Procura, em um conjunto, uma disciplina pelo nome e retorna o objeto Disciplina correspondente.
+	 * Procura, em um conjunto, uma disciplina pelo código e retorna o objeto Disciplina correspondente.
 	 * @param disciplinas Conjunto de objetos Disciplina.
 	 * @param nome Nome da disciplina procurada.
 	 * @return Objeto Disciplina procurado.
 	 */
-	private Disciplina buscaDisciplina(List<Disciplina> disciplinas, String nome) {
+	private Disciplina buscaDisciplina(List<Disciplina> disciplinas, long codigo) {
 		for(Disciplina disc: disciplinas) {
-			if (disc.getNome().equals(nome))
+			if (disc.id == codigo)
 				return disc;
 		}
 		return null;

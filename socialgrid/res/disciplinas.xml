@@ -856,7 +856,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1307150</codigo>
-    <nome>INGLÊS</nome>
+    <nome>Inglês</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -865,7 +865,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411208</codigo>
-    <nome>INTELIGÊNCIA ARTIFICIAL II</nome>
+    <nome>Inteligência Artifical II</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>

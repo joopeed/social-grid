@@ -11,8 +11,11 @@ import static play.test.Helpers.start;
 import java.io.IOException;
 import java.util.List;
 
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.junit.Before;
 import org.junit.Test;
+import org.xml.sax.SAXException;
 
 import play.db.ebean.Model.Finder;
 
@@ -58,7 +61,7 @@ public class PersistenciaTest {
 	}
 
 	@Test
-	public void testGrade() throws IOException {
+	public void testGrade() throws IOException, ParserConfigurationException, SAXException {
 		Finder<Integer, Grade> gradeFinder = new Finder<Integer, Grade>(Integer.class, Grade.class);
 
 		Grade grade = new Grade();

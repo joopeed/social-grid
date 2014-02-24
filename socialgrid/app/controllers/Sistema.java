@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
+
 import model.Disciplina;
 import model.Grade;
 import model.Plano;
@@ -27,6 +31,8 @@ public class Sistema {
 				grade.preencheGrade();
 				grade.save();
 			} catch (IOException e) { }
+			  catch (ParserConfigurationException e) { }
+			  catch (SAXException e) { }
 		}
 	}
 	
