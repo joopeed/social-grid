@@ -46,18 +46,18 @@ public class Plano extends Model {
 		for (int i = 0 ; i < qntPeriodos ; i++)
 			periodos.add(new Periodo());
 		
-		addDisciplina(grade.getDisciplinaPorNome("cálculo diferencial e integral i"), 0);
-		addDisciplina(grade.getDisciplinaPorNome("álgebra vetorial e geometria analítica"), 0);
-		addDisciplina(grade.getDisciplinaPorNome("leitura e produção de textos"), 0);
-		addDisciplina(grade.getDisciplinaPorNome("programação i"), 0);
-		addDisciplina(grade.getDisciplinaPorNome("introdução à computação"), 0);
-		addDisciplina(grade.getDisciplinaPorNome("laboratório de programação i"), 0);
+		addDisciplina(grade.getDisciplinaPorNome("Cálculo Diferencial e Integral I"), 0);
+		addDisciplina(grade.getDisciplinaPorNome("Álgebra Vetorial e Geometria Analítica"), 0);
+		addDisciplina(grade.getDisciplinaPorNome("Leitura e Produção de Textos"), 0);
+		addDisciplina(grade.getDisciplinaPorNome("Programação I"), 0);
+		addDisciplina(grade.getDisciplinaPorNome("Introdução à Computação"), 0);
+		addDisciplina(grade.getDisciplinaPorNome("Laboratório de Programação II"), 0);
 		
-		addDisciplina(grade.getDisciplinaPorNome("cálculo diferencial e integral ii"), 1);
-		addDisciplina(grade.getDisciplinaPorNome("programação ii"), 1);
-		addDisciplina(grade.getDisciplinaPorNome("laboratório de programação ii"), 1);
-		addDisciplina(grade.getDisciplinaPorNome("teoria dos grafos"), 1);
-		addDisciplina(grade.getDisciplinaPorNome("matemática discreta"), 1);
+		addDisciplina(grade.getDisciplinaPorNome("Cálculo Diferencial e Integral II"), 1);
+		addDisciplina(grade.getDisciplinaPorNome("Programação II"), 1);
+		addDisciplina(grade.getDisciplinaPorNome("Laboratório de Programação II"), 1);
+		addDisciplina(grade.getDisciplinaPorNome("Teoria dos Grafos"), 1);
+		addDisciplina(grade.getDisciplinaPorNome("Matemática Discreta"), 1);
 		addDisciplina(grade.getDisciplinaPorNome("metodologia científica"), 1);
 		addDisciplina(grade.getDisciplinaPorNome("fundamentos de física clássica"), 1);
 		
@@ -79,7 +79,7 @@ public class Plano extends Model {
 		
 		addDisciplina(grade.getDisciplinaPorNome("informática e sociedade"), 4);
 		addDisciplina(grade.getDisciplinaPorNome("análise e técnicas de algoritmos"), 4);
-		addDisciplina(grade.getDisciplinaPorNome("compiladores"), 4);
+		addDisciplina(grade.getDisciplinaPorNome("Compiladores"), 4);
 		addDisciplina(grade.getDisciplinaPorNome("redes de computadores"), 4);
 		addDisciplina(grade.getDisciplinaPorNome("bancos de dados i"), 4);
 		addDisciplina(grade.getDisciplinaPorNome("sistemas de informação ii"), 4);
@@ -92,11 +92,11 @@ public class Plano extends Model {
 		addDisciplina(grade.getDisciplinaPorNome("inteligência artificial i"), 5);
 		addDisciplina(grade.getDisciplinaPorNome("laboratório de interconexão de redes de computadores"), 5);
 		
-		addDisciplina(grade.getDisciplinaPorNome("métodos e software numéricos"), 6);
-		addDisciplina(grade.getDisciplinaPorNome("avaliação de desempenho de sistemas discretos"), 6);
-		addDisciplina(grade.getDisciplinaPorNome("projeto em computação i"), 6);
+		addDisciplina(grade.getDisciplinaPorNome("Métodos e Software Numéricos"), 6);
+		addDisciplina(grade.getDisciplinaPorNome("Avaliação de Desempenho de Sistemas Discretos"), 6);
+		addDisciplina(grade.getDisciplinaPorNome("Projeto em Computação I"), 6);
 		
-		addDisciplina(grade.getDisciplinaPorNome("projeto em computação ii"), 7);
+		addDisciplina(grade.getDisciplinaPorNome("Projeto em Computação II"), 7);
 		
 	}
 	

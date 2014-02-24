@@ -3,11 +3,13 @@ package model;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
 
 import play.db.ebean.Model;
 
@@ -35,8 +37,10 @@ public class Grade extends Model {
 	/**
 	 * Preenche a grade com disciplinas.
 	 * @throws IOException Erro na leitura do arquivo.
+	 * @throws ParserConfigurationException Erro na configuração do parser XML
+	 * @throws SAXException Erro no arquivo XML
 	 */
-	public void preencheGrade() throws IOException {
+	public void preencheGrade() throws IOException, ParserConfigurationException, SAXException {
 		Carregador carregador = new Carregador();
 		
 		List<Disciplina> disciplinas = carregador.preencheGrade();

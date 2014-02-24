@@ -9,8 +9,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.junit.Before;
 import org.junit.Test;
+import org.xml.sax.SAXException;
 
 public class PlanoTest {
 
@@ -18,7 +21,7 @@ public class PlanoTest {
 	private Grade grade;
 	
 	@Before
-	public void SetUp() throws IOException {
+	public void SetUp() throws IOException, ParserConfigurationException, SAXException {
 		start(fakeApplication(inMemoryDatabase()));
 		
 		grade = new Grade();
@@ -34,21 +37,21 @@ public class PlanoTest {
 		
 		assertEquals(0, plano1.getDiferencaDePlanos(plano2));
 		
-		plano2.removeDisciplina(grade.getDisciplinaPorNome("projeto em computação i"));
+		plano2.removeDisciplina(grade.getDisciplinaPorNome("Projeto em Computação I"));
 		assertEquals(2, plano1.getDiferencaDePlanos(plano2));
 		
-		plano2.addDisciplina(grade.getDisciplinaPorNome("projeto em computação i"), 6);
+		plano2.addDisciplina(grade.getDisciplinaPorNome("Projeto em Computação I"), 6);
 		assertEquals(1, plano1.getDiferencaDePlanos(plano2));
 		
-		plano2.addDisciplina(grade.getDisciplinaPorNome("projeto em computação ii"), 7);
-		plano2.addDisciplina(grade.getDisciplinaPorNome("inglês"), 7);
+		plano2.addDisciplina(grade.getDisciplinaPorNome("Projeto em Computação II"), 7);
+		plano2.addDisciplina(grade.getDisciplinaPorNome("Inglês"), 7);
 		assertEquals(1, plano1.getDiferencaDePlanos(plano2));
 	}
 
 	@Test
 	public void disciplinasOfertadas() {
 		List<Disciplina> naoAlocadas = new ArrayList<Disciplina>();
-		naoAlocadas.add(grade.getDisciplinaPorNome("inglês"));
+		naoAlocadas.add(grade.getDisciplinaPorNome("Inglês"));
 		naoAlocadas.add(grade.getDisciplinaPorNome("engenharia de software ii"));
 		
 		assertTrue(plano1.getDisciplinasOfertadas().containsAll(naoAlocadas));
