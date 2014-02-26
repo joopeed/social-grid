@@ -10,18 +10,15 @@ import org.xml.sax.SAXException;
 
 import model.Disciplina;
 import model.Grade;
-import model.Plano;
 import model.Usuario;
 import play.db.ebean.Model.Finder;
 
 public class Sistema {
-	private CadastroUsuario cadastro;
 	private Finder<Integer, Grade> gradeFinder;
 	
 	public Sistema() {
 		gradeFinder = new Finder<Integer, Grade>(Integer.class, Grade.class);
 		carregarGrade();
-		cadastro = new CadastroUsuario();
 	}
 	
 	private void carregarGrade() {
@@ -38,21 +35,6 @@ public class Sistema {
 	
 	private Grade getGrade() {
 		return gradeFinder.all().get(0);
-	}
-	
-	public void cadastrarUsuario(String nome, String email, String senha) throws CadastroUsuarioException {
-		Plano plano = new Plano(getGrade());
-		plano.iniciaPrePlano();
-		
-		cadastro.cadastrarUsuario(nome, email, senha, plano);
-	}
-	
-	public Usuario autenticarUsuario(String email, String senha) {
-		return cadastro.autenticarUsuario(email, senha);
-	}
-	
-	public Usuario getUsuarioPorEmail(String email) {
-		return cadastro.getUsuarioPorEmail(email);
 	}
 	
 	public Disciplina getDisciplinaPorNome(String nome) {

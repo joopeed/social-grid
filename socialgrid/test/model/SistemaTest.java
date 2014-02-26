@@ -12,77 +12,80 @@ import org.junit.Test;
 
 import play.db.ebean.Model.Finder;
 import play.test.WithApplication;
+import controllers.CadastroUsuario;
 import controllers.CadastroUsuarioException;
 import controllers.Sistema;
 
 public class SistemaTest extends WithApplication {
 	
-	private Sistema controlador;
+	private Sistema sistema;
+	private CadastroUsuario cadastro;
 	
 	@Before
 	public void setUp() throws IOException, CadastroUsuarioException {
         start(fakeApplication(inMemoryDatabase()));
 
-		controlador = new Sistema();
-		controlador.cadastrarUsuario("Nome", "email@email.com", "123456");
+		sistema = new Sistema();
+		cadastro = new CadastroUsuario();
+		cadastro.cadastrarUsuario("Nome", "email@email.com", "123456");
 	}
 	
 	@Test
 	public void iniciaPlanejamento() throws IOException {		
 		Set<Disciplina> disciplinas = new HashSet<Disciplina>();		
-		Set<Disciplina> todasDisciplinas = controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com"));
+		Set<Disciplina> todasDisciplinas = sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com"));
 		
-		disciplinas.add(controlador.getDisciplinaPorNome("Cálculo Diferencial e Integral I"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Álgebra Vetorial e Geometria Analítica"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Leitura e Produção de Textos"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Programação I"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Introdução à Computação"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Laboratório de Programação I"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Cálculo Diferencial e Integral II"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Programação II"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Laboratório de Programação II"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Teoria dos Grafos"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Matemática Discreta"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Metodologia Científica"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Fundamentos de Física Clássica"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Álgebra Linear I"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Probabilidade e Estatística"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Teoria da Computação"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Estrutura de Dados e Algoritmos"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Fundamentos de Física Moderna"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Gerência da Informação"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Laboratório de Estrutura de Dados e Algoritmos"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Métodos Estatísticos"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Paradigmas de Linguagem de Programação"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Lógica Matemática"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Organização e Arquitetura de Computadores I"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Engenharia de Software I"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Sistemas de Informação I"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Laboratório de Organização e Arquitetura de Computadores"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Informática e Sociedade"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Análise e Técnica de Algoritmos"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Compiladores"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Redes de Computadores"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Banco de Dados I"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Sistemas de Informação II"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Laboratório de Engenharia de Software"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Direito e Cidadania"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Sistemas Operacionais"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Interconexão de Redes de Computadores"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Banco de Dados II"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Inteligência Artificial I"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Laboratório de Interconexão de Redes de Computadores"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Métodos e Software Numéricos"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Avaliação de Desempenho de Sistemas Discretos"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Projeto em Computação I"));
-		disciplinas.add(controlador.getDisciplinaPorNome("Projeto em Computação II"));		
+		disciplinas.add(sistema.getDisciplinaPorNome("Cálculo Diferencial e Integral I"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Álgebra Vetorial e Geometria Analítica"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Leitura e Produção de Textos"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Programação I"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Introdução à Computação"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Laboratório de Programação I"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Cálculo Diferencial e Integral II"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Programação II"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Laboratório de Programação II"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Teoria dos Grafos"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Matemática Discreta"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Metodologia Científica"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Fundamentos de Física Clássica"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Álgebra Linear I"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Probabilidade e Estatística"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Teoria da Computação"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Estrutura de Dados e Algoritmos"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Fundamentos de Física Moderna"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Gerência da Informação"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Laboratório de Estrutura de Dados e Algoritmos"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Métodos Estatísticos"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Paradigmas de Linguagem de Programação"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Lógica Matemática"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Organização e Arquitetura de Computadores I"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Engenharia de Software I"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Sistemas de Informação I"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Laboratório de Organização e Arquitetura de Computadores"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Informática e Sociedade"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Análise e Técnica de Algoritmos"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Compiladores"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Redes de Computadores"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Banco de Dados I"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Sistemas de Informação II"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Laboratório de Engenharia de Software"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Direito e Cidadania"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Sistemas Operacionais"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Interconexão de Redes de Computadores"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Banco de Dados II"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Inteligência Artificial I"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Laboratório de Interconexão de Redes de Computadores"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Métodos e Software Numéricos"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Avaliação de Desempenho de Sistemas Discretos"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Projeto em Computação I"));
+		disciplinas.add(sistema.getDisciplinaPorNome("Projeto em Computação II"));		
 		
 		assertEquals(disciplinas, todasDisciplinas);
 		
-		Disciplina algebra = controlador.getDisciplinaPorNome("Álgebra Linear I");
-		Disciplina metedosEst = controlador.getDisciplinaPorNome("Métodos Estatísticos");
-		Disciplina metedosSoftNum = controlador.getDisciplinaPorNome("Métodos e Software Numéricos");
-		Disciplina vetorial = controlador.getDisciplinaPorNome("Álgebra Vetorial e Geometria Analítica");
+		Disciplina algebra = sistema.getDisciplinaPorNome("Álgebra Linear I");
+		Disciplina metedosEst = sistema.getDisciplinaPorNome("Métodos Estatísticos");
+		Disciplina metedosSoftNum = sistema.getDisciplinaPorNome("Métodos e Software Numéricos");
+		Disciplina vetorial = sistema.getDisciplinaPorNome("Álgebra Vetorial e Geometria Analítica");
 
 		assertTrue(algebra.getDependentes().contains(metedosEst));
 		assertTrue(algebra.getDependentes().contains(metedosSoftNum));
@@ -91,97 +94,97 @@ public class SistemaTest extends WithApplication {
 
 	@Test
 	public void adicionaDisciplinaNoPlanejamento() {
-		assertFalse(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Engenharia de Software II")));
-		controlador.alocarDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "Engenharia de Software II", 1);
-		assertTrue(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Engenharia de Software II")));
+		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Engenharia de Software II")));
+		sistema.alocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Engenharia de Software II", 1);
+		assertTrue(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Engenharia de Software II")));
 	}
 	
 	@Test
 	public void removeDisciplinaDoPlanejamento0() {
-		assertTrue(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Projeto em Computação II")));
-		controlador.desalocarDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "Projeto em Computação II");
-		assertFalse(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Projeto em Computação II")));
+		assertTrue(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Projeto em Computação II")));
+		sistema.desalocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Projeto em Computação II");
+		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Projeto em Computação II")));
 	}
 	
 	@Test
 	public void removeDisciplinaDoPlanejamento1() {
-		assertTrue(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Teoria da Computação")));
-		assertTrue(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Lógica Matemática")));
-		assertTrue(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Análise e Técnica de Algoritmos")));
-		assertTrue(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Inteligência Artificial I")));
-		controlador.desalocarDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "Lógica Matemática");
-		assertTrue(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Teoria da Computação")));
-		assertFalse(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Lógica Matemática")));
-		assertFalse(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Análise e Técnica de Algoritmos")));
-		assertFalse(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Inteligência Artificial I")));
+		assertTrue(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Teoria da Computação")));
+		assertTrue(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Lógica Matemática")));
+		assertTrue(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Análise e Técnica de Algoritmos")));
+		assertTrue(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Inteligência Artificial I")));
+		sistema.desalocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Lógica Matemática");
+		assertTrue(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Teoria da Computação")));
+		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Lógica Matemática")));
+		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Análise e Técnica de Algoritmos")));
+		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Inteligência Artificial I")));
 	}
 	
 	@Test
 	public void removeDisciplinaDoPlanejamento2() {
-		assertTrue(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Redes de Computadores")));
-		assertTrue(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Interconexão de Redes de Computadores")));
-		assertTrue(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Laboratório de Interconexão de Redes de Computadores")));
-		controlador.desalocarDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "Redes de Computadores");
-		assertFalse(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Redes de Computadores")));
-		assertFalse(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Interconexão de Redes de Computadores")));
-		assertFalse(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Laboratório de Interconexão de Redes de Computadores")));
+		assertTrue(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Redes de Computadores")));
+		assertTrue(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Interconexão de Redes de Computadores")));
+		assertTrue(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Laboratório de Interconexão de Redes de Computadores")));
+		sistema.desalocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Redes de Computadores");
+		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Redes de Computadores")));
+		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Interconexão de Redes de Computadores")));
+		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Laboratório de Interconexão de Redes de Computadores")));
 	}
 	
 	
 	@Test
 	public void adicionaDisciplinaDoPlanejamento0() {
-		controlador.desalocarDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "Cálculo Diferencial e Integral II");
-		assertFalse(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Cálculo Diferencial e Integral II")));
+		sistema.desalocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Cálculo Diferencial e Integral II");
+		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Cálculo Diferencial e Integral II")));
 		
-		controlador.desalocarDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "Cálculo Diferencial e Integral I");
-		assertFalse(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Cálculo Diferencial e Integral I")));
+		sistema.desalocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Cálculo Diferencial e Integral I");
+		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Cálculo Diferencial e Integral I")));
 		
-		controlador.alocarDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "Cálculo Diferencial e Integral II", 1);
-		assertFalse(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Cálculo Diferencial e Integral II")));
+		sistema.alocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Cálculo Diferencial e Integral II", 1);
+		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Cálculo Diferencial e Integral II")));
 		
-		controlador.alocarDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "Cálculo Diferencial e Integral I", 0);
-		assertTrue(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Cálculo Diferencial e Integral I")));
+		sistema.alocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Cálculo Diferencial e Integral I", 0);
+		assertTrue(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Cálculo Diferencial e Integral I")));
 		
-		controlador.alocarDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "Cálculo Diferencial e Integral II", 1);
-		assertTrue(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Cálculo Diferencial e Integral II")));
+		sistema.alocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Cálculo Diferencial e Integral II", 1);
+		assertTrue(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Cálculo Diferencial e Integral II")));
 		
 	}
 	
 	@Test
 	public void adicionaDisciplinaDoPlanejamento1() {
-		controlador.desalocarDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "Programação I");
-		controlador.desalocarDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "Introdução à Computação");
-		controlador.desalocarDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "Laboratório de Programação I");
-		controlador.desalocarDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "Programação II");
-		controlador.desalocarDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "Laboratório de Programação II");
-		assertFalse(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Programação I")));
-		assertFalse(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Introdução à Computação")));
-		assertFalse(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Laboratório de Programação I")));
-		assertFalse(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Programação I")));
-		assertFalse(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Laboratório de Programação II")));
-		controlador.alocarDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "Programação II", 1);
-		assertFalse(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Programação I")));
-		controlador.alocarDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "Programação I", 0);
-		assertTrue(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Programação I")));
-		controlador.alocarDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "Programação II", 1);
-		assertFalse(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Programação II")));
-		controlador.alocarDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "Introdução à Computação", 0);
-		assertTrue(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Introdução à Computação")));
-		controlador.alocarDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "Programação II", 1);
-		assertFalse(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Programação II")));
-		controlador.alocarDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "Laboratório de Programação I", 0);
-		assertTrue(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Laboratório de Programação I")));
-		controlador.alocarDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "Laboratório de Programação II", 1);
-		assertTrue(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Laboratório de Programação II")));
-		controlador.alocarDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "Programação II", 1);
-		assertTrue(controlador.getDisciplinasAlocadas(controlador.getUsuarioPorEmail("email@email.com")).contains(controlador.getDisciplinaPorNome("Programação II")));
+		sistema.desalocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Programação I");
+		sistema.desalocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Introdução à Computação");
+		sistema.desalocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Laboratório de Programação I");
+		sistema.desalocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Programação II");
+		sistema.desalocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Laboratório de Programação II");
+		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Programação I")));
+		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Introdução à Computação")));
+		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Laboratório de Programação I")));
+		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Programação I")));
+		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Laboratório de Programação II")));
+		sistema.alocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Programação II", 1);
+		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Programação I")));
+		sistema.alocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Programação I", 0);
+		assertTrue(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Programação I")));
+		sistema.alocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Programação II", 1);
+		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Programação II")));
+		sistema.alocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Introdução à Computação", 0);
+		assertTrue(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Introdução à Computação")));
+		sistema.alocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Programação II", 1);
+		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Programação II")));
+		sistema.alocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Laboratório de Programação I", 0);
+		assertTrue(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Laboratório de Programação I")));
+		sistema.alocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Laboratório de Programação II", 1);
+		assertTrue(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Laboratório de Programação II")));
+		sistema.alocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Programação II", 1);
+		assertTrue(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Programação II")));
 	}
 	
 	@Test
 	public void removeDoPlanoSemRemoverDaGrade() {
 		Finder<Integer, Grade> gradeFinder = new Finder<Integer, Grade>(Integer.class, Grade.class);
 		
-		controlador.desalocarDisciplina(controlador.getUsuarioPorEmail("email@email.com"), "Programação I");
+		sistema.desalocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Programação I");
 		Grade grade = gradeFinder.all().get(0);
 		
 		assertNotNull(grade.getDisciplinaPorNome("Programação I"));

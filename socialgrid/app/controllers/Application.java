@@ -7,13 +7,14 @@ import play.mvc.Result;
 public class Application extends Controller {
 
 	public static Sistema SISTEMA = new Sistema();
+	public static CadastroUsuario CADASTRO = new CadastroUsuario();
 	
     public static Result aplicacao() {
     	if (session("usuario") == null) {
     		return redirect("/");
     	}
     	  
-    	Usuario usuario = SISTEMA.getUsuarioPorEmail(session("usuario"));
+    	Usuario usuario = CADASTRO.getUsuarioPorEmail(session("usuario"));
     	
         return ok(views.html.index.render(usuario.getPlano().getPeriodos(), usuario.getPlano().getDisciplinasOfertadas()));
     }
@@ -24,7 +25,7 @@ public class Application extends Controller {
     		String[] senha = request().body().asFormUrlEncoded().get("senha");
     		
     		if (email != null && senha != null) {
-    			if (SISTEMA.autenticarUsuario(email[0], senha[0]) != null) {
+    			if (CADASTRO.autenticarUsuario(email[0], senha[0]) != null) {
     				session("usuario", email[0]);
     			}
     		}
@@ -51,7 +52,7 @@ public class Application extends Controller {
     		
     		if (nome != null && email != null && senha != null) {
     			try {
-    				SISTEMA.cadastrarUsuario(nome[0], email[0], senha[0]);
+    				CADASTRO.cadastrarUsuario(nome[0], email[0], senha[0]);
     				flash("cadastro", "Cadastro efetuado com sucesso!");
     				return redirect("/");
     			} catch (CadastroUsuarioException e) {
@@ -64,12 +65,12 @@ public class Application extends Controller {
     }
 
     public static Result desalocarDisciplina(String nomeDisciplina) {
-    	SISTEMA.desalocarDisciplina(SISTEMA.getUsuarioPorEmail(session("usuario")), nomeDisciplina);
+    	SISTEMA.desalocarDisciplina(CADASTRO.getUsuarioPorEmail(session("usuario")), nomeDisciplina);
     	return redirect("/aplicacao");
     }
     
     public static Result alocarDisciplina(String nomeDisciplina, int idxPeriodo) {
-    	SISTEMA.alocarDisciplina(SISTEMA.getUsuarioPorEmail(session("usuario")), nomeDisciplina, idxPeriodo - 1);
+    	SISTEMA.alocarDisciplina(CADASTRO.getUsuarioPorEmail(session("usuario")), nomeDisciplina, idxPeriodo - 1);
     	return redirect("/aplicacao");
     }
     

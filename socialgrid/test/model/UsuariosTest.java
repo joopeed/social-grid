@@ -11,17 +11,19 @@ import org.junit.Test;
 
 import controllers.CadastroUsuario;
 import controllers.CadastroUsuarioException;
+import controllers.Sistema;
 
 public class UsuariosTest {
-	Usuario usuarioA, usuarioB, usuarioC;
-	Grade grade;
-	CadastroUsuario cadastro;
+	private Usuario usuarioA, usuarioB, usuarioC;
+	private Grade grade;
+	private CadastroUsuario cadastro;
+	private Sistema sistema; // É usado para iniciar a grade.
 
 	@Before
 	public void setUp() throws IOException {
 		start(fakeApplication(inMemoryDatabase()));
 		
-		grade = new Grade();
+		sistema = new Sistema(); // Necessário para iniciar a grade.
 		cadastro = new CadastroUsuario();
 		
 		usuarioA = new Usuario("Foo", "foo@gmail.com", "123456", new Plano(grade));
@@ -48,7 +50,7 @@ public class UsuariosTest {
 		assertNull(cadastro.getUsuarioPorEmail(usuarioA.getEmail()));
 		
 		try {
-			cadastro.cadastrarUsuario(usuarioA.getNome(), usuarioA.getEmail(), usuarioA.getSenha(), new Plano(grade));
+			cadastro.cadastrarUsuario(usuarioA.getNome(), usuarioA.getEmail(), usuarioA.getSenha());
 		} catch (CadastroUsuarioException e) {
 			fail();
 		}
@@ -58,17 +60,17 @@ public class UsuariosTest {
 		assertEquals(usuarioA, cadastro.getUsuarioPorEmail(usuarioA.getEmail()));
 		
 		try {
-			cadastro.cadastrarUsuario(usuarioA.getNome(), usuarioA.getEmail(), usuarioA.getSenha(), new Plano(grade));
+			cadastro.cadastrarUsuario(usuarioA.getNome(), usuarioA.getEmail(), usuarioA.getSenha());
 			fail();
 		} catch (CadastroUsuarioException e) { }
 		
 		try {
-			cadastro.cadastrarUsuario(usuarioB.getNome(), usuarioA.getEmail(), usuarioB.getSenha(), new Plano(grade));
+			cadastro.cadastrarUsuario(usuarioB.getNome(), usuarioA.getEmail(), usuarioB.getSenha());
 			fail();
 		} catch (CadastroUsuarioException e) { }
 		
 		try {
-			cadastro.cadastrarUsuario(usuarioB.getNome(), usuarioB.getEmail(), usuarioB.getSenha(), new Plano(grade));
+			cadastro.cadastrarUsuario(usuarioB.getNome(), usuarioB.getEmail(), usuarioB.getSenha());
 		} catch (CadastroUsuarioException e) {
 			fail();
 		}
