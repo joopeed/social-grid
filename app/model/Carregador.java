@@ -2,6 +2,7 @@ package model;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,11 +30,11 @@ public class Carregador {
 	public List<Disciplina> preencheGrade() throws IOException, ParserConfigurationException, SAXException {
 		List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 		
-		String caminho = new File("res/disciplinas.xml").getCanonicalPath();
+		InputStream disciplinasXML = play.Play.application().resourceAsStream("res/disciplinas.xml");
 		
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db = dbf.newDocumentBuilder();
-		Document disciplinasDocument = db.parse(new File(caminho));
+		Document disciplinasDocument = db.parse(disciplinasXML);
 		
 		Node disciplinasRoot = disciplinasDocument.getDocumentElement();
 		NodeList disciplinasNodes = disciplinasRoot.getChildNodes();
@@ -80,11 +81,11 @@ public class Carregador {
 	 * @throws SAXException Erro no arquivo XML
 	 */
 	protected List<Disciplina> adicionaDependentesERequisitos(List<Disciplina> disciplinas) throws IOException, ParserConfigurationException, SAXException {
-		String caminho = new File("res/disciplinas.xml").getCanonicalPath();
+		InputStream disciplinasXML = play.Play.application().resourceAsStream("res/disciplinas.xml");
 		
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db = dbf.newDocumentBuilder();
-		Document disciplinasDocument = db.parse(new File(caminho));
+		Document disciplinasDocument = db.parse(disciplinasXML);
 		
 		Node disciplinasRoot = disciplinasDocument.getDocumentElement();
 		NodeList disciplinasNodes = disciplinasRoot.getChildNodes();
