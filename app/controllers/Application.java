@@ -10,7 +10,7 @@ public class Application extends Controller {
 	public static CadastroUsuario CADASTRO = new CadastroUsuario();
 	
     public static Result aplicacao() {
-    	if (session("usuario") == null) {
+    	if (!existeSessaoValida()) {
     		return redirect("/");
     	}
     	  
@@ -31,7 +31,7 @@ public class Application extends Controller {
     		}
     	}
     	
-    	if (session("usuario") != null) {
+    	if (existeSessaoValida()) {
     		return redirect("/aplicacao");
     	}
     	
@@ -74,4 +74,15 @@ public class Application extends Controller {
     	return redirect("/aplicacao");
     }
     
+    public static boolean existeSessaoValida() {
+    	boolean existeSessaoValida = false;
+    	
+    	if (CADASTRO.getUsuarioPorEmail(session("usuario")) != null) {
+    		existeSessaoValida = true;
+    	} else if (session("usuario") != null) {
+    		session().remove("usuario");
+    	}
+    	
+    	return existeSessaoValida;
+    }
 }

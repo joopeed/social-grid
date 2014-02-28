@@ -19,7 +19,7 @@ public class CadastroUsuario {
 		
 		Usuario usuario = new Usuario(nome, email, senha, plano);
 		
-		if (finder.byId(email) != null) {
+		if (email != null && finder.byId(email) != null) {
 			throw new CadastroUsuarioException();
 		}
 		
@@ -27,8 +27,12 @@ public class CadastroUsuario {
 	}
 	
 	public Usuario autenticarUsuario(String email, String senha) {
-		Usuario usuarioEncontrado = getUsuarioPorEmail(email);
+		Usuario usuarioEncontrado = null;
 		Usuario usuarioAutenticado = null;
+
+		if (email != null) {
+			usuarioEncontrado = getUsuarioPorEmail(email);
+		}
 		
 		if (usuarioEncontrado != null) {
 			if (usuarioEncontrado.autenticar(senha)) {
@@ -40,6 +44,12 @@ public class CadastroUsuario {
 	}
 	
 	public Usuario getUsuarioPorEmail(String email) {
-		return finder.byId(email);
+		Usuario usuario = null;
+		
+		if (email != null) {
+			usuario = finder.byId(email);
+		}
+		
+		return usuario;
 	}
 }
