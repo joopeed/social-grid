@@ -10,7 +10,7 @@ public class Application extends Controller {
 	public static CadastroUsuario CADASTRO = new CadastroUsuario();
 	
     public static Result aplicacao() {
-    	if (!existeSessaoValida()) {
+    	if (!CADASTRO.existeSessaoValida()) {
     		return redirect("/");
     	}
     	  
@@ -31,7 +31,7 @@ public class Application extends Controller {
     		}
     	}
     	
-    	if (existeSessaoValida()) {
+    	if (CADASTRO.existeSessaoValida()) {
     		return redirect("/aplicacao");
     	}
     	
@@ -72,17 +72,5 @@ public class Application extends Controller {
     public static Result alocarDisciplina(String nomeDisciplina, int idxPeriodo) {
     	SISTEMA.alocarDisciplina(CADASTRO.getUsuarioPorEmail(session("usuario")), nomeDisciplina, idxPeriodo - 1);
     	return redirect("/aplicacao");
-    }
-    
-    public static boolean existeSessaoValida() {
-    	boolean existeSessaoValida = false;
-    	
-    	if (CADASTRO.getUsuarioPorEmail(session("usuario")) != null) {
-    		existeSessaoValida = true;
-    	} else if (session("usuario") != null) {
-    		session().remove("usuario");
-    	}
-    	
-    	return existeSessaoValida;
     }
 }

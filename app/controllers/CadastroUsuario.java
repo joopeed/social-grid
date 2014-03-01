@@ -4,8 +4,9 @@ import model.Grade;
 import model.Plano;
 import model.Usuario;
 import play.db.ebean.Model.Finder;
+import play.mvc.Controller;
 
-public class CadastroUsuario {
+public class CadastroUsuario extends Controller {
 	private Finder<String, Usuario> finder;
 	
 	public CadastroUsuario() {
@@ -52,4 +53,16 @@ public class CadastroUsuario {
 		
 		return usuario;
 	}
+	
+    public boolean existeSessaoValida() {
+    	boolean existeSessaoValida = false;
+    	
+    	if (getUsuarioPorEmail(session("usuario")) != null) {
+    		existeSessaoValida = true;
+    	} else if (session("usuario") != null) {
+    		session().remove("usuario");
+    	}
+    	
+    	return existeSessaoValida;
+    }
 }
