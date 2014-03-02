@@ -4,6 +4,13 @@
 			    <h1>SocialGrid</h1>
 			    <p>Ciência da Computação - Universidade Federal de Campina Grande</p>
 			</div>
+			@if(flash.containsKey("erro")){
+				<div class="alert alert-error">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+  					<h4>Atenção!</h4>
+  					@flash.get("erro")
+				</div>
+			}
 			<div class="form-actions">
 			<form class="form-horizontal" action="@routes.Application.login()" method="post">
 			  <div class="control-group">

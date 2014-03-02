@@ -27,6 +27,8 @@ public class Application extends Controller {
     		if (email != null && senha != null) {
     			if (CADASTRO.autenticarUsuario(email[0], senha[0]) != null) {
     				session("usuario", email[0]);
+    			} else {
+    				flash("erro", "Nome de usuário ou senha inválidos!");
     			}
     		}
     	}
