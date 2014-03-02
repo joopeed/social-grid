@@ -32,4 +32,43 @@ public class Autenticacao extends Controller {
 		
 		return ok(result);
 	}
+	
+    public static Result login() {
+    	if (request().body().asFormUrlEncoded() != null) {
+    		String[] email = request().body().asFormUrlEncoded().get("email");
+    		String[] senha = request().body().asFormUrlEncoded().get("senha");
+    		
+    		if (email != null && senha != null) {
+    			if (CADASTRO.autenticarUsuario(email[0], senha[0]) != null) {
+    				session("usuario", email[0]);
+    			} else {
+    				flash("erro", "Nome de usuário ou senha inválidos!");
+    			}
+    		}
+    	}
+    	
+    	if (Autenticacao.existeUsuarioAutenticado()) {
+    		return redirect("/aplicacao");
+    	}
+    	
+    	return ok(views.html.login.render());
+    }
+    
+    public static Result logout() {
+    	session().remove("usuario");
+    	
+    	return redirect("/");
+    }
+    
+    protected static boolean existeUsuarioAutenticado() {
+    	boolean existeSessaoValida = false;
+    	
+    	if (CADASTRO.getUsuarioPorEmail(session("usuario")) != null) {
+    		existeSessaoValida = true;
+    	} else if (session("usuario") != null) {
+    		session().remove("usuario");
+    	}
+    	
+    	return existeSessaoValida;
+    }
 }

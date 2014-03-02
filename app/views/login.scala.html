@@ -1,5 +1,5 @@
 @import helper._
-@main("Identificação") {
+@main("Login") {
 			<div class="hero-unit">
 			    <h1>SocialGrid</h1>
 			    <p>Ciência da Computação - Universidade Federal de Campina Grande</p>
@@ -12,7 +12,7 @@
 				</div>
 			}
 			<div class="form-actions">
-			<form class="form-horizontal" action="@routes.Application.login()" method="post">
+			<form class="form-horizontal" action="@routes.Autenticacao.login()" method="post">
 			  <div class="control-group">
 			    <label class="control-label" for="email">E-mail</label>
 			    <div class="controls">

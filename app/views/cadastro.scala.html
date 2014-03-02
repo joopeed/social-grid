@@ -1,9 +1,16 @@
 @import helper._
-@main("Identificação") {
+@main("Cadastro") {
 			<div class="hero-unit">
 			    <h1>SocialGrid</h1>
 			    <p>Ciência da Computação - Universidade Federal de Campina Grande</p>
 			</div>
+			@if(flash.containsKey("erro")){
+				<div class="alert alert-error">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+  					<h4>Atenção!</h4>
+  					@flash.get("erro")
+				</div>
+			}
 			<div class="form-actions">
 			<form class="form-horizontal" id="form-cadastro" action="@routes.Application.cadastro()" method="post">
 			  <div class="control-group" id="campo-nome">

@@ -10,40 +10,13 @@ public class Application extends Controller {
 	public static CadastroUsuario CADASTRO = new CadastroUsuario();
 	
     public static Result aplicacao() {
-    	if (!existeSessaoValida()) {
+    	if (!Autenticacao.existeUsuarioAutenticado()) {
     		return redirect("/");
     	}
     	  
     	Usuario usuario = CADASTRO.getUsuarioPorEmail(session("usuario"));
     	
         return ok(views.html.index.render(usuario.getPlano().getPeriodos(), usuario.getPlano().getDisciplinasOfertadas()));
-    }
-      
-    public static Result login() {
-    	if (request().body().asFormUrlEncoded() != null) {
-    		String[] email = request().body().asFormUrlEncoded().get("email");
-    		String[] senha = request().body().asFormUrlEncoded().get("senha");
-    		
-    		if (email != null && senha != null) {
-    			if (CADASTRO.autenticarUsuario(email[0], senha[0]) != null) {
-    				session("usuario", email[0]);
-    			} else {
-    				flash("erro", "Nome de usuário ou senha inválidos!");
-    			}
-    		}
-    	}
-    	
-    	if (existeSessaoValida()) {
-    		return redirect("/aplicacao");
-    	}
-    	
-    	return ok(views.html.login.render());
-    }
-    
-    public static Result logout() {
-    	session().remove("usuario");
-    	
-    	return redirect("/");
     }
     
     public static Result cadastro() {
@@ -74,17 +47,5 @@ public class Application extends Controller {
     public static Result alocarDisciplina(String nomeDisciplina, int idxPeriodo) {
     	SISTEMA.alocarDisciplina(CADASTRO.getUsuarioPorEmail(session("usuario")), nomeDisciplina, idxPeriodo - 1);
     	return redirect("/aplicacao");
-    }
-    
-    public static boolean existeSessaoValida() {
-    	boolean existeSessaoValida = false;
-    	
-    	if (CADASTRO.getUsuarioPorEmail(session("usuario")) != null) {
-    		existeSessaoValida = true;
-    	} else if (session("usuario") != null) {
-    		session().remove("usuario");
-    	}
-    	
-    	return existeSessaoValida;
     }
 }
