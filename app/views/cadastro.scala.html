@@ -5,23 +5,33 @@
 			    <p>Ciência da Computação - Universidade Federal de Campina Grande</p>
 			</div>
 			<div class="form-actions">
-			<form class="form-horizontal" action="@routes.Application.cadastro()" method="post">
-			  <div class="control-group">
-			    <label class="control-label" for="email">Nome</label>
+			<form class="form-horizontal" id="form-cadastro" action="@routes.Application.cadastro()" method="post">
+			  <div class="control-group" id="campo-nome">
+			    <label class="control-label" for="nome">Nome</label>
 			    <div class="controls">
 			      <input type="text" id="nome" name="nome" placeholder="Nome">
+			      <span class="help-inline" id="help-nome"></span>
 			    </div>
 			  </div>
-			  <div class="control-group">
+			  <div class="control-group" id="campo-email">
 			    <label class="control-label" for="email">E-mail</label>
 			    <div class="controls">
 			      <input type="text" id="email" name="email" placeholder="E-mail">
+			      <span class="help-inline" id="help-email"></span>
 			    </div>
 			  </div>
-			  <div class="control-group">
+			  <div class="control-group" id="campo-senha">
 			    <label class="control-label" for="senha">Senha</label>
 			    <div class="controls">
 			      <input type="password" id="senha" name="senha" placeholder="Senha">
+			      <span class="help-inline" id="help-senha"></span>
+			    </div>
+			  </div>
+			  <div class="control-group" id="campo-resenha">
+			    <label class="control-label" for="resenha">Redigite a senha</label>
+			    <div class="controls">
+			      <input type="password" id="resenha" name="resenha" placeholder="Redigite a senha">
+			      <span class="help-inline" id="help-resenha"></span>
 			    </div>
 			  </div>
 			  <div class="control-group">
@@ -31,4 +41,103 @@
 			    </div>
 			  </div>
 			</form>
+			
+			<script>
+			var nomeOk = false;
+			var emailOk = false;
+			var senhaOk = false;
+			var resenhaOk = false;
+			
+			var resenhaAlterado = false;
+			
+			$("#nome").change(function() {
+				var nome = $("#nome").val();
+				
+				if (nome.trim() == "") {
+					nomeOk = false;
+				} else {
+					nomeOk = true;
+				}
+			});
+			
+			$("#email").change(function() {
+				$("#campo-email").removeClass("error");
+				$("#campo-email").removeClass("warning");
+				$("#help-email").html("");
+				
+				var emailObj = {email: $("#email").val()};
+				if (validateEmail($("#email").val())) {
+					$.post( "@routes.Autenticacao.existeUsuario()", emailObj, function(result){
+						if(result.existeUsuario) {
+							emailOk = false;
+							$("#campo-email").addClass("warning")
+							$("#help-email").html("Endereço de e-mail já cadastrado!")
+						} else {
+							emailOk = true;
+						}
+					});
+				} else {
+					emailOk = false;
+					$("#campo-email").addClass("error")
+					$("#help-email").html("Endereço de e-mail inválido!")
+				}
+			});
+			
+			$("#senha").change(function() {
+				$("#campo-senha").removeClass("error");
+				$("#campo-senha").removeClass("warning");
+				$("#help-senha").html("");
+				
+				var senhaValue = $("#senha").val();
+				var resenhaValue = $("#resenha").val();
+				
+				if (senhaValue.trim() == "") {
+			    	senhaOk = false;
+				    $("#campo-senha").addClass("warning")
+				    $("#help-senha").html("Senha vazia!")
+				} else if (senhaValue.length < 8) {
+			    	senhaOk = false;
+				    $("#campo-senha").addClass("warning")
+				    $("#help-senha").html("A senha deve ter no mínimo 8 caracteres!")
+				} else {
+					senhaOk = true;
+					
+					if (resenhaAlterado && senhaValue != resenhaValue) {
+				    	resenhaOk = false;
+					    $("#campo-resenha").addClass("warning")
+					    $("#help-resenha").html("Senha não confere!")
+					} else {
+						resenhaOk = true;
+						$("#campo-resenha").removeClass("warning")
+						$("#help-resenha").html("")
+					}
+				}
+			});
+			
+			$("#resenha").change(function() {
+				resenhaAlterado = true;
+				
+				$("#campo-resenha").removeClass("error");
+				$("#campo-resenha").removeClass("warning");
+				$("#help-resenha").html("");
+				
+				var senhaValue = $("#senha").val();
+				var resenhaValue = $("#resenha").val();
+				
+				if (senhaValue != resenhaValue) {
+			    	resenhaOk = false;
+				    $("#campo-resenha").addClass("warning")
+				    $("#help-resenha").html("Senha não confere!")
+				} else {
+					resenhaOk = true;
+				}
+			});
+			
+			$( "#form-cadastro" ).submit(function( event ) {
+				if (!(nomeOk && emailOk && senhaOk && resenhaOk)) {
+				    event.preventDefault();
+				    alert("Verifique os dados digitados!");
+				}
+			});
+			</script>
 }
