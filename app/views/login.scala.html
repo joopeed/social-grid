@@ -4,14 +4,14 @@
 			    <h1>SocialGrid</h1>
 			    <p>Ciência da Computação - Universidade Federal de Campina Grande</p>
 			</div>
+			<div class="form-actions">
 			@if(flash.containsKey("erro")){
-				<div class="alert alert-error">
+				<div class="alert alert-error container">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
   					<h4>Atenção!</h4>
   					@flash.get("erro")
 				</div>
 			}
-			<div class="form-actions">
 			<form class="form-horizontal" action="@routes.Autenticacao.login()" method="post">
 			  <div class="control-group">
 			    <label class="control-label" for="email">E-mail</label>
