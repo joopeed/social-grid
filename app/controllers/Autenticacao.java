@@ -11,7 +11,6 @@ public class Autenticacao extends Controller {
 	public static CadastroUsuario CADASTRO = new CadastroUsuario();
 	
 	public static Result existeUsuario() {
-		System.out.println(request().body().asFormUrlEncoded());
 		String email = "";
 
 		if (request().body().asFormUrlEncoded() != null) {
