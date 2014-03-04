@@ -50,7 +50,11 @@ public class Application extends Controller {
     	return redirect("/aplicacao");
     }
     
-    public static Result verDisciplina() {
+    public static Result verDisciplina() throws InterruptedException {
+    	if (!Autenticacao.existeUsuarioAutenticado()) {
+    		return badRequest();
+    	}
+    	
     	Long codigo = null;
     	Disciplina disciplina = null;
 		
