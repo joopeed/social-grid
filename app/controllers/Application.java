@@ -28,10 +28,10 @@ public class Application extends Controller {
     		if (nome != null && email != null && senha != null) {
     			try {
     				CADASTRO.cadastrarUsuario(nome[0], email[0], senha[0]);
-    				flash("cadastro", "Cadastro efetuado com sucesso!");
+    				flash("success", "Cadastro efetuado com sucesso!");
     				return redirect("/");
     			} catch (CadastroUsuarioException e) {
-    				flash("cadastro", "Usuário já cadastrado!");
+    				flash("erro", "Usuário já cadastrado!");
     			}
     		}
     	}
