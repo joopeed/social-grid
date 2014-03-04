@@ -3,6 +3,12 @@
 @main("Início") {
 <script>
     $(function() {
+        $("info").click(function() {
+            var codigo = this.getAttribute("name");
+        	$('#myModal').find('#myModalLabel').html(codigo);
+        	$('#myModal').modal();
+        });
+    
         $(".disciplina").draggable({
             revert: "invalid"
         });
@@ -31,16 +37,26 @@
         });
     });
 </script>
-	<header>
-		<div class="hero-unit">
-		    <h1>SocialGrid</h1>
-		    <p>Ciência da Computação - Universidade Federal de Campina Grande</p>
-		    <button type="button" class="btn" onclick="location.href = '@routes.Autenticacao.logout()';">Sair</button>
-		</div>
-	</header>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner" style="padding-left: 40px; padding-right: 40px">
+    <a class="brand" href="#">SocialGrid</a>
+    <ul class="nav">
+      <li><a href="#meu_plano">Meu Plano</a></li>
+      <li><a href="#disciplinas_ofertadas">Disciplinas Ofertadas</a></li>
+    </ul>
+    <form class="navbar-form pull-right">
+      <button type="button" class="btn" onclick="location.href = '@routes.Autenticacao.logout()';">Sair</button>
+    </form>
+  </div>
+</div>
+<!-- 
+<div class="navbar navbar-fixed-bottom">
+bottom
+</div>
+ -->
 	<div class="wrapper" style="height: 100%;">
     	<div id="colunas">
-    	<div class="titulo">
+    	<div class="titulo" id="meu_plano">
             <h1>Meu Plano</h1>
         </div>
         @for((periodo, i) <- periodos.zipWithIndex) {
@@ -57,16 +73,31 @@
         }
     </div>
     <br/>
-        <div id="disciplinas">
-        <div class="titulo">
+        <div id="disciplinas" style="padding-bottom: 50px">
+        <div class="titulo" id="disciplinas_ofertadas">
             <h1>Disciplinas Ofertadas</h1>
         </div>
         @for(disciplina <- disciplinas_ofertadas) {
                 <div class="ofertada disciplina float-left" id="@disciplina.getNome()">
                     <nome>@disciplina.getNome()</nome><br/>
                     <descricao>@disciplina.getCreditos() créditos</descricao>
+                    <info name="@disciplina.codigo"><img src="@routes.Assets.at("images/info_small.png")" /></info>
                 </div>
         }
     </div>
     </div>
+    
+	<!-- Modal -->
+	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    <h3 id="myModalLabel"></h3>
+	  </div>
+	  <div class="modal-body">
+	  </div>
+	  <div class="modal-footer">
+	    <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
+	    <!-- <button class="btn btn-primary">Save changes</button>  -->
+	  </div>
+	</div>
 }

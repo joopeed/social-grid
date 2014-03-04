@@ -11,10 +11,10 @@ create table dica (
 ;
 
 create table disciplina (
-  id                        bigint not null,
+  codigo                    bigint not null,
   nome                      varchar(255),
   creditos                  integer,
-  constraint pk_disciplina primary key (id))
+  constraint pk_disciplina primary key (codigo))
 ;
 
 create table grade (
@@ -44,33 +44,33 @@ create table usuario (
 
 
 create table disciplinas_dependentes (
-  disciplina_id                  bigint not null,
+  disciplina_codigo              bigint not null,
   dependente_id                  bigint not null,
-  constraint pk_disciplinas_dependentes primary key (disciplina_id, dependente_id))
+  constraint pk_disciplinas_dependentes primary key (disciplina_codigo, dependente_id))
 ;
 
 create table disciplinas_requisitos (
-  disciplina_id                  bigint not null,
-  requisito_id                   bigint not null,
-  constraint pk_disciplinas_requisitos primary key (disciplina_id, requisito_id))
+  disciplina_codigo              bigint not null,
+  requisito_codigo               bigint not null,
+  constraint pk_disciplinas_requisitos primary key (disciplina_codigo, requisito_codigo))
 ;
 
 create table disciplina_dica (
-  disciplina_id                  bigint not null,
+  disciplina_codigo              bigint not null,
   dica_id                        bigint not null,
-  constraint pk_disciplina_dica primary key (disciplina_id, dica_id))
+  constraint pk_disciplina_dica primary key (disciplina_codigo, dica_id))
 ;
 
 create table grade_disciplina (
   grade_id                       bigint not null,
-  disciplina_id                  bigint not null,
-  constraint pk_grade_disciplina primary key (grade_id, disciplina_id))
+  disciplina_codigo              bigint not null,
+  constraint pk_grade_disciplina primary key (grade_id, disciplina_codigo))
 ;
 
 create table periodo_disciplina (
   periodo_id                     bigint not null,
-  disciplina_id                  bigint not null,
-  constraint pk_periodo_disciplina primary key (periodo_id, disciplina_id))
+  disciplina_codigo              bigint not null,
+  constraint pk_periodo_disciplina primary key (periodo_id, disciplina_codigo))
 ;
 
 create table plano_periodo (
@@ -97,25 +97,25 @@ create index ix_usuario_plano_2 on usuario (plano_id);
 
 
 
-alter table disciplinas_dependentes add constraint fk_disciplinas_dependentes_di_01 foreign key (disciplina_id) references disciplina (id) on delete restrict on update restrict;
+alter table disciplinas_dependentes add constraint fk_disciplinas_dependentes_di_01 foreign key (disciplina_codigo) references disciplina (codigo) on delete restrict on update restrict;
 
-alter table disciplinas_dependentes add constraint fk_disciplinas_dependentes_di_02 foreign key (dependente_id) references disciplina (id) on delete restrict on update restrict;
+alter table disciplinas_dependentes add constraint fk_disciplinas_dependentes_di_02 foreign key (dependente_id) references disciplina (codigo) on delete restrict on update restrict;
 
-alter table disciplinas_requisitos add constraint fk_disciplinas_requisitos_dis_01 foreign key (disciplina_id) references disciplina (id) on delete restrict on update restrict;
+alter table disciplinas_requisitos add constraint fk_disciplinas_requisitos_dis_01 foreign key (disciplina_codigo) references disciplina (codigo) on delete restrict on update restrict;
 
-alter table disciplinas_requisitos add constraint fk_disciplinas_requisitos_dis_02 foreign key (requisito_id) references disciplina (id) on delete restrict on update restrict;
+alter table disciplinas_requisitos add constraint fk_disciplinas_requisitos_dis_02 foreign key (requisito_codigo) references disciplina (codigo) on delete restrict on update restrict;
 
-alter table disciplina_dica add constraint fk_disciplina_dica_disciplina_01 foreign key (disciplina_id) references disciplina (id) on delete restrict on update restrict;
+alter table disciplina_dica add constraint fk_disciplina_dica_disciplina_01 foreign key (disciplina_codigo) references disciplina (codigo) on delete restrict on update restrict;
 
 alter table disciplina_dica add constraint fk_disciplina_dica_dica_02 foreign key (dica_id) references dica (id) on delete restrict on update restrict;
 
 alter table grade_disciplina add constraint fk_grade_disciplina_grade_01 foreign key (grade_id) references grade (id) on delete restrict on update restrict;
 
-alter table grade_disciplina add constraint fk_grade_disciplina_disciplin_02 foreign key (disciplina_id) references disciplina (id) on delete restrict on update restrict;
+alter table grade_disciplina add constraint fk_grade_disciplina_disciplin_02 foreign key (disciplina_codigo) references disciplina (codigo) on delete restrict on update restrict;
 
 alter table periodo_disciplina add constraint fk_periodo_disciplina_periodo_01 foreign key (periodo_id) references periodo (id) on delete restrict on update restrict;
 
-alter table periodo_disciplina add constraint fk_periodo_disciplina_discipl_02 foreign key (disciplina_id) references disciplina (id) on delete restrict on update restrict;
+alter table periodo_disciplina add constraint fk_periodo_disciplina_discipl_02 foreign key (disciplina_codigo) references disciplina (codigo) on delete restrict on update restrict;
 
 alter table plano_periodo add constraint fk_plano_periodo_plano_01 foreign key (plano_id) references plano (id) on delete restrict on update restrict;
 

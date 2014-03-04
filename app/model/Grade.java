@@ -73,11 +73,25 @@ public class Grade extends Model {
 	}
 	
 	/**
+	 * Busca e retorna por uma disciplina pelo código.
+	 * @param nome Código da disciplina procurada.
+	 * @return Disciplina procurada ou Null em caso de mesma não existir.
+	 */
+	public Disciplina getDisciplinaPorCodigo(Long codigo) {
+		for(Disciplina disc: disciplinas) {
+			if (disc.codigo == codigo)
+				return disc;
+		}
+
+		return null;
+	}
+
+	
+	/**
 	 * Pega todas as disciplinas da grade.
 	 * @return Conjunto de disciplinas.
 	 */
 	public List<Disciplina> getTodasDisciplinas() {
 		return disciplinas;
 	}
-	
 }

@@ -63,7 +63,7 @@ public class Carregador {
 				}
 				
 				disciplina = new Disciplina(nome, creditos);
-				disciplina.id = codigo;
+				disciplina.codigo = codigo;
 				
 				disciplinas.add(disciplina);
 			}
@@ -134,7 +134,7 @@ public class Carregador {
 	 */
 	private Disciplina buscaDisciplina(List<Disciplina> disciplinas, long codigo) {
 		for(Disciplina disc: disciplinas) {
-			if (disc.id == codigo)
+			if (disc.codigo == codigo)
 				return disc;
 		}
 		return null;
