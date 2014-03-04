@@ -2,40 +2,52 @@
 @import helper._
 @main("Início") {
 <script>
-    $(function() {
-        $("info").click(function() {
-            var codigo = this.getAttribute("name");
-        	$('#myModal').find('#myModalLabel').html(codigo);
-        	$('#myModal').modal();
-        });
-    
-        $(".disciplina").draggable({
-            revert: "invalid"
-        });
-
-        $( ".coluna" ).droppable({
-            drop: function( event, ui ) {
-                var disciplina = ui.draggable[0].id;
-            	var periodo = event.target.id.replace('periodo_', '');
-            
-                location.href = '/aplicacao/alocarDisciplina/' + disciplina + '/' + periodo;
-            }
-        });
-
-        $( "#disciplinas" ).droppable({
-            drop: function( event, ui ) {
-                var disciplina = ui.draggable[0].id;
-				var transfere = window.confirm("Ao desalocar esta disciplina você estará desalocando" +
-				"\nas disciplinas dela dependentes");
-				if (transfere) {
-					location.href = '/aplicacao/desalocarDisciplina/' + disciplina;
-				}
-				else {
-					location.href = '/'
-				}
-            }
-        });
+$(function() {
+    $("info").click(function() {
+        var valCodigo = this.getAttribute("name");
+        
+    	$('#myModal').attr("align", "center");
+    	$('#myModal').html('<img src="@routes.Assets.at("images/ajax-loader.gif")" />');
+    	$('#myModal').modal();
+    	
+    	var disciplinaObj = {codigo: valCodigo};
+    	$.post( "@routes.Application.verDisciplina()", disciplinaObj, function(result) {
+			$('#myModal').html(result);
+		})
+		.fail(function() {
+    		alert( "Ocorreu um erro inesperado. :(" );
+  		});
+    	
+    	
     });
+
+    $(".disciplina").draggable({
+        revert: "invalid"
+    });
+
+    $( ".coluna" ).droppable({
+        drop: function( event, ui ) {
+            var disciplina = ui.draggable[0].id;
+        	var periodo = event.target.id.replace('periodo_', '');
+        
+            location.href = '/aplicacao/alocarDisciplina/' + disciplina + '/' + periodo;
+        }
+    });
+
+    $( "#disciplinas" ).droppable({
+        drop: function( event, ui ) {
+            var disciplina = ui.draggable[0].id;
+			var transfere = window.confirm("Ao desalocar esta disciplina você estará desalocando" +
+			"\nas disciplinas dela dependentes");
+			if (transfere) {
+				location.href = '/aplicacao/desalocarDisciplina/' + disciplina;
+			}
+			else {
+				location.href = '/'
+			}
+        }
+    });
+});
 </script>
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner" style="padding-left: 40px; padding-right: 40px">
@@ -66,6 +78,7 @@ bottom
                 <div class="disciplina" id="@disciplina.getNome()">
                     <nome>@disciplina.getNome()</nome><br/>
                     <descricao>@disciplina.getCreditos() créditos</descricao>
+                    <info name="@disciplina.codigo"><img src="@routes.Assets.at("images/info_small.png")" /></info>
                 </div>
             }
             </br>
@@ -88,16 +101,5 @@ bottom
     </div>
     
 	<!-- Modal -->
-	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  <div class="modal-header">
-	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	    <h3 id="myModalLabel"></h3>
-	  </div>
-	  <div class="modal-body">
-	  </div>
-	  <div class="modal-footer">
-	    <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
-	    <!-- <button class="btn btn-primary">Save changes</button>  -->
-	  </div>
-	</div>
+	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
 }

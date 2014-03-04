@@ -10,6 +10,7 @@ GET		/cadastro						controllers.Application.cadastro()
 POST	/cadastro						controllers.Application.cadastro()
 GET		/logout		 					controllers.Autenticacao.logout()
 GET     /aplicacao                  	controllers.Application.aplicacao()
+POST    /verDisciplina                 	controllers.Application.verDisciplina()
 GET     /aplicacao/desalocarDisciplina/:nomeDisciplina  controllers.Application.desalocarDisciplina(nomeDisciplina: String)
 GET     /aplicacao/alocarDisciplina/:nomeDisciplina/:idxPeriodo  controllers.Application.alocarDisciplina(nomeDisciplina: String, idxPeriodo: Integer)
 

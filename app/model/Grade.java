@@ -79,7 +79,7 @@ public class Grade extends Model {
 	 */
 	public Disciplina getDisciplinaPorCodigo(Long codigo) {
 		for(Disciplina disc: disciplinas) {
-			if (disc.codigo == codigo)
+			if (disc.codigo.equals(codigo))
 				return disc;
 		}
 

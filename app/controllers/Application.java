@@ -1,5 +1,6 @@
 package controllers;
 
+import model.Disciplina;
 import model.Usuario;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -47,5 +48,26 @@ public class Application extends Controller {
     public static Result alocarDisciplina(String nomeDisciplina, int idxPeriodo) {
     	SISTEMA.alocarDisciplina(CADASTRO.getUsuarioPorEmail(session("usuario")), nomeDisciplina, idxPeriodo - 1);
     	return redirect("/aplicacao");
+    }
+    
+    public static Result verDisciplina() {
+    	Long codigo = null;
+    	Disciplina disciplina = null;
+		
+    	if (request().body().asFormUrlEncoded() != null) {
+    		String[] disciplinaData = request().body().asFormUrlEncoded().get("codigo");
+    		
+    		if (disciplinaData != null) {
+    			codigo = Long.parseLong(disciplinaData[0]);
+    		}
+		}
+    	
+    	disciplina = SISTEMA.getDisciplinaPorCodigo(codigo);
+    	
+    	if (disciplina != null) {
+    		return ok(views.html.disciplina.render(disciplina));
+    	} else {
+    		return badRequest();
+    	}
     }
 }

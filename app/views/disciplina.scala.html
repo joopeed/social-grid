@@ -1,0 +1,12 @@
+@(disciplina: model.Disciplina)
+@import helper._
+		  <div class="modal-header" id="myModalHeader">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    <h3 id="myModalLabel">@disciplina.getNome()</h3>
+	  </div>
+	  <div class="modal-body" id="myModalBody">
+	  </div>
+	  <div class="modal-footer">
+	    <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
+	    <!-- <button class="btn btn-primary">Save changes</button>  -->
+	  </div>

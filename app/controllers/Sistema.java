@@ -41,6 +41,10 @@ public class Sistema {
 		return getGrade().getDisciplinaPorNome(nome);
 	}
 	
+	public Disciplina getDisciplinaPorCodigo(Long codigo) {
+		return getGrade().getDisciplinaPorCodigo(codigo);
+	}
+
 	public void alocarDisciplina(Usuario usuario, String nome, int idxPeriodo) {
 		usuario.getPlano().addDisciplina(getGrade().getDisciplinaPorNome(nome), idxPeriodo);
 		usuario.update();
