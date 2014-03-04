@@ -7,7 +7,7 @@ $(function() {
         var valCodigo = this.getAttribute("name");
         
     	$('#myModal').attr("align", "center");
-    	$('#myModal').html('<img src="@routes.Assets.at("images/ajax-loader.gif")" />');
+    	$('#myModal').html('<img src="@routes.Assets.at("images/ajax-loader.gif")" style="margin: 30px;" />');
     	$('#myModal').modal();
     	
     	var disciplinaObj = {codigo: valCodigo};
