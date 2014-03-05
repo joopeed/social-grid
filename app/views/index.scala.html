@@ -1,24 +1,25 @@
 @(periodos: List[model.Periodo], disciplinas_ofertadas: List[model.Disciplina])
 @import helper._
 @main("Início") {
-<script>
+	<script>
 $(function() {
     $("info").click(function() {
         var valCodigo = this.getAttribute("name");
         
-    	$('#myModal').attr("align", "center");
-    	$('#myModal').html('<img src="@routes.Assets.at("images/ajax-loader.gif")" style="margin: 30px;" />');
-    	$('#myModal').modal();
-    	
-    	var disciplinaObj = {codigo: valCodigo};
-    	$.post( "@routes.Application.verDisciplina()", disciplinaObj, function(result) {
-			$('#myModal').html(result);
-		})
-		.fail(function() {
-    		alert( "Ocorreu um erro inesperado. :(" );
-  		});
-    	
-    	
+        $('#myModal').attr("align", "center");
+        $('#myModal').html('<img src="@routes.Assets.at("images/ajax-loader.gif")" style="margin: 30px;" />');
+        $('#myModal').modal();
+        
+        var disciplinaObj = {codigo: valCodigo};
+        $.post( "@routes.Application.verDisciplina()", disciplinaObj, function(result) {
+            $('#myModal').attr("align", "left");
+            $('#myModal').html(result);
+        })
+        .fail(function() {
+            alert( "Ocorreu um erro inesperado. :(" );
+          });
+        
+        
     });
 
     $(".disciplina").draggable({
@@ -28,7 +29,7 @@ $(function() {
     $( ".coluna" ).droppable({
         drop: function( event, ui ) {
             var disciplina = ui.draggable[0].id;
-        	var periodo = event.target.id.replace('periodo_', '');
+            var periodo = event.target.id.replace('periodo_', '');
         
             location.href = '/aplicacao/alocarDisciplina/' + disciplina + '/' + periodo;
         }
@@ -37,14 +38,14 @@ $(function() {
     $( "#disciplinas" ).droppable({
         drop: function( event, ui ) {
             var disciplina = ui.draggable[0].id;
-			var transfere = window.confirm("Ao desalocar esta disciplina você estará desalocando" +
-			"\nas disciplinas dela dependentes");
-			if (transfere) {
-				location.href = '/aplicacao/desalocarDisciplina/' + disciplina;
-			}
-			else {
-				location.href = '/'
-			}
+            var transfere = window.confirm("Ao desalocar esta disciplina você estará desalocando" +
+            "\nas disciplinas dela dependentes");
+            if (transfere) {
+                location.href = '/aplicacao/desalocarDisciplina/' + disciplina;
+            }
+            else {
+                location.href = '/'
+            }
         }
     });
 });
@@ -66,9 +67,9 @@ $(function() {
 bottom
 </div>
  -->
-	<div class="wrapper" style="height: 100%;">
-    	<div id="colunas">
-    	<div class="titulo" id="meu_plano">
+    <div class="wrapper" style="height: 100%;">
+        <div id="colunas">
+        <div class="titulo" id="meu_plano">
             <h1>Meu Plano</h1>
         </div>
         @for((periodo, i) <- periodos.zipWithIndex) {
@@ -100,6 +101,6 @@ bottom
     </div>
     </div>
     
-	<!-- Modal -->
-	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+    <!-- Modal -->
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
 }

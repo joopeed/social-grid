@@ -6,7 +6,29 @@
 	<h3 id="myModalLabel">@disciplina.getNome()</h3>
 </div>
 <div class="modal-body" id="myModalBody">
-<!-- Conteúdo -->
+
+    <ul id="myTab" class="nav nav-tabs">
+		<li class="active"><a href="#dicas" data-toggle="tab">Dicas</a></li>
+		<li><a href="#dados_disciplina" data-toggle="tab">Dados da disciplina</a></li>
+	</ul>
+
+	<div id="myTabContent" class="tab-content">
+    	<div class="tab-pane fade in active" id="dicas">
+        	<p>
+        		Envie uma dica<br />
+        		<textarea rows="3" style="width:97%; max-width: 97%"/><br />
+        		<button class="btn btn-mini pull-right">Enviar</button>
+        	</p>
+		</div>
+        <div class="tab-pane fade" id="dados_disciplina">
+        	<p>
+				Código: @disciplina.codigo<br />
+				Nome: @disciplina.getNome()<br />
+				Quantidade de créditos: @disciplina.getCreditos()<br />
+				Carga horária:
+			</p>
+		</div>
+	</div>
 </div>
 <div class="modal-footer">
 	<button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
