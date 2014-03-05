@@ -712,7 +712,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1112098</codigo>
-    <nome>CRIATIVIDADE (SDI)</nome>
+    <nome>Criatividade (SDI)</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -721,7 +721,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1303021</codigo>
-    <nome>ECONOMIA</nome>
+    <nome>Economia</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -730,7 +730,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411201</codigo>
-    <nome>EMPREENDEDORISMO</nome>
+    <nome>Empreendedorismo</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -748,7 +748,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1109106</codigo>
-    <nome>EQUACOES DIFERENCIAIS</nome>
+    <nome>Equações Diferenciais</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -757,7 +757,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1112203</codigo>
-    <nome>ERGONOMIA</nome>
+    <nome>Ergonomia</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -766,7 +766,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411203</codigo>
-    <nome>ESTÁGIO INTEGRADO</nome>
+    <nome>Estágio Integrado</nome>
     <cargaHoraria>300</cargaHoraria>
     <creditos>10</creditos>
     <codigosPrerequisitos/>
@@ -775,7 +775,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1305166</codigo>
-    <nome>ETICA</nome>
+    <nome>Ética</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -784,7 +784,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1301091</codigo>
-    <nome>FUNDAMENTOS DE CONTABILIDADE E ORÇAMENTO</nome>
+    <nome>Fundamentos de Contabilidade e Orçamento</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -793,7 +793,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1304055</codigo>
-    <nome>FUTSAL</nome>
+    <nome>Futsal</nome>
     <cargaHoraria>30</cargaHoraria>
     <creditos>2</creditos>
     <codigosPrerequisitos/>
@@ -802,7 +802,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411204</codigo>
-    <nome>GERENCIA DE REDES DE COMPUTADORES</nome>
+    <nome>Gerência de Redes de Computadores</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -811,7 +811,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1301078</codigo>
-    <nome>GESTAO DA QUALIDADE</nome>
+    <nome>Gestão da Qualidade</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -838,7 +838,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411206</codigo>
-    <nome>HISTÓRIA DA COMPUTAÇÃO</nome>
+    <nome>História da Computação</nome>
     <cargaHoraria>30</cargaHoraria>
     <creditos>2</creditos>
     <codigosPrerequisitos/>
@@ -847,7 +847,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411207</codigo>
-    <nome>INFORMÁTICA NA EDUCAÇÃO</nome>
+    <nome>Informática na Educação</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -874,7 +874,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411209</codigo>
-    <nome>INTERFACE HOMEM-MÁQUINA</nome>
+    <nome>Interface Homem-Máquina</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -883,7 +883,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1305222</codigo>
-    <nome>INTRODUÇÃO À FILOSOFIA</nome>
+    <nome>Introdução à Filosofia</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -910,7 +910,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1301055</codigo>
-    <nome>MATEMÁTICA FINANCEIRA</nome>
+    <nome>Matemática Financeira</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -919,7 +919,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411211</codigo>
-    <nome>MÉTODOS AVANÇADOS DE PROGRAMAÇÃO</nome>
+    <nome>Métodos Avançados de Programação</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -937,7 +937,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411213</codigo>
-    <nome>OTIMIZAÇÃO</nome>
+    <nome>Otimização</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -973,7 +973,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1304062</codigo>
-    <nome>PRATICA DESPORTIVA</nome>
+    <nome>Prática Desportiva</nome>
     <cargaHoraria>30</cargaHoraria>
     <creditos>2</creditos>
     <codigosPrerequisitos/>
@@ -1000,7 +1000,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411216</codigo>
-    <nome>PROGRAMAÇÃO FUNCIONAL</nome>
+    <nome>Programação Funcional</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -1009,7 +1009,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411217</codigo>
-    <nome>PROJETO DE REDES DE COMPUTADORES</nome>
+    <nome>Projeto de Redes de Computadores</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -1018,7 +1018,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1304163</codigo>
-    <nome>PSICOLOGIA DA APRENDIZAGEM</nome>
+    <nome>Psicologia da Aprendizagem</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -1027,7 +1027,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1307091</codigo>
-    <nome>REDACAO CIENTIFICA</nome>
+    <nome>Redação Científica</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -1036,7 +1036,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411218</codigo>
-    <nome>REDES DE PETRI</nome>
+    <nome>Redes de Petri</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -1045,7 +1045,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411226</codigo>
-    <nome>REDES NEURAIS</nome>
+    <nome>Redes Neurais</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -1216,7 +1216,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411237</codigo>
-    <nome>TECC (COMPUTAÇÃO PARALELA)</nome>
+    <nome>TECC (Computação Paralela)</nome>
     <cargaHoraria>30</cargaHoraria>
     <creditos>2</creditos>
     <codigosPrerequisitos/>
@@ -1225,7 +1225,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411234</codigo>
-    <nome>TECC (COMPUTAÇÃO QUANTICA)</nome>
+    <nome>TECC (Computação Quântica)</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -1234,7 +1234,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411288</codigo>
-    <nome>TECC (DIDÁT. CIÊNCIA DA COMPUTAÇÃO II)</nome>
+    <nome>TECC (Didática em Ciência da Computação II)</nome>
     <cargaHoraria>30</cargaHoraria>
     <creditos>2</creditos>
     <codigosPrerequisitos/>
@@ -1243,7 +1243,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411285</codigo>
-    <nome>TECC (DIDÁTICA EM CIÊNCIA DA COMPUTAÇÃO)</nome>
+    <nome>TECC (Didática em Ciência da Computação)</nome>
     <cargaHoraria>30</cargaHoraria>
     <creditos>2</creditos>
     <codigosPrerequisitos/>
@@ -1252,7 +1252,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411259</codigo>
-    <nome>TECC (GRADES COMPUTACIONAIS)</nome>
+    <nome>TECC (Grades Computacionais)</nome>
     <cargaHoraria>30</cargaHoraria>
     <creditos>2</creditos>
     <codigosPrerequisitos/>
@@ -1585,7 +1585,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411232</codigo>
-    <nome>TECC (ORGANIZACAO INTERNA DO LINUX)</nome>
+    <nome>TECC (Organização Interna do Linux)</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -1594,7 +1594,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411254</codigo>
-    <nome>TECC (PROCESSAMENTO DIGITAL DE IMAGEM)</nome>
+    <nome>TECC (Processamento Digital de Imagem)</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -1612,7 +1612,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411265</codigo>
-    <nome>TECC (REDES AD HOC SEM FIO)</nome>
+    <nome>TECC (Redes Ad Hoc Sem Fio)</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -1621,7 +1621,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411242</codigo>
-    <nome>TECC (SEGURANCA EM REDES DE COMPUTADORES)</nome>
+    <nome>TECC (Segurança em Redes de Computadores)</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -1630,7 +1630,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411275</codigo>
-    <nome>TECC (SISTEMAS COOPERATIVOS)</nome>
+    <nome>TECC (Sistemas Cooperativos)</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -1648,7 +1648,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411280</codigo>
-    <nome>TECC (TECNOLOGIAS DE COMUNICACAO SEM FIO)</nome>
+    <nome>TECC (Tecnologias de Comunicação Sem Fio)</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -1657,7 +1657,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411276</codigo>
-    <nome>TECC (VISAO COMPUTACIONAL)</nome>
+    <nome>TECC (Visão Computacional)</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -1666,7 +1666,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411256</codigo>
-    <nome>TEC(PRINCIPIOS DE ADMIN FINANCEIRA)</nome>
+    <nome>TECC (Princípios de Administração Financeira)</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -1675,7 +1675,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1411284</codigo>
-    <nome>TEEC(PROGRAMACAO EM BANCO DE DADOS)</nome>
+    <nome>TECC (Programação em Banco de Dados)</nome>
     <cargaHoraria>60</cargaHoraria>
     <creditos>4</creditos>
     <codigosPrerequisitos/>
@@ -1702,7 +1702,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1304012</codigo>
-    <nome>VOLEIBOL - MASC/FEM</nome>
+    <nome>Voleibol (Masc./Fem.)</nome>
     <cargaHoraria>30</cargaHoraria>
     <creditos>2</creditos>
     <codigosPrerequisitos/>
@@ -1711,7 +1711,7 @@
   <disciplina>
     <periodoSugerido>-1</periodoSugerido>
     <codigo>1304024</codigo>
-    <nome>VOLEIBOL - MAS/FEM</nome>
+    <nome>Voleibol (Masc./Fem.)</nome>
     <cargaHoraria>30</cargaHoraria>
     <creditos>2</creditos>
     <codigosPrerequisitos/>
