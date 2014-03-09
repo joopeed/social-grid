@@ -1,6 +1,32 @@
 @(disciplina: model.Disciplina)
 @import helper._
 
+<script>
+$.ready(preencherDicas());
+
+function preencherDicas() {
+	$.get("@routes.Application.carregarDicas(disciplina.codigo)", function(data) {
+		$('#dicas_disciplina').attr("align", "left");
+		$('#dicas_disciplina').html(data);
+		$('#adicionar_dica').removeAttr("disabled");
+		$('#texto_dica').val("");	
+		$('#texto_dica').removeAttr("disabled");		
+	});
+}
+
+$('#adicionar_dica').click(function() {
+	$('#adicionar_dica').attr("disabled", "disabled");
+	$('#texto_dica').attr("disabled", "disabled");
+	$('#dicas_disciplina').attr("align", "center");
+	$('#dicas_disciplina').html('<img src="@routes.Assets.at("images/ajax-loader.gif")" />');
+	
+	var disciplinaObj = {codigo: @disciplina.codigo, texto: $("#texto_dica").val()};
+    $.post( "@routes.Application.adicionarDica()", disciplinaObj, function(result) {
+        preencherDicas();
+    });
+});
+</script>
+
 <div class="modal-header" id="myModalHeader">
 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 	<h3 id="myModalLabel">@disciplina.getNome()</h3>
@@ -14,11 +40,15 @@
 
 	<div id="myTabContent" class="tab-content">
     	<div class="tab-pane fade in active" id="dicas">
-        	<p>
-        		Envie uma dica<br />
-        		<textarea rows="3" style="width:97%; max-width: 97%"/><br />
-        		<button class="btn btn-mini pull-right">Enviar</button>
-        	</p>
+    		<div id="dicas_disciplina">
+    		</div>
+        	<div id="nova_dica">
+	        	<p>
+	        		Envie uma dica<br />
+	        		<textarea rows="3" style="width:97%; max-width: 97%" id="texto_dica"/><br />
+	        		<button class="btn btn-mini pull-right" id="adicionar_dica">Enviar</button>
+	        	</p>
+	        </div>
 		</div>
         <div class="tab-pane fade" id="dados_disciplina">
         	<p>

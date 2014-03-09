@@ -1,7 +1,13 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 import play.db.ebean.Model;
 
@@ -15,40 +21,48 @@ public class Dica extends Model {
 	
 	@Id
 	public Long id;
+	@OneToOne
+	private Usuario autor;
+	@ManyToMany
+	private List<Usuario> usuariosQueCurtiram;
 	private String texto;
-	private int likes;
 	
 	/**
 	 * Construtor
 	 * @param novo_texto Texto da dica.
 	 */
-	public Dica(String novo_texto) {
+	public Dica(Usuario usuario, String novo_texto) {
+		autor = usuario;
 		texto = novo_texto;
-		likes = 0;
+		usuariosQueCurtiram = new ArrayList<Usuario>();
 	}
 	
 	/**
 	 * Adiciona um like na dica.
 	 */
-	public void adicionaLike(){
-		likes++;
+	public void adicionaLike(Usuario usuario){
+		usuariosQueCurtiram.add(usuario);
 	}
 	
 	/**
 	 * Remove um like da dica.
 	 */
-	public void removeLike(){
-		likes--;
+	public void removeLike(Usuario usuario){
+		usuariosQueCurtiram.remove(usuario);
 	}
 	
-	public int getLikes(){
-		return likes;
+	public List<Usuario> getLikes(){
+		return Collections.unmodifiableList(usuariosQueCurtiram);
 	}
 	
-	public String getTexto(){
+	public String getTexto() {
 		return texto;
 	}
 
+	public String getNomeDoAutor() {
+		return autor.getNome();
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

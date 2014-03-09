@@ -8,6 +8,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
+import model.Dica;
 import model.Disciplina;
 import model.Grade;
 import model.Usuario;
@@ -62,4 +63,15 @@ public class Sistema {
 	public Set<Disciplina> getDisciplinasAlocadas(Usuario usuario) {
 		return usuario.getPlano().getDisciplinasAlocadas();
 	}
+	
+	public void adicionarDica(Long codigo, Usuario usuario, String dica) {
+		Disciplina disciplina = getDisciplinaPorCodigo(codigo);
+		
+		Dica novaDica = new Dica(usuario, dica);
+		novaDica.save();
+		
+		disciplina.addDica(novaDica);
+		disciplina.update();
+	}
+
 }

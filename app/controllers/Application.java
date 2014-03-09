@@ -1,7 +1,10 @@
 package controllers;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 import model.Disciplina;
 import model.Usuario;
+import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 
@@ -73,5 +76,39 @@ public class Application extends Controller {
     	} else {
     		return badRequest();
     	}
+    }
+    
+    public static Result adicionarDica() {
+    	if (!Autenticacao.existeUsuarioAutenticado()) {
+    		return badRequest();
+    	}
+
+    	ObjectNode result = Json.newObject();
+    	
+    	result.put("dica_adicionada", false);
+    	
+    	if (request().body().asFormUrlEncoded() != null) {
+    		Usuario usuario = CADASTRO.getUsuarioPorEmail(session("usuario"));
+
+    		String[] texto = request().body().asFormUrlEncoded().get("texto");
+    		String[] codigo = request().body().asFormUrlEncoded().get("codigo");
+    		
+    		if (texto != null && codigo != null) {
+   				SISTEMA.adicionarDica(Long.parseLong(codigo[0]), usuario, texto[0]);
+   				result.put("dica_adicionada", true);
+    		}
+    	}
+
+    	return ok(result);
+    }
+    
+    public static Result carregarDicas(long codigo) {
+    	if (!Autenticacao.existeUsuarioAutenticado()) {
+    		return badRequest();
+    	}
+
+    	Disciplina disciplina = SISTEMA.getDisciplinaPorCodigo(codigo);
+    	
+    	return ok(views.html.dicas.render(disciplina.getDicas()));
     }
 }

@@ -5,8 +5,8 @@
 
 create table dica (
   id                        bigint not null,
+  autor_email               varchar(255),
   texto                     varchar(255),
-  likes                     integer,
   constraint pk_dica primary key (id))
 ;
 
@@ -48,6 +48,12 @@ create table usuario (
   constraint pk_usuario primary key (email))
 ;
 
+
+create table dica_usuario (
+  dica_id                        bigint not null,
+  usuario_email                  varchar(255) not null,
+  constraint pk_dica_usuario primary key (dica_id, usuario_email))
+;
 
 create table disciplinas_dependentes (
   disciplina_codigo              bigint not null,
@@ -104,12 +110,18 @@ create sequence plano_seq;
 
 create sequence usuario_seq;
 
-alter table plano add constraint fk_plano_grade_1 foreign key (grade_id) references grade (id) on delete restrict on update restrict;
-create index ix_plano_grade_1 on plano (grade_id);
-alter table usuario add constraint fk_usuario_plano_2 foreign key (plano_id) references plano (id) on delete restrict on update restrict;
-create index ix_usuario_plano_2 on usuario (plano_id);
+alter table dica add constraint fk_dica_autor_1 foreign key (autor_email) references usuario (email) on delete restrict on update restrict;
+create index ix_dica_autor_1 on dica (autor_email);
+alter table plano add constraint fk_plano_grade_2 foreign key (grade_id) references grade (id) on delete restrict on update restrict;
+create index ix_plano_grade_2 on plano (grade_id);
+alter table usuario add constraint fk_usuario_plano_3 foreign key (plano_id) references plano (id) on delete restrict on update restrict;
+create index ix_usuario_plano_3 on usuario (plano_id);
 
 
+
+alter table dica_usuario add constraint fk_dica_usuario_dica_01 foreign key (dica_id) references dica (id) on delete restrict on update restrict;
+
+alter table dica_usuario add constraint fk_dica_usuario_usuario_02 foreign key (usuario_email) references usuario (email) on delete restrict on update restrict;
 
 alter table disciplinas_dependentes add constraint fk_disciplinas_dependentes_di_01 foreign key (disciplina_codigo) references disciplina (codigo) on delete restrict on update restrict;
 
@@ -144,6 +156,8 @@ alter table plano_periodo add constraint fk_plano_periodo_periodo_02 foreign key
 SET REFERENTIAL_INTEGRITY FALSE;
 
 drop table if exists dica;
+
+drop table if exists dica_usuario;
 
 drop table if exists dificuldade;
 

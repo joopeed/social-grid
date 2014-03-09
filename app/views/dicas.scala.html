@@ -1,0 +1,13 @@
+@(dicas: List[model.Dica])
+@import helper._
+
+<div>
+
+@for((dica, i) <- dicas.zipWithIndex) {
+<p>
+	@dica.getTexto()<br />
+	por: @dica.getNomeDoAutor()<br />
+</p>
+}
+
+</div>
