@@ -10,6 +10,12 @@ create table dica (
   constraint pk_dica primary key (id))
 ;
 
+create table dificuldade (
+  id                        bigint not null,
+  dificuldade               integer,
+  constraint pk_dificuldade primary key (id))
+;
+
 create table disciplina (
   codigo                    bigint not null,
   nome                      varchar(255),
@@ -61,6 +67,12 @@ create table disciplina_dica (
   constraint pk_disciplina_dica primary key (disciplina_codigo, dica_id))
 ;
 
+create table disciplina_dificuldade (
+  disciplina_codigo              bigint not null,
+  dificuldade_id                 bigint not null,
+  constraint pk_disciplina_dificuldade primary key (disciplina_codigo, dificuldade_id))
+;
+
 create table grade_disciplina (
   grade_id                       bigint not null,
   disciplina_codigo              bigint not null,
@@ -79,6 +91,8 @@ create table plano_periodo (
   constraint pk_plano_periodo primary key (plano_id, periodo_id))
 ;
 create sequence dica_seq;
+
+create sequence dificuldade_seq;
 
 create sequence disciplina_seq;
 
@@ -109,6 +123,10 @@ alter table disciplina_dica add constraint fk_disciplina_dica_disciplina_01 fore
 
 alter table disciplina_dica add constraint fk_disciplina_dica_dica_02 foreign key (dica_id) references dica (id) on delete restrict on update restrict;
 
+alter table disciplina_dificuldade add constraint fk_disciplina_dificuldade_dis_01 foreign key (disciplina_codigo) references disciplina (codigo) on delete restrict on update restrict;
+
+alter table disciplina_dificuldade add constraint fk_disciplina_dificuldade_dif_02 foreign key (dificuldade_id) references dificuldade (id) on delete restrict on update restrict;
+
 alter table grade_disciplina add constraint fk_grade_disciplina_grade_01 foreign key (grade_id) references grade (id) on delete restrict on update restrict;
 
 alter table grade_disciplina add constraint fk_grade_disciplina_disciplin_02 foreign key (disciplina_codigo) references disciplina (codigo) on delete restrict on update restrict;
@@ -127,6 +145,8 @@ SET REFERENTIAL_INTEGRITY FALSE;
 
 drop table if exists dica;
 
+drop table if exists dificuldade;
+
 drop table if exists disciplina;
 
 drop table if exists disciplinas_dependentes;
@@ -134,6 +154,8 @@ drop table if exists disciplinas_dependentes;
 drop table if exists disciplinas_requisitos;
 
 drop table if exists disciplina_dica;
+
+drop table if exists disciplina_dificuldade;
 
 drop table if exists grade;
 
@@ -152,6 +174,8 @@ drop table if exists usuario;
 SET REFERENTIAL_INTEGRITY TRUE;
 
 drop sequence if exists dica_seq;
+
+drop sequence if exists dificuldade_seq;
 
 drop sequence if exists disciplina_seq;
 

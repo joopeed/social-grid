@@ -15,7 +15,6 @@ import controllers.Sistema;
 
 public class UsuariosTest {
 	private Usuario usuarioA, usuarioB, usuarioC;
-	private Grade grade;
 	private CadastroUsuario cadastro;
 	private Sistema sistema; // É usado para iniciar a grade.
 
@@ -26,9 +25,9 @@ public class UsuariosTest {
 		sistema = new Sistema(); // Necessário para iniciar a grade.
 		cadastro = new CadastroUsuario();
 		
-		usuarioA = new Usuario("Foo", "foo@gmail.com", "123456", new Plano(grade));
-		usuarioB = new Usuario("Boo", "boo@gmail.com", "654321", new Plano(grade));
-		usuarioC = new Usuario("FOo", "foo@gmail.com", "159753", new Plano(grade));
+		usuarioA = new Usuario("Foo", "foo@gmail.com", "123456", new Plano(null));
+		usuarioB = new Usuario("Boo", "boo@gmail.com", "654321", new Plano(null));
+		usuarioC = new Usuario("FOo", "foo@gmail.com", "159753", new Plano(null));
 	}
 	
 	@Test

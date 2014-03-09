@@ -37,7 +37,9 @@ public class Disciplina extends Model implements Comparable<Disciplina> {
 	private Set<Disciplina> requisitos;
 	@ManyToMany(cascade = CascadeType.REMOVE)
 	private List<Dica> dicas;
-
+	@ManyToMany
+	private List<Dificuldade> dificuldades;
+	
 	
 	/**
 	 * Construtor
@@ -51,6 +53,7 @@ public class Disciplina extends Model implements Comparable<Disciplina> {
 		dependentes = new HashSet<Disciplina>();
 		requisitos = new HashSet<Disciplina>();
 		dicas = new ArrayList<Dica>();
+		dificuldades = new ArrayList<Dificuldade>();
 	}
 	
 	/**
@@ -128,4 +131,32 @@ public class Disciplina extends Model implements Comparable<Disciplina> {
 	public List<Dica> getDicas() {
 		return dicas;
 	}
+
+	/**
+	 * Calcula a dificuldade média da disciplina.
+	 * @return Dificuldade média da disciplina. 
+	 */
+	public double getDificuldadeMedia() {
+		double dificuldadeMedia = 0;
+		
+		for (Dificuldade dificuldade: dificuldades) {
+			dificuldadeMedia += dificuldade.getDificuldade();
+		}
+	
+		if (dificuldades.size() > 0) {
+			dificuldadeMedia /= dificuldades.size(); 
+		}
+		
+		return dificuldadeMedia;
+	}
+
+	/**
+	 * Adiciona a avaliação de dificuldade de um usuário à disciplina.
+	 * @param usuario Usuário que faz a avaliação da dificuldade.
+	 * @param dificuldade Dificuldade estipulada pelo usuario.
+	 */
+	public void addDificuldade(Usuario usuario, int dificuldade) {
+		dificuldades.add(new Dificuldade(usuario, dificuldade));
+	}
+
 }
