@@ -95,7 +95,7 @@ public class SistemaTest extends WithApplication {
 	@Test
 	public void adicionaDisciplinaNoPlanejamento() {
 		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Engenharia de Software II")));
-		sistema.alocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Engenharia de Software II", 1);
+		sistema.alocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Engenharia de Software II", 7);
 		assertTrue(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Engenharia de Software II")));
 	}
 	

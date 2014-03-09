@@ -59,13 +59,32 @@ public class PeriodoTest {
 	}
 	
 	@Test
+	public void naoAlocaAcimaDoMaximo() {
+		primeiroPeriodo.adicionaDisciplina(grade.getDisciplinaPorNome("Inglês"));
+		primeiroPeriodo.adicionaDisciplina(grade.getDisciplinaPorNome("Economia"));
+		assertTrue(primeiroPeriodo.getDisciplinas().contains(grade.getDisciplinaPorNome("Inglês")));
+		assertFalse(primeiroPeriodo.getDisciplinas().contains(grade.getDisciplinaPorNome("Economia")));
+	}
+	
+	@Test
+	public void alocaSemRestricao() {
+		RegraDeAlocacao novaRegra = new SemRestricoes();
+		primeiroPeriodo.setRegraDeAlocacao(novaRegra);
+		primeiroPeriodo.adicionaDisciplina(grade.getDisciplinaPorNome("Inglês"));
+		primeiroPeriodo.adicionaDisciplina(grade.getDisciplinaPorNome("Economia"));
+		assertTrue(primeiroPeriodo.getDisciplinas().contains(grade.getDisciplinaPorNome("Inglês")));
+		assertTrue(primeiroPeriodo.getDisciplinas().contains(grade.getDisciplinaPorNome("Economia")));
+	}
+	
+	@Test
 	public void removeDisciplina() {
 		primeiroPeriodo.removeDisciplina(grade.getDisciplinaPorNome("Cálculo Diferencial e Integral I"));
-		assertFalse(primeiroPeriodo.getDisciplinas().contains(grade.getDisciplinaPorNome("Inglês")));
+		assertFalse(primeiroPeriodo.getDisciplinas().contains(grade.getDisciplinaPorNome("Cálculo Diferencial e Integral I")));
 	}
 	
 	@Test
 	public void quantidadeDeCreditos() {
 		assertEquals(24, primeiroPeriodo.getTotalDeCreditos());
 	}
+	
 }

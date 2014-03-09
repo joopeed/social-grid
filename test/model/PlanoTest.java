@@ -56,4 +56,5 @@ public class PlanoTest {
 		
 		assertTrue(plano1.getDisciplinasOfertadas().containsAll(naoAlocadas));
 	}
+	
 }

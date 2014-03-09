@@ -24,12 +24,14 @@ public class Periodo extends Model {
 	public Long id;
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Disciplina> disciplinas;
+	private RegraDeAlocacao regraDeAlocacao;
 	
 	/**
 	 * Construtor
 	 */
 	public Periodo(){
 		disciplinas = new ArrayList<Disciplina>();
+		regraDeAlocacao = new Maximo();
 	}
 
 	/**
@@ -45,7 +47,9 @@ public class Periodo extends Model {
 	 * @param disciplina Disciplina à ser adicionada.
 	 */
 	public void adicionaDisciplina(Disciplina disciplina) {
-		disciplinas.add(disciplina);
+		if (regraDeAlocacao.podeSerAlocada(disciplina, this)) {
+			disciplinas.add(disciplina);
+		}
 	}
 
 	/**
@@ -78,5 +82,12 @@ public class Periodo extends Model {
 		
 		return totalDeCreditos;
 	}
-	
+
+	/**
+	 * Define uma nova regra de alocação para o período.
+	 * @param novaRegra Nova regra de alocação.
+	 */
+	public void setRegraDeAlocacao(RegraDeAlocacao novaRegra) {
+		regraDeAlocacao = novaRegra;
+	}
 }
