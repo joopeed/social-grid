@@ -137,12 +137,27 @@ public class Plano extends Model {
 	 * @param idxPeriodo Índice do período que recebe-rá a disciplina.
 	 */
 	public void addDisciplina(Disciplina disciplina, int idxPeriodo) {
+		periodos.get(idxPeriodo).adicionaDisciplina(disciplina);
+	}
+	
+	
+	
+	private boolean temRequisitos(Disciplina disciplina, int  idxPeriodo) {
 		boolean temRequisitos = true;
 		for (Disciplina requisito: disciplina.getRequisitos()) {
 			temRequisitos &= temDisciplinaAlocada(requisito, idxPeriodo);
 		}
-		if(temRequisitos) periodos.get(idxPeriodo).adicionaDisciplina(disciplina);
+		return temRequisitos;
 	}
+
+	public boolean temDisciplinaIncorreta(int idxPeriodo) {
+		boolean temTodosRequisitos = true;
+		for(Disciplina disciplina: periodos.get(idxPeriodo).getDisciplinas()){
+			temTodosRequisitos &= temRequisitos(disciplina, idxPeriodo);
+		}
+		return !temTodosRequisitos;
+	}
+	
 
 	private boolean temDisciplinaAlocada(Disciplina disciplina, int idxPeriodo) {
 		for (int i = 0; i < idxPeriodo; i++) {

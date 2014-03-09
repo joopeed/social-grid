@@ -72,6 +72,17 @@ nome-erro {
 	border-radius: 10px;
 }
 
+.coluna_errada {
+	background-color: #c42726;
+	float: left;
+	height: auto;
+	width: 148px;
+	margin-left: 10.5px;
+	margin-top: 10px;
+	border-radius: 10px;
+	padding-top: 2px;
+}
+
 .coluna {
 	background-color: #d8e2eb;
 	float: left;
