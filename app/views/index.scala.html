@@ -78,11 +78,15 @@ bottom
             @for(disciplina <- periodo.getDisciplinas()){
                 <div class="disciplina" id="@disciplina.getNome()">
                     <nome>@disciplina.getNome()</nome><br/>
-                    <descricao>@disciplina.getCreditos() créditos</descricao>
+                    <descricao>Créditos: @disciplina.getCreditos()<br />
+                    		   Dificuldade: @disciplina.getDificuldadeMedia()</descricao>
+                    
                     <info name="@disciplina.codigo"><img src="@routes.Assets.at("images/info_small.png")" /></info>
                 </div>
             }
-            </br>
+            <br />
+            @periodo.getTotalDeCreditos() créditos
+            <br /><br />
             </div>
         }
     </div>
