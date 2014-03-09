@@ -3,14 +3,12 @@ package controllers;
 import java.io.IOException;
 import java.util.List;
 
-import javax.persistence.Entity;
 import javax.xml.parsers.ParserConfigurationException;
 
 import model.Disciplina;
 
 import org.xml.sax.SAXException;
 
-import play.db.ebean.Model;
 import play.db.ebean.Model.Finder;
 
 /**
