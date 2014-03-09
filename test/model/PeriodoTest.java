@@ -86,5 +86,17 @@ public class PeriodoTest {
 	public void quantidadeDeCreditos() {
 		assertEquals(24, primeiroPeriodo.getTotalDeCreditos());
 	}
-	
+
+	@Test
+	public void dificuldadeDoPeriodo() {
+		assertEquals(0, primeiroPeriodo.getDificuldadeTotal(), 0);
+		
+		Usuario usuarioA = new Usuario("Foo", "foo@gmail.com", "123456", new Plano(null));
+		Usuario usuarioB = new Usuario("Boo", "boo@gmail.com", "654321", new Plano(null));
+
+		grade.getDisciplinaPorNome("Cálculo Diferencial e Integral I").addDificuldade(usuarioA, 3);
+		grade.getDisciplinaPorNome("Programação I").addDificuldade(usuarioB, 2);
+		
+		assertEquals(5, primeiroPeriodo.getDificuldadeTotal(), 0);
+	}
 }

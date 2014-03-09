@@ -88,4 +88,14 @@ public class Periodo extends Model {
 	public void setRegraDeAlocacao(RegraDeAlocacao novaRegra) {
 		regraDeAlocacao = novaRegra;
 	}
+
+	public double getDificuldadeTotal() {
+		double dificuldadeTotal = 0;
+		
+		for (Disciplina disciplina: disciplinas) {
+			dificuldadeTotal += disciplina.getDificuldadeMedia();
+		}
+		
+		return dificuldadeTotal;
+	}
 }
