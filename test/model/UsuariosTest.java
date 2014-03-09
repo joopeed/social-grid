@@ -11,20 +11,15 @@ import org.junit.Test;
 
 import controllers.CadastroUsuario;
 import controllers.CadastroUsuarioException;
-import controllers.Grade;
-import controllers.Sistema;
 
 public class UsuariosTest {
 	private Usuario usuarioA, usuarioB, usuarioC;
-	private Grade grade;
 	private CadastroUsuario cadastro;
-	private Sistema sistema; // É usado para iniciar a grade.
 
 	@Before
 	public void setUp() throws IOException {
 		start(fakeApplication(inMemoryDatabase()));
 		
-		sistema = new Sistema(); // Necessário para iniciar a grade.
 		cadastro = new CadastroUsuario();
 		
 		usuarioA = new Usuario("Foo", "foo@gmail.com", "123456", new Plano());
