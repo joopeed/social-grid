@@ -1,6 +1,7 @@
-package model;
+package controllers;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -9,6 +10,8 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
+import model.Disciplina;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -30,11 +33,7 @@ public class Carregador {
 	public List<Disciplina> preencheGrade() throws IOException, ParserConfigurationException, SAXException {
 		List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 		
-		InputStream disciplinasXML = play.Play.application().resourceAsStream("res/disciplinas.xml");
-		
-		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-		DocumentBuilder db = dbf.newDocumentBuilder();
-		Document disciplinasDocument = db.parse(disciplinasXML);
+		Document disciplinasDocument = carregarArquivo();
 		
 		Node disciplinasRoot = disciplinasDocument.getDocumentElement();
 		NodeList disciplinasNodes = disciplinasRoot.getChildNodes();
@@ -81,12 +80,7 @@ public class Carregador {
 	 * @throws SAXException Erro no arquivo XML
 	 */
 	protected List<Disciplina> adicionaDependentesERequisitos(List<Disciplina> disciplinas) throws IOException, ParserConfigurationException, SAXException {
-		InputStream disciplinasXML = play.Play.application().resourceAsStream("res/disciplinas.xml");
-		
-		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-		DocumentBuilder db = dbf.newDocumentBuilder();
-		Document disciplinasDocument = db.parse(disciplinasXML);
-		
+		Document disciplinasDocument = carregarArquivo(); 
 		Node disciplinasRoot = disciplinasDocument.getDocumentElement();
 		NodeList disciplinasNodes = disciplinasRoot.getChildNodes();
 		
@@ -138,5 +132,19 @@ public class Carregador {
 				return disc;
 		}
 		return null;
+	}
+	
+	private Document carregarArquivo() throws SAXException, IOException, ParserConfigurationException {
+		InputStream disciplinasXML = play.Play.application().resourceAsStream("res/disciplinas.xml");
+		
+		if (disciplinasXML == null) {
+			disciplinasXML = new FileInputStream(new File("res/disciplinas.xml"));
+		}
+		
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		DocumentBuilder db = dbf.newDocumentBuilder();
+		Document disciplinasDocument = db.parse(disciplinasXML);
+
+		return disciplinasDocument;
 	}
 }

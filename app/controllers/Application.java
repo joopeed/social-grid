@@ -17,7 +17,7 @@ public class Application extends Controller {
     	  
     	Usuario usuario = CADASTRO.getUsuarioPorEmail(session("usuario"));
     	
-        return ok(views.html.index.render(usuario.getPlano().getPeriodos(), usuario.getPlano().getDisciplinasOfertadas()));
+        return ok(views.html.index.render(usuario.getPlano().getPeriodos(), SISTEMA.getDisciplinasOfertadas(usuario)));
     }
     
     public static Result cadastro() {

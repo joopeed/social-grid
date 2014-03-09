@@ -17,6 +17,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
+import controllers.Grade;
+
 public class PeriodoTest {
 
 	private Grade grade;
@@ -27,7 +29,6 @@ public class PeriodoTest {
 		start(fakeApplication(inMemoryDatabase()));
 
 		grade = new Grade();
-		grade.preencheGrade();
 		
 		primeiroPeriodo = new Periodo();
 		primeiroPeriodo.adicionaDisciplina(grade.getDisciplinaPorNome("Cálculo Diferencial e Integral I"));

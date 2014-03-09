@@ -10,10 +10,10 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
-import play.db.ebean.Model.Finder;
 import play.test.WithApplication;
 import controllers.CadastroUsuario;
 import controllers.CadastroUsuarioException;
+import controllers.Grade;
 import controllers.Sistema;
 
 public class SistemaTest extends WithApplication {
@@ -182,10 +182,8 @@ public class SistemaTest extends WithApplication {
 	
 	@Test
 	public void removeDoPlanoSemRemoverDaGrade() {
-		Finder<Integer, Grade> gradeFinder = new Finder<Integer, Grade>(Integer.class, Grade.class);
-		
 		sistema.desalocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Programação I");
-		Grade grade = gradeFinder.all().get(0);
+		Grade grade = new Grade();
 		
 		assertNotNull(grade.getDisciplinaPorNome("Programação I"));
 		assertNotNull(grade.getDisciplinaPorNome("Programação II"));

@@ -17,6 +17,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
+import controllers.Grade;
 import play.db.ebean.Model.Finder;
 
 public class PersistenciaTest {
@@ -63,12 +64,9 @@ public class PersistenciaTest {
 	@Test
 	public void testGrade() throws IOException, ParserConfigurationException, SAXException {
 		Finder<Integer, Grade> gradeFinder = new Finder<Integer, Grade>(Integer.class, Grade.class);
-
-		Grade grade = new Grade();
-		grade.preencheGrade();
 		
 		assertEquals(0, gradeFinder.findRowCount());
-		grade.save();
+		new Grade();
 		
 		assertEquals(1, gradeFinder.findRowCount());
 		

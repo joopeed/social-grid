@@ -1,6 +1,5 @@
 package controllers;
 
-import model.Grade;
 import model.Plano;
 import model.Usuario;
 import play.db.ebean.Model.Finder;
@@ -13,9 +12,10 @@ public class CadastroUsuario {
 	}
 	
 	public void cadastrarUsuario(String nome, String email, String senha) throws CadastroUsuarioException {
-		Finder<Integer, Grade> gradeFinder = new Finder<Integer, Grade>(Integer.class, Grade.class);
-		Plano plano = new Plano(gradeFinder.all().get(0));
-		plano.iniciaPrePlano();
+		Grade grade = new Grade();
+		Plano plano = new Plano();
+		
+		plano.iniciaPrePlano(grade);
 		
 		Usuario usuario = new Usuario(nome, email, senha, plano);
 		
