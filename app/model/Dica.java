@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -51,8 +50,8 @@ public class Dica extends Model {
 		usuariosQueCurtiram.remove(usuario);
 	}
 	
-	public List<Usuario> getLikes(){
-		return Collections.unmodifiableList(usuariosQueCurtiram);
+	public int getQuantidadeDeLikes(){
+		return usuariosQueCurtiram.size();
 	}
 	
 	public String getTexto() {

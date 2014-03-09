@@ -29,9 +29,10 @@ public class PersistenciaTest {
 	@Test
 	public void testDica() {
 		Finder<Integer, Dica> dicaFinder = new Finder<Integer, Dica>(Integer.class, Dica.class);
+		Usuario usuarioA = new Usuario("Foo", "foo@gmail.com", "123456", new Plano(null));
 
 		for (int i = 1; i <= 5; i++) {
-			Dica dica = new Dica("Esta é uma dica! (" + String.valueOf(i) + ")");
+			Dica dica = new Dica(usuarioA, "Esta é uma dica! (" + String.valueOf(i) + ")");
 		
 			assertEquals(i - 1, dicaFinder.findRowCount());
 			assertNull(dica.id);
@@ -42,7 +43,7 @@ public class PersistenciaTest {
 			assertEquals(i, dicaFinder.findRowCount());
 			
 			for (int j = 0; j < i; j++) {
-				dica.adicionaLike();
+				dica.adicionaLike(usuarioA);
 				dica.update();
 			}	
 		}
@@ -56,7 +57,7 @@ public class PersistenciaTest {
 			
 			assertTrue(i == dica.id);
 			assertEquals("Esta é uma dica! (" + String.valueOf(i) + ")", dica.getTexto());
-			assertEquals(i, dica.getLikes());
+			assertEquals(i, dica.getQuantidadeDeLikes());
 		}
 	}
 
