@@ -1,4 +1,4 @@
-@(periodos: List[model.Periodo], disciplinas_ofertadas: List[model.Disciplina])
+@(plano: model.Plano, periodos: List[model.Periodo], disciplinas_ofertadas: List[model.Disciplina])
 @import helper._
 @main("Início") {
 	<script>
@@ -73,7 +73,11 @@ bottom
             <h1>Meu Plano</h1>
         </div>
         @for((periodo, i) <- periodos.zipWithIndex) {
+             @if(plano.temDisciplinaIncorreta(i)){
+            <div id="periodo_@(i + 1)" class="coluna_errada">
+          } else {
             <div id="periodo_@(i + 1)" class="coluna">
+          }
             <nome-periodo>Período @(1 + periodos.indexOf(periodo))</nome-periodo>
             @for(disciplina <- periodo.getDisciplinas()){
                 <div class="disciplina" id="@disciplina.getNome()">
