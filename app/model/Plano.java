@@ -158,6 +158,11 @@ public class Plano extends Model {
 		return !temTodosRequisitos;
 	}
 	
+	public boolean estaIncorreta(Disciplina disciplina, int idxPeriodo) {
+		return !temRequisitos(disciplina, idxPeriodo);
+		
+	}
+	
 
 	private boolean temDisciplinaAlocada(Disciplina disciplina, int idxPeriodo) {
 		for (int i = 0; i < idxPeriodo; i++) {

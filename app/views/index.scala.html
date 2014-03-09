@@ -25,8 +25,19 @@ $(function() {
     $(".disciplina").draggable({
         revert: "invalid"
     });
+     $(".disciplina_incorreta").draggable({
+        revert: "invalid"
+    });
 
     $( ".coluna" ).droppable({
+        drop: function( event, ui ) {
+            var disciplina = ui.draggable[0].id;
+            var periodo = event.target.id.replace('periodo_', '');
+        
+            location.href = '/aplicacao/alocarDisciplina/' + disciplina + '/' + periodo;
+        }
+    });
+    $( ".coluna_errada" ).droppable({
         drop: function( event, ui ) {
             var disciplina = ui.draggable[0].id;
             var periodo = event.target.id.replace('periodo_', '');
@@ -73,14 +84,18 @@ bottom
             <h1>Meu Plano</h1>
         </div>
         @for((periodo, i) <- periodos.zipWithIndex) {
-             @if(plano.temDisciplinaIncorreta(i)){
-            <div id="periodo_@(i + 1)" class="coluna_errada">
-          } else {
-            <div id="periodo_@(i + 1)" class="coluna">
-          }
+            @if(plano.temDisciplinaIncorreta(i)){
+            	<div id="periodo_@(i + 1)" class="coluna_errada">
+          	} else {
+            	<div id="periodo_@(i + 1)" class="coluna">
+          	}
             <nome-periodo>Período @(1 + periodos.indexOf(periodo))</nome-periodo>
             @for(disciplina <- periodo.getDisciplinas()){
-                <div class="disciplina" id="@disciplina.getNome()">
+               @if(plano.estaIncorreta(disciplina, i)){
+            	 <div class="disciplina_incorreta" id="@disciplina.getNome()">
+         		} else {
+           		 <div class="disciplina" id="@disciplina.getNome()">
+          		}
                     <nome>@disciplina.getNome()</nome><br/>
                     <descricao>Créditos: @disciplina.getCreditos()<br />
                     		   Dificuldade: @disciplina.getDificuldadeMedia()</descricao>
