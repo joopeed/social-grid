@@ -28,6 +28,7 @@ public class Plano extends Model {
 	@OneToOne
 	private Grade grade;
 	private int qntPeriodos;
+	private int idxPeriodoAtual;
 	
 	/**
 	 * Construtor
@@ -36,6 +37,7 @@ public class Plano extends Model {
 	public Plano(Grade nova_grade) {
 		grade = nova_grade;
 		periodos = new ArrayList<Periodo>();
+		idxPeriodoAtual = 0;
 	}
 	
 	/**
@@ -137,6 +139,7 @@ public class Plano extends Model {
 	 * @param idxPeriodo Índice do período que recebe-rá a disciplina.
 	 */
 	public void addDisciplina(Disciplina disciplina, int idxPeriodo) {
+		setPeriodoAtual(idxPeriodoAtual);
 		periodos.get(idxPeriodo).adicionaDisciplina(disciplina);
 	}
 	
@@ -184,6 +187,7 @@ public class Plano extends Model {
 			removeDisciplina(dependente);
 		}
 		desalocaDisciplina(disciplina);
+		setPeriodoAtual(idxPeriodoAtual);
 	}
 	
 	private void desalocaDisciplina(Disciplina disciplina) {
@@ -226,4 +230,34 @@ public class Plano extends Model {
 		return periodos;
 	}
 
+	/**
+	 * Define as estratégias de alocação nos períodos baseado no período atual.
+	 * @param idxAtual Índice do período que será o atual.
+	 */
+	public void setPeriodoAtual(int idxAtual) {
+		int ultimo = indiceUltimoPeriodo();
+		
+		idxPeriodoAtual = idxAtual;
+		
+		periodos.get(ultimo).setRegraDeAlocacao(new SemRestricao());
+		for (int i = 0 ; i < idxAtual ; i++) {
+			periodos.get(i).setRegraDeAlocacao(new Maximo());
+		}
+		
+		for (int i = idxAtual ; i < ultimo ; i++) {
+			periodos.get(i).setRegraDeAlocacao(new MaximoEMinimo());
+		}
+		
+	
+	}
+
+	private int indiceUltimoPeriodo() {
+		for (int ultimo = periodos.size() - 1 ; ultimo >= 0 ; ultimo--) {
+			if (periodos.get(ultimo).getTotalDeCreditos() != 0) {
+				return ultimo;
+			}
+		}
+		
+		return 0;
+	}
 }

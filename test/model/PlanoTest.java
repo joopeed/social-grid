@@ -56,5 +56,31 @@ public class PlanoTest {
 		
 		assertTrue(plano1.getDisciplinasOfertadas().containsAll(naoAlocadas));
 	}
+
+	@Test
+	public void definirPeriodoAtual() {
+		plano1.setPeriodoAtual(3);
+		
+		plano1.addDisciplina(grade.getDisciplinaPorNome("Cálculo Diferencial e Integral III"), 2);
+		assertFalse(plano1.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("Cálculo Diferencial e Integral III")));
+
+		plano1.addDisciplina(grade.getDisciplinaPorNome("Cálculo Diferencial e Integral III"), 3);
+		assertFalse(plano1.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("Cálculo Diferencial e Integral III")));
+		
+		plano1.removeDisciplina(grade.getDisciplinaPorNome("Projeto em Computação II"));
+		plano1.addDisciplina(grade.getDisciplinaPorNome("Cálculo Diferencial e Integral III"), 6);
+		plano1.addDisciplina(grade.getDisciplinaPorNome("Economia"), 6);
+		plano1.addDisciplina(grade.getDisciplinaPorNome("Administração"), 6);
+		plano1.addDisciplina(grade.getDisciplinaPorNome("Engenharia de Software II"), 6);
+		plano1.addDisciplina(grade.getDisciplinaPorNome("Inglês"), 6);
+		
+		assertTrue(plano1.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("Cálculo Diferencial e Integral III")));
+		assertTrue(plano1.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("Economia")));
+		assertTrue(plano1.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("Administração")));
+		assertTrue(plano1.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("Engenharia de Software II")));
+		assertTrue(plano1.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("Inglês")));
+		
+		assertEquals(33, plano1.getPeriodos().get(6).getTotalDeCreditos());
+	}
 	
 }

@@ -37,6 +37,7 @@ create table plano (
   id                        bigint not null,
   grade_id                  bigint,
   qnt_periodos              integer,
+  idx_periodo_atual         integer,
   constraint pk_plano primary key (id))
 ;
 
