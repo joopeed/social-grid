@@ -102,7 +102,7 @@ public class PeriodoTest {
 	
 	@Test
 	public void disciplinaEstaNoPeriodo() {
-		assertTrue(primeiroPeriodo.disciplinaEstaNoPeriodo(grade.getDisciplinaPorNome("Programação I")));
-		assertFalse(primeiroPeriodo.disciplinaEstaNoPeriodo(grade.getDisciplinaPorNome("Programação II")));
+		assertTrue(primeiroPeriodo.contemDisciplina(grade.getDisciplinaPorNome("Programação I")));
+		assertFalse(primeiroPeriodo.contemDisciplina(grade.getDisciplinaPorNome("Programação II")));
 	}
 }

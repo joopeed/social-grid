@@ -27,6 +27,7 @@ public class Plano extends Model {
 	private List<Periodo> periodos;
 	@OneToOne
 	private Grade grade;
+	private PlanejaPeriodo planejadorProximoPeriodo;
 	private int qntPeriodos;
 	private int idxPeriodoAtual;
 	
@@ -141,17 +142,15 @@ public class Plano extends Model {
 	public void addDisciplina(Disciplina disciplina, int idxPeriodo) {
 		setPeriodoAtual(idxPeriodoAtual);
 		
-		if (!periodos.get(idxPeriodo).disciplinaEstaNoPeriodo(disciplina)) {
+		if (!periodos.get(idxPeriodo).contemDisciplina(disciplina)) {
 			if (getDisciplinasAlocadas().contains(disciplina)) {
 				removeDisciplina(disciplina);
 			}
 			periodos.get(idxPeriodo).adicionaDisciplina(disciplina);
 		}
 	}
-	
-	
-	
-	private boolean temRequisitos(Disciplina disciplina, int  idxPeriodo) {
+		
+	public boolean temRequisitos(Disciplina disciplina, int  idxPeriodo) {
 		boolean temRequisitos = true;
 		for (Disciplina requisito: disciplina.getRequisitos()) {
 			temRequisitos &= temDisciplinaAlocada(requisito, idxPeriodo);
@@ -206,6 +205,25 @@ public class Plano extends Model {
 	}
 
 	/**
+	 * Adiciona as disciplinas no período posterial ao atual
+	 * com base na estratégia de planejamento.
+	 */
+	public void planejaProximoPeriodo() {
+		limpaPeriodosPosterioresAoAtual();
+		List<Disciplina> paraAlocar = planejadorProximoPeriodo.quaisAlocar(this);
+		
+		for (Disciplina disciplina: paraAlocar) {
+			addDisciplina(disciplina, idxPeriodoAtual + 1);
+		}
+	}
+	
+	private void limpaPeriodosPosterioresAoAtual() {
+		for (int i = idxPeriodoAtual + 1 ; i < 10 ; i++) {
+			getPeriodos().get(i).removeTodasAsDisciplinas();
+		}
+	}
+	
+	/**
 	 * Calcula a diferença entre os planos.
 	 * @param plano2 Plano à ser comparado.
 	 * @return Direrença entre os planos.
@@ -234,6 +252,10 @@ public class Plano extends Model {
 	
 	public List<Periodo> getPeriodos() {
 		return periodos;
+	}
+	
+	public void setPlanejadorProximoPeriodo(PlanejaPeriodo novoPlanejador) {
+		planejadorProximoPeriodo = novoPlanejador;
 	}
 
 	/**
@@ -265,5 +287,9 @@ public class Plano extends Model {
 		}
 		
 		return 0;
+	}
+
+	public int getPeriodoAtual() {
+		return idxPeriodoAtual;
 	}
 }

@@ -59,11 +59,11 @@ public class PlanoTest {
 
 	@Test
 	public void mudarDisciplinaDePeriodo() {
-		assertTrue(plano1.getPeriodos().get(6).disciplinaEstaNoPeriodo(grade.getDisciplinaPorNome("Métodos e Software Numéricos")));
+		assertTrue(plano1.getPeriodos().get(6).contemDisciplina(grade.getDisciplinaPorNome("Métodos e Software Numéricos")));
 		
 		plano1.addDisciplina(grade.getDisciplinaPorNome("Métodos e Software Numéricos"), 7);
-		assertFalse(plano1.getPeriodos().get(6).disciplinaEstaNoPeriodo(grade.getDisciplinaPorNome("Métodos e Software Numéricos")));
-		assertTrue(plano1.getPeriodos().get(7).disciplinaEstaNoPeriodo(grade.getDisciplinaPorNome("Métodos e Software Numéricos")));
+		assertFalse(plano1.getPeriodos().get(6).contemDisciplina(grade.getDisciplinaPorNome("Métodos e Software Numéricos")));
+		assertTrue(plano1.getPeriodos().get(7).contemDisciplina(grade.getDisciplinaPorNome("Métodos e Software Numéricos")));
 		
 	}
 	
@@ -93,4 +93,45 @@ public class PlanoTest {
 		assertEquals(33, plano1.getPeriodos().get(6).getTotalDeCreditos());
 	}
 	
+	@Test
+	public void planejarProximoPeriodoFacil() {
+		for (Disciplina disciplina: grade.getTodasDisciplinas()) {
+			disciplina.addDificuldade(null, 3);
+		}
+		
+		grade.getDisciplinaPorNome("Economia").addDificuldade(null, 2);
+		grade.getDisciplinaPorNome("Administração").addDificuldade(null, 2);
+		grade.getDisciplinaPorNome("Informática e Sociedade").addDificuldade(null, 2);
+		grade.getDisciplinaPorNome("Direito e Cidadania").addDificuldade(null, 2);
+		
+		plano1.setPlanejadorProximoPeriodo(new PlanejaPeriodoFacil());
+		plano1.setPeriodoAtual(3);
+		plano1.planejaProximoPeriodo();
+		
+		assertTrue(plano1.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("Economia")));
+		assertTrue(plano1.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("Administração")));
+		assertTrue(plano1.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("Informática e Sociedade")));
+		assertTrue(plano1.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("Direito e Cidadania")));
+	}
+	
+	@Test
+	public void planejarProximoPeriodoDificil() {
+		for (Disciplina disciplina: grade.getTodasDisciplinas()) {
+			disciplina.addDificuldade(null, 3);
+		}
+		
+		grade.getDisciplinaPorNome("Cálculo Diferencial e Integral III").addDificuldade(null, 4);
+		grade.getDisciplinaPorNome("Compiladores").addDificuldade(null, 4);
+		grade.getDisciplinaPorNome("Inglês").addDificuldade(null, 5);
+		grade.getDisciplinaPorNome("Análise e Técnica de Algoritmos").addDificuldade(null, 4);
+		
+		plano1.setPlanejadorProximoPeriodo(new PlanejaPeriodoDificil());
+		plano1.setPeriodoAtual(3);
+		plano1.planejaProximoPeriodo();
+		
+		assertTrue(plano1.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("Cálculo Diferencial e Integral III")));
+		assertTrue(plano1.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("Compiladores")));
+		assertTrue(plano1.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("Inglês")));
+		assertTrue(plano1.getDisciplinasAlocadas().contains(grade.getDisciplinaPorNome("Análise e Técnica de Algoritmos")));
+	}
 }

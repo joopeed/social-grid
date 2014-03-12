@@ -59,6 +59,13 @@ public class Periodo extends Model {
 	}
 
 	/**
+	 * Remove todas as disciplinas alocadas no período.
+	 */
+	public void removeTodasAsDisciplinas() {
+		disciplinas = new ArrayList<Disciplina>();
+	}
+	
+	/**
 	 * Verifica se uma disciplina está no período.
 	 * @param disciplina Disciplina à ser procurada
 	 * @return True se a disciplina está no período. False caso contrário.
@@ -103,8 +110,9 @@ public class Periodo extends Model {
 	 * Verifica se a disciplina está no período.
 	 * @param disciplinaPorNome Disciplina a ser pesquisada
 	 * @return true se a disciplina está no período, false caso contrário.
-	 */
+	 *
 	public boolean disciplinaEstaNoPeriodo(Disciplina disciplina) {
 		return disciplinas.contains(disciplina);
-	}
+	}*/
+
 }

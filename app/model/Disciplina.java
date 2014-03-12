@@ -89,37 +89,6 @@ public class Disciplina extends Model implements Comparable<Disciplina> {
 		return Collections.unmodifiableSet(requisitos);
 	}
 	
-	@Override
-	public int compareTo(Disciplina disciplina) {
-		return nome.compareTo(disciplina.getNome());
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Disciplina other = (Disciplina) obj;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		return true;
-	}
-
 	/**
 	 * Adiciona uma dica na disciplina
 	 * @param dica Dica a ser adicionada.
@@ -159,4 +128,35 @@ public class Disciplina extends Model implements Comparable<Disciplina> {
 		dificuldades.add(new Dificuldade(usuario, dificuldade));
 	}
 
+	@Override
+	public int compareTo(Disciplina disciplina) {
+		return nome.compareTo(disciplina.getNome());
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Disciplina other = (Disciplina) obj;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		return true;
+	}
+	
 }
