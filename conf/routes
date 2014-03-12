@@ -15,6 +15,10 @@ GET     /aplicacao/desalocarDisciplina/:nomeDisciplina  controllers.Application.
 GET     /aplicacao/alocarDisciplina/:nomeDisciplina/:idxPeriodo  controllers.Application.alocarDisciplina(nomeDisciplina: String, idxPeriodo: Integer)
 POST    /aplicacao/adicionarDica        controllers.Application.adicionarDica()
 GET     /aplicacao/dicas/:codigo        controllers.Application.carregarDicas(codigo: Long)
+GET     /planejaFacil                  	controllers.Application.planejaProximoPeriodoFacil()
+GET     /planejaDificil                 controllers.Application.planejaProximoPeriodoDificil()
+GET     /avancaPeriodo                  controllers.Application.avancaPeriodo()
+GET     /reduzPeriodo                   controllers.Application.reduzPeriodo()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

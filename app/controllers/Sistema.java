@@ -11,6 +11,8 @@ import org.xml.sax.SAXException;
 import model.Dica;
 import model.Disciplina;
 import model.Grade;
+import model.PlanejaPeriodoDificil;
+import model.PlanejaPeriodoFacil;
 import model.Usuario;
 import play.db.ebean.Model.Finder;
 
@@ -50,6 +52,28 @@ public class Sistema {
 		usuario.getPlano().addDisciplina(getGrade().getDisciplinaPorNome(nome), idxPeriodo);
 		usuario.update();
 	}
+	
+	public void planejaProximoPeriodoFacil(Usuario usuario) {
+		usuario.getPlano().setPlanejadorProximoPeriodo(new PlanejaPeriodoFacil());
+		usuario.getPlano().planejaProximoPeriodo();
+		usuario.update();
+	}
+
+	public void planejaProximoPeriodoDificil(Usuario usuario) {
+		usuario.getPlano().setPlanejadorProximoPeriodo(new PlanejaPeriodoDificil());
+		usuario.getPlano().planejaProximoPeriodo();
+		usuario.update();
+	}
+	
+	public void avancaPeriodoAtual(Usuario usuario) {
+		usuario.getPlano().avancaPeriodoAtual();
+		usuario.update();
+	}
+	public void reduzPeriodoAtual(Usuario usuario) {
+		usuario.getPlano().reduzPeriodoAtual();
+		usuario.update();
+	}
+	
 
 	public void desalocarDisciplina(Usuario usuario, String nome) {
 		usuario.getPlano().removeDisciplina(getGrade().getDisciplinaPorNome(nome));

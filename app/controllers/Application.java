@@ -53,6 +53,26 @@ public class Application extends Controller {
     	return redirect("/aplicacao");
     }
     
+    public static Result planejaProximoPeriodoFacil() {
+    	SISTEMA.planejaProximoPeriodoFacil(CADASTRO.getUsuarioPorEmail(session("usuario")));
+    	return redirect("/aplicacao");
+    }
+    
+    public static Result planejaProximoPeriodoDificil() {
+    	SISTEMA.planejaProximoPeriodoDificil(CADASTRO.getUsuarioPorEmail(session("usuario")));
+    	return redirect("/aplicacao");
+    }
+    
+    public static Result avancaPeriodo() {
+    	SISTEMA.avancaPeriodoAtual(CADASTRO.getUsuarioPorEmail(session("usuario")));
+    	return redirect("/aplicacao");
+    }
+    
+    public static Result reduzPeriodo() {
+    	SISTEMA.reduzPeriodoAtual(CADASTRO.getUsuarioPorEmail(session("usuario")));
+    	return redirect("/aplicacao");
+    }
+    
     public static Result verDisciplina() throws InterruptedException {
     	if (!Autenticacao.existeUsuarioAutenticado()) {
     		return badRequest();

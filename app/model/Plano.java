@@ -39,6 +39,7 @@ public class Plano extends Model {
 		grade = nova_grade;
 		periodos = new ArrayList<Periodo>();
 		idxPeriodoAtual = 0;
+		
 	}
 	
 	/**
@@ -257,6 +258,15 @@ public class Plano extends Model {
 	public void setPlanejadorProximoPeriodo(PlanejaPeriodo novoPlanejador) {
 		planejadorProximoPeriodo = novoPlanejador;
 	}
+	
+	
+	
+	/**
+	 * 
+	 */
+	public boolean isPeriodoAtual(int idx){
+		return idx == idxPeriodoAtual;
+	}
 
 	/**
 	 * Define as estratégias de alocação nos períodos baseado no período atual.
@@ -291,5 +301,15 @@ public class Plano extends Model {
 
 	public int getPeriodoAtual() {
 		return idxPeriodoAtual;
+	}
+
+	public void avancaPeriodoAtual() {
+		if(getPeriodoAtual() + 1 <= qntPeriodos)
+			setPeriodoAtual(getPeriodoAtual() + 1);
+	}
+	
+	public void reduzPeriodoAtual() {
+		if(getPeriodoAtual() - 1 >= 0)
+			setPeriodoAtual(getPeriodoAtual() - 1);
 	}
 }

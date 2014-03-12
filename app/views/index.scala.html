@@ -68,6 +68,18 @@ $(function() {
       <li><a href="#meu_plano">Meu Plano</a></li>
       <li><a href="#disciplinas_ofertadas">Disciplinas Ofertadas</a></li>
     </ul>
+    <form class="navbar-form pull-left">
+      <button type="button" class="btn" onclick="location.href = '@routes.Application.reduzPeriodo()';">Anterior</button>
+    </form>
+    <form class="navbar-form pull-left">
+      <button type="button" class="btn" onclick="location.href = '@routes.Application.avancaPeriodo()';">Proximo</button>
+    </form>
+    <form class="navbar-form pull-left">
+      <button type="button" class="btn" onclick="location.href = '@routes.Application.planejaProximoPeriodoFacil()';">Planejar um periodo facil</button>
+    </form>
+    <form class="navbar-form pull-left">
+      <button type="button" class="btn" onclick="location.href = '@routes.Application.planejaProximoPeriodoFacil()';">Planejar um periodo dificil</button>
+    </form>
     <form class="navbar-form pull-right">
       <button type="button" class="btn" onclick="location.href = '@routes.Autenticacao.logout()';">Sair</button>
     </form>
@@ -85,9 +97,17 @@ bottom
         </div>
         @for((periodo, i) <- periodos.zipWithIndex) {
             @if(plano.temDisciplinaIncorreta(i)){
-            	<div id="periodo_@(i + 1)" class="coluna_errada">
+            	@if(plano.isPeriodoAtual(i)){
+            		<div id="periodo_@(i + 1)" class="coluna_errada"> (Atual)
+          		} else {
+            		<div id="periodo_@(i + 1)" class="coluna_errada">
+          		}
           	} else {
-            	<div id="periodo_@(i + 1)" class="coluna">
+            	@if(plano.isPeriodoAtual(i)){
+            		<div id="periodo_@(i + 1)" class="coluna"> (Atual)
+          		} else {
+            		<div id="periodo_@(i + 1)" class="coluna">
+          		}
           	}
             <nome-periodo>Período @(1 + periodos.indexOf(periodo))</nome-periodo>
             @for(disciplina <- periodo.getDisciplinas()){
