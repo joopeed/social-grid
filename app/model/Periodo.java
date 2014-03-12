@@ -98,4 +98,13 @@ public class Periodo extends Model {
 		
 		return dificuldadeTotal;
 	}
+
+	/**
+	 * Verifica se a disciplina está no período.
+	 * @param disciplinaPorNome Disciplina a ser pesquisada
+	 * @return true se a disciplina está no período, false caso contrário.
+	 */
+	public boolean disciplinaEstaNoPeriodo(Disciplina disciplina) {
+		return disciplinas.contains(disciplina);
+	}
 }

@@ -58,6 +58,16 @@ public class PlanoTest {
 	}
 
 	@Test
+	public void mudarDisciplinaDePeriodo() {
+		assertTrue(plano1.getPeriodos().get(6).disciplinaEstaNoPeriodo(grade.getDisciplinaPorNome("Métodos e Software Numéricos")));
+		
+		plano1.addDisciplina(grade.getDisciplinaPorNome("Métodos e Software Numéricos"), 7);
+		assertFalse(plano1.getPeriodos().get(6).disciplinaEstaNoPeriodo(grade.getDisciplinaPorNome("Métodos e Software Numéricos")));
+		assertTrue(plano1.getPeriodos().get(7).disciplinaEstaNoPeriodo(grade.getDisciplinaPorNome("Métodos e Software Numéricos")));
+		
+	}
+	
+	@Test
 	public void definirPeriodoAtual() {
 		plano1.setPeriodoAtual(3);
 		

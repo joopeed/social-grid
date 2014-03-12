@@ -99,4 +99,10 @@ public class PeriodoTest {
 		
 		assertEquals(5, primeiroPeriodo.getDificuldadeTotal(), 0);
 	}
+	
+	@Test
+	public void disciplinaEstaNoPeriodo() {
+		assertTrue(primeiroPeriodo.disciplinaEstaNoPeriodo(grade.getDisciplinaPorNome("Programação I")));
+		assertFalse(primeiroPeriodo.disciplinaEstaNoPeriodo(grade.getDisciplinaPorNome("Programação II")));
+	}
 }

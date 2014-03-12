@@ -140,7 +140,13 @@ public class Plano extends Model {
 	 */
 	public void addDisciplina(Disciplina disciplina, int idxPeriodo) {
 		setPeriodoAtual(idxPeriodoAtual);
-		periodos.get(idxPeriodo).adicionaDisciplina(disciplina);
+		
+		if (!periodos.get(idxPeriodo).disciplinaEstaNoPeriodo(disciplina)) {
+			if (getDisciplinasAlocadas().contains(disciplina)) {
+				removeDisciplina(disciplina);
+			}
+			periodos.get(idxPeriodo).adicionaDisciplina(disciplina);
+		}
 	}
 	
 	
