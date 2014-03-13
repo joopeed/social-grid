@@ -94,6 +94,20 @@ nome-erro {
 	padding-top: 2px;
 }
 
+
+.user {
+	background-color: #e5eef6;
+	float: left;
+	height: auto;
+	text-align: left;
+	width: 100%;
+	margin-top: 20px;
+	border-radius: 3px;
+	padding-top: 5px;
+	padding-left: 10px;
+	padding-bottom: 5px;
+}
+
 #disciplinas {
 	float: left;
 	margin: auto;

@@ -53,6 +53,11 @@ public class Application extends Controller {
     	return redirect("/aplicacao");
     }
     
+    public static Result buscaUsuario() {
+    	String query = request().queryString().get("query")[0];
+    	return ok(views.html.search.render(query, CADASTRO.getUsuarioPorNome(query)));
+    }
+    
     public static Result planejaProximoPeriodoFacil() {
     	SISTEMA.planejaProximoPeriodoFacil(CADASTRO.getUsuarioPorEmail(session("usuario")));
     	return redirect("/aplicacao");

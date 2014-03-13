@@ -1,4 +1,4 @@
-@(plano: model.Plano, periodos: List[model.Periodo], disciplinas_ofertadas: List[model.Disciplina])
+@(query: String, usuarios: List[model.Usuario])
 @import helper._
 @main("Início") {
 	<script>
@@ -68,7 +68,7 @@ $(function() {
       <li><a href="/aplicacao#meu_plano">Meu Plano</a></li>
       <li><a href="/aplicacao#disciplinas_ofertadas">Disciplinas Ofertadas</a></li>
     </ul>
-    <form class="navbar-form pull-left" action="/search" method="GET">
+    <form class="navbar-form pull-left" action="/search/" method="GET">
     <div class="input-append">
       <input type="text" class="input-large" name="query">
      <button type="submit" class="btn">Busca</button>
@@ -98,59 +98,17 @@ bottom
  -->
     <div class="wrapper" style="height: 100%;">
         <div id="colunas">
-        <div class="titulo" id="meu_plano">
-            <h1>Meu Plano</h1>
-        </div>
-        @for((periodo, i) <- periodos.zipWithIndex) {
-            @if(plano.temDisciplinaIncorreta(i)){
-            	@if(plano.isPeriodoAtual(i)){
-            		<div id="periodo_@(i + 1)" class="coluna_errada"> (Atual)
-          		} else {
-            		<div id="periodo_@(i + 1)" class="coluna_errada">
-          		}
-          	} else {
-            	@if(plano.isPeriodoAtual(i)){
-            		<div id="periodo_@(i + 1)" class="coluna"> (Atual)
-          		} else {
-            		<div id="periodo_@(i + 1)" class="coluna">
-          		}
-          	}
-            <nome-periodo>Período @(1 + periodos.indexOf(periodo))</nome-periodo>
-            @for(disciplina <- periodo.getDisciplinas()){
-               @if(plano.estaIncorreta(disciplina, i)){
-            	 <div class="disciplina_incorreta" id="@disciplina.getNome()">
-         		} else {
-           		 <div class="disciplina" id="@disciplina.getNome()">
-          		}
-                    <nome>@disciplina.getNome()</nome><br/>
-                    <descricao>Créditos: @disciplina.getCreditos()<br />
-                    		   Dificuldade: @disciplina.getDificuldadeMedia()</descricao>
-                    
-                    <info name="@disciplina.codigo"><img src="@routes.Assets.at("images/info_small.png")" /></info>
-                </div>
-            }
-            <br />
-            Créditos: @periodo.getTotalDeCreditos() <br />
-            Dificuldade: @periodo.getDificuldadeTotal()
-            <br /><br />
+         Busca por "@query"
+        
+        @for((usuario, i) <- usuarios.zipWithIndex) {
+            <div  class="user"> 
+            <nome-user>@usuario.getNome()</nome-user><br>
+            <email-user><a href="emailto:@usuario.getEmail()">@usuario.getEmail()</a></email-user><br>
+            <a href="/user/@usuario.getEmail()">Ver plano</a>
             </div>
         }
     </div>
     <br/>
-        <div id="disciplinas" style="padding-bottom: 50px">
-        <div class="titulo" id="disciplinas_ofertadas">
-            <h1>Disciplinas Ofertadas</h1>
-        </div>
-        @for(disciplina <- disciplinas_ofertadas) {
-                <div class="ofertada disciplina float-left" id="@disciplina.getNome()">
-                    <nome>@disciplina.getNome()</nome><br/>
-                    <descricao>Créditos: @disciplina.getCreditos()<br />
-                    		   Dificuldade: @disciplina.getDificuldadeMedia()</descricao>
-                    <info name="@disciplina.codigo"><img src="@routes.Assets.at("images/info_small.png")" /></info>
-                </div>
-        }
-    </div>
-    </div>
     
     <!-- Modal -->
     <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>

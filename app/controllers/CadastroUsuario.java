@@ -1,5 +1,9 @@
 package controllers;
 
+import java.util.List;
+
+import com.avaje.ebean.Expr;
+
 import model.Grade;
 import model.Plano;
 import model.Usuario;
@@ -51,5 +55,17 @@ public class CadastroUsuario {
 		}
 		
 		return usuario;
+	}
+	
+	public List<Usuario> getUsuarioPorNome(String query) {
+		List<Usuario> result = null;
+		
+		if (query != null) {
+			result = finder.where()
+					.or(Expr.like("nome","%"+  query.toUpperCase() + "%"),Expr.like("nome","%"+  query.toLowerCase() + "%"))
+                    .findList();
+		}
+		
+		return result;
 	}
 }
