@@ -98,4 +98,8 @@ public class Sistema {
 		disciplina.update();
 	}
 
+	public void getPerfil(Usuario usuarioPorEmail) {
+		
+	}
+
 }

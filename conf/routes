@@ -19,6 +19,8 @@ GET     /planejaFacil                  	controllers.Application.planejaProximoPe
 GET     /planejaDificil                 controllers.Application.planejaProximoPeriodoDificil()
 GET     /avancaPeriodo                  controllers.Application.avancaPeriodo()
 GET     /reduzPeriodo                   controllers.Application.reduzPeriodo()
+GET     /user/:email                    controllers.Application.getPerfil(email: String)
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

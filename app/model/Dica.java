@@ -61,6 +61,9 @@ public class Dica extends Model {
 	public String getNomeDoAutor() {
 		return autor.getNome();
 	}
+	public String getEmailDoAutor() {
+		return autor.getEmail();
+	}
 	
 	@Override
 	public boolean equals(Object obj) {

@@ -6,7 +6,7 @@
 @for((dica, i) <- dicas.zipWithIndex) {
 <p>
 	@dica.getTexto()<br />
-	por: @dica.getNomeDoAutor()<br />
+	por: <a href="/user/@dica.getEmailDoAutor()">@dica.getNomeDoAutor()</a><br/>
 </p>
 }
 

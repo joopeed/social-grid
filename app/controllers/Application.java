@@ -73,6 +73,14 @@ public class Application extends Controller {
     	return redirect("/aplicacao");
     }
     
+    public static Result getPerfil(String email) {
+    	Usuario usuario = CADASTRO.getUsuarioPorEmail(email);
+    	if(usuario != null)
+    		return ok(views.html.perfil.render(usuario.getNome(), usuario.getPlano(), usuario.getPlano().getPeriodos(), usuario.getPlano().getDisciplinasOfertadas()));
+    	else
+    		return ok();
+    }
+    
     public static Result verDisciplina() throws InterruptedException {
     	if (!Autenticacao.existeUsuarioAutenticado()) {
     		return badRequest();
