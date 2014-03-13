@@ -62,7 +62,7 @@ public class CadastroUsuario {
 		
 		if (query != null) {
 			result = finder.where()
-					.or(Expr.like("nome","%"+  query.toUpperCase() + "%"),Expr.like("nome","%"+  query.toLowerCase() + "%"))
+					.ilike("nome","%"+  query.toUpperCase() + "%")
                     .findList();
 		}
 		
