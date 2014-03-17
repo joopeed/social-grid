@@ -1,5 +1,7 @@
 package model;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -29,11 +31,7 @@ public class Carregador {
 	public List<Disciplina> preencheGrade() throws IOException, ParserConfigurationException, SAXException {
 		List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 		
-		InputStream disciplinasXML = play.Play.application().resourceAsStream("res/disciplinas.xml");
-		
-		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-		DocumentBuilder db = dbf.newDocumentBuilder();
-		Document disciplinasDocument = db.parse(disciplinasXML);
+		Document disciplinasDocument = carregarArquivo();
 		
 		Node disciplinasRoot = disciplinasDocument.getDocumentElement();
 		NodeList disciplinasNodes = disciplinasRoot.getChildNodes();
@@ -80,11 +78,7 @@ public class Carregador {
 	 * @throws SAXException Erro no arquivo XML
 	 */
 	protected List<Disciplina> adicionaDependentesERequisitos(List<Disciplina> disciplinas) throws IOException, ParserConfigurationException, SAXException {
-		InputStream disciplinasXML = play.Play.application().resourceAsStream("res/disciplinas.xml");
-		
-		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-		DocumentBuilder db = dbf.newDocumentBuilder();
-		Document disciplinasDocument = db.parse(disciplinasXML);
+		Document disciplinasDocument = carregarArquivo();
 		
 		Node disciplinasRoot = disciplinasDocument.getDocumentElement();
 		NodeList disciplinasNodes = disciplinasRoot.getChildNodes();
@@ -137,5 +131,26 @@ public class Carregador {
 				return disc;
 		}
 		return null;
+	}
+	
+	/**
+	 * Carrega o documento contendo as disciplinas.
+	 * @return Objeto Document contendo as disciplinas.
+	 * @throws SAXException Erro na sintaxe do XML.
+	 * @throws IOException Erro na leitura do arquivo.
+	 * @throws ParserConfigurationException Erro na configuração do parser de XML (DocumentBuilder).
+	 */
+	private Document carregarArquivo() throws SAXException, IOException, ParserConfigurationException {
+		InputStream disciplinasXML = play.Play.application().resourceAsStream("res/disciplinas.xml");
+		
+		if (disciplinasXML == null) {
+			disciplinasXML = new FileInputStream(new File("conf/res/disciplinas.xml"));
+		}
+		
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		DocumentBuilder db = dbf.newDocumentBuilder();
+		Document disciplinasDocument = db.parse(disciplinasXML);
+
+		return disciplinasDocument;
 	}
 }
