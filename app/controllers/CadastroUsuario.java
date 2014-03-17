@@ -2,8 +2,6 @@ package controllers;
 
 import java.util.List;
 
-import com.avaje.ebean.Expr;
-
 import model.Grade;
 import model.Plano;
 import model.Usuario;

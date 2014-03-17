@@ -16,6 +16,8 @@ import controllers.Sistema;
 public class UsuariosTest {
 	private Usuario usuarioA, usuarioB, usuarioC;
 	private CadastroUsuario cadastro;
+	
+	@SuppressWarnings("unused")
 	private Sistema sistema; // É usado para iniciar a grade.
 
 	@Before
