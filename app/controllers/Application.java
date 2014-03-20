@@ -20,7 +20,7 @@ public class Application extends Controller {
     	  
     	Usuario usuario = CADASTRO.getUsuarioPorEmail(session("usuario"));
     	
-        return ok(views.html.index.render(usuario.getPlano(), usuario.getPlano().getPeriodos(), usuario.getPlano().getDisciplinasOfertadas()));
+        return ok(views.html.index.render(usuario.getPlano(), usuario.getPlano().getPeriodos(),  SISTEMA.getDisciplinasOfertadas(usuario)));
     }
     
     public static Result cadastro() {
@@ -80,8 +80,9 @@ public class Application extends Controller {
     
     public static Result getPerfil(String email) {
     	Usuario usuario = CADASTRO.getUsuarioPorEmail(email);
+    	
     	if(usuario != null)
-    		return ok(views.html.perfil.render(usuario.getNome(), usuario.getPlano(), usuario.getPlano().getPeriodos(), usuario.getPlano().getDisciplinasOfertadas()));
+    		return ok(views.html.perfil.render(usuario.getNome(), usuario.getPlano(), usuario.getPlano().getPeriodos(), SISTEMA.getDisciplinasOfertadas(usuario)));
     	else
     		return ok();
     }

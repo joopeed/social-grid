@@ -1,4 +1,4 @@
-package model;
+package controllers;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,6 +10,8 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
+import model.Disciplina;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -79,7 +81,6 @@ public class Carregador {
 	 */
 	protected List<Disciplina> adicionaDependentesERequisitos(List<Disciplina> disciplinas) throws IOException, ParserConfigurationException, SAXException {
 		Document disciplinasDocument = carregarArquivo();
-		
 		Node disciplinasRoot = disciplinasDocument.getDocumentElement();
 		NodeList disciplinasNodes = disciplinasRoot.getChildNodes();
 		
