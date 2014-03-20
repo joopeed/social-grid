@@ -23,6 +23,11 @@ create table disciplina (
   constraint pk_disciplina primary key (codigo))
 ;
 
+create table grade (
+  id                        bigint not null,
+  constraint pk_grade primary key (id))
+;
+
 create table periodo (
   id                        bigint not null,
   constraint pk_periodo primary key (id))
@@ -30,6 +35,7 @@ create table periodo (
 
 create table plano (
   id                        bigint not null,
+  grade_id                  bigint,
   qnt_periodos              integer,
   idx_periodo_atual         integer,
   constraint pk_plano primary key (id))
@@ -74,6 +80,12 @@ create table disciplina_dificuldade (
   constraint pk_disciplina_dificuldade primary key (disciplina_codigo, dificuldade_id))
 ;
 
+create table grade_disciplina (
+  grade_id                       bigint not null,
+  disciplina_codigo              bigint not null,
+  constraint pk_grade_disciplina primary key (grade_id, disciplina_codigo))
+;
+
 create table periodo_disciplina (
   periodo_id                     bigint not null,
   disciplina_codigo              bigint not null,
@@ -91,6 +103,8 @@ create sequence dificuldade_seq;
 
 create sequence disciplina_seq;
 
+create sequence grade_seq;
+
 create sequence periodo_seq;
 
 create sequence plano_seq;
@@ -99,8 +113,10 @@ create sequence usuario_seq;
 
 alter table dica add constraint fk_dica_autor_1 foreign key (autor_email) references usuario (email) on delete restrict on update restrict;
 create index ix_dica_autor_1 on dica (autor_email);
-alter table usuario add constraint fk_usuario_plano_2 foreign key (plano_id) references plano (id) on delete restrict on update restrict;
-create index ix_usuario_plano_2 on usuario (plano_id);
+alter table plano add constraint fk_plano_grade_2 foreign key (grade_id) references grade (id) on delete restrict on update restrict;
+create index ix_plano_grade_2 on plano (grade_id);
+alter table usuario add constraint fk_usuario_plano_3 foreign key (plano_id) references plano (id) on delete restrict on update restrict;
+create index ix_usuario_plano_3 on usuario (plano_id);
 
 
 
@@ -123,6 +139,10 @@ alter table disciplina_dica add constraint fk_disciplina_dica_dica_02 foreign ke
 alter table disciplina_dificuldade add constraint fk_disciplina_dificuldade_dis_01 foreign key (disciplina_codigo) references disciplina (codigo) on delete restrict on update restrict;
 
 alter table disciplina_dificuldade add constraint fk_disciplina_dificuldade_dif_02 foreign key (dificuldade_id) references dificuldade (id) on delete restrict on update restrict;
+
+alter table grade_disciplina add constraint fk_grade_disciplina_grade_01 foreign key (grade_id) references grade (id) on delete restrict on update restrict;
+
+alter table grade_disciplina add constraint fk_grade_disciplina_disciplin_02 foreign key (disciplina_codigo) references disciplina (codigo) on delete restrict on update restrict;
 
 alter table periodo_disciplina add constraint fk_periodo_disciplina_periodo_01 foreign key (periodo_id) references periodo (id) on delete restrict on update restrict;
 
@@ -152,6 +172,10 @@ drop table if exists disciplina_dica;
 
 drop table if exists disciplina_dificuldade;
 
+drop table if exists grade;
+
+drop table if exists grade_disciplina;
+
 drop table if exists periodo;
 
 drop table if exists periodo_disciplina;
@@ -169,6 +193,8 @@ drop sequence if exists dica_seq;
 drop sequence if exists dificuldade_seq;
 
 drop sequence if exists disciplina_seq;
+
+drop sequence if exists grade_seq;
 
 drop sequence if exists periodo_seq;
 

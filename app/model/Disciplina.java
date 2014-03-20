@@ -35,9 +35,9 @@ public class Disciplina extends Model implements Comparable<Disciplina> {
 	@JoinTable(name="disciplinas_requisitos", joinColumns=@JoinColumn(name="disciplina_codigo", referencedColumnName="codigo"),
 			inverseJoinColumns=@JoinColumn(name="requisito_codigo", referencedColumnName="codigo"))
 	private Set<Disciplina> requisitos;
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.REMOVE)
 	private List<Dica> dicas;
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany
 	private List<Dificuldade> dificuldades;
 	
 	
@@ -125,11 +125,7 @@ public class Disciplina extends Model implements Comparable<Disciplina> {
 	 * @param dificuldade Dificuldade estipulada pelo usuario.
 	 */
 	public void addDificuldade(Usuario usuario, int dificuldade) {
-		Dificuldade dificuldadeObj = new Dificuldade(usuario, dificuldade);
-		dificuldadeObj.save();
-		
-		dificuldades.add(dificuldadeObj);
-		update();
+		dificuldades.add(new Dificuldade(usuario, dificuldade));
 	}
 
 	@Override

@@ -9,8 +9,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
-import controllers.Grade;
 import play.db.ebean.Model;
 
 /**
@@ -25,6 +25,8 @@ public class Plano extends Model {
 	public Long id;
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Periodo> periodos;
+	@OneToOne
+	private Grade grade;
 	private PlanejaPeriodo planejadorProximoPeriodo;
 	private int qntPeriodos;
 	private int idxPeriodoAtual;
@@ -33,7 +35,8 @@ public class Plano extends Model {
 	 * Construtor
 	 * @param nova_grade grade com todas as disciplinas do período do curso.
 	 */
-	public Plano() {
+	public Plano(Grade nova_grade) {
+		grade = nova_grade;
 		periodos = new ArrayList<Periodo>();
 		idxPeriodoAtual = 0;
 		
@@ -42,7 +45,7 @@ public class Plano extends Model {
 	/**
 	 * Inicia o plano com as disciplinas sugeridas.
 	 */
-	public void iniciaPrePlano(Grade grade) {
+	public void iniciaPrePlano() {
 		qntPeriodos = 10;
 		for (int i = 0 ; i < qntPeriodos ; i++)
 			periodos.add(new Periodo());
@@ -120,7 +123,7 @@ public class Plano extends Model {
 	 * Pega as disciplinas da grade que não estão alocadas.
 	 * @return Disciplinas não alocadas.
 	 */
-	public List<Disciplina> getDisciplinasOfertadas(Grade grade) {
+	public List<Disciplina> getDisciplinasOfertadas() {
 		List<Disciplina> disciplinasOfertadas = grade.getTodasDisciplinas();
 		
 		for (Disciplina alocada: getDisciplinasAlocadas()) {

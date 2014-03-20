@@ -15,8 +15,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
-import controllers.Grade;
-
 public class PlanoTest {
 
 	private Plano plano1;
@@ -27,14 +25,15 @@ public class PlanoTest {
 		start(fakeApplication(inMemoryDatabase()));
 		
 		grade = new Grade();
-		plano1 = new Plano();
-		plano1.iniciaPrePlano(grade);
+		grade.preencheGrade();
+		plano1 = new Plano(grade);
+		plano1.iniciaPrePlano();
 	}
 	
 	@Test
 	public void comparaDeferencasEntrePlanos() {
-		Plano plano2 = new Plano();
-		plano2.iniciaPrePlano(grade);
+		Plano plano2 = new Plano(grade);
+		plano2.iniciaPrePlano();
 		
 		assertEquals(0, plano1.getDiferencaDePlanos(plano2));
 		
@@ -55,7 +54,7 @@ public class PlanoTest {
 		naoAlocadas.add(grade.getDisciplinaPorNome("Inglês"));
 		naoAlocadas.add(grade.getDisciplinaPorNome("Engenharia de Software II"));
 		
-		assertTrue(plano1.getDisciplinasOfertadas(grade).containsAll(naoAlocadas));
+		assertTrue(plano1.getDisciplinasOfertadas().containsAll(naoAlocadas));
 	}
 
 	@Test

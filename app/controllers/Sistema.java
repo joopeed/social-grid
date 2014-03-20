@@ -1,23 +1,43 @@
 package controllers;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
+
 import model.Dica;
 import model.Disciplina;
+import model.Grade;
 import model.PlanejaPeriodoDificil;
 import model.PlanejaPeriodoFacil;
 import model.Usuario;
+import play.db.ebean.Model.Finder;
 
 public class Sistema {
-	private Grade grade;
+	private Finder<Integer, Grade> gradeFinder;
 	
 	public Sistema() {
-		grade = new Grade();
+		gradeFinder = new Finder<Integer, Grade>(Integer.class, Grade.class);
+		carregarGrade();
+	}
+	
+	private void carregarGrade() {
+		if (gradeFinder.findRowCount() < 1) {
+			try {
+				Grade grade = new Grade();
+				grade.preencheGrade();
+				grade.save();
+			} catch (IOException e) { }
+			  catch (ParserConfigurationException e) { }
+			  catch (SAXException e) { }
+		}
 	}
 	
 	private Grade getGrade() {
-		return grade;
+		return gradeFinder.all().get(0);
 	}
 	
 	public Disciplina getDisciplinaPorNome(String nome) {
@@ -61,7 +81,7 @@ public class Sistema {
 	}
 	
 	public List<Disciplina> getDisciplinasOfertadas(Usuario usuario) {
-		return usuario.getPlano().getDisciplinasOfertadas(grade);
+		return usuario.getPlano().getDisciplinasOfertadas();
 	}
 
 	public Set<Disciplina> getDisciplinasAlocadas(Usuario usuario) {
@@ -81,4 +101,5 @@ public class Sistema {
 	public void getPerfil(Usuario usuarioPorEmail) {
 		
 	}
+
 }

@@ -1,31 +1,37 @@
-package controllers;
+package model;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.xml.parsers.ParserConfigurationException;
-
-import model.Disciplina;
 
 import org.xml.sax.SAXException;
 
-import play.db.ebean.Model.Finder;
+import play.db.ebean.Model;
 
 /**
  * Armazena todas as disciplinas do sistema.
  */
-public class Grade {
+@Entity
+public class Grade extends Model {
 	
-	private Finder<Long, Disciplina> disciplinaFinder;
+	private static final long serialVersionUID = -809721958825402175L;
+	
+	@Id
+	public Long id;
+	@ManyToMany
+	private List<Disciplina> disciplinas;
 
-	
 	/**
 	 * Construtor
 	 * @throws IOException Erro na leitura do arquivo.
 	 */
-	public Grade() {
-		disciplinaFinder = new Finder<Long, Disciplina>(Long.class, Disciplina.class);
-		preencheGrade();
+	public Grade() throws IOException {
+		disciplinas = new ArrayList<Disciplina>();
 	}
 
 	/**
@@ -34,26 +40,22 @@ public class Grade {
 	 * @throws ParserConfigurationException Erro na configuração do parser XML
 	 * @throws SAXException Erro no arquivo XML
 	 */
-	private void preencheGrade() {
-		if (disciplinaFinder.findRowCount() < 1) {
-			try {
-				Carregador carregador = new Carregador();
-				
-				List<Disciplina> disciplinas = carregador.preencheGrade();
-				
-				for (Disciplina disciplina : disciplinas) {
-					disciplina.save();
-				}
-				
-				carregador.adicionaDependentesERequisitos(disciplinas);
-				
-				for (Disciplina disciplina : disciplinas) {
-					disciplina.update();
-				}
-			} catch (IOException e) { }
-			  catch (ParserConfigurationException e) { }
-			  catch (SAXException e) { }
+	public void preencheGrade() throws IOException, ParserConfigurationException, SAXException {
+		Carregador carregador = new Carregador();
+		
+		List<Disciplina> disciplinas = carregador.preencheGrade();
+		
+		for (Disciplina disciplina : disciplinas) {
+			disciplina.save();
 		}
+		
+		carregador.adicionaDependentesERequisitos(disciplinas);
+		
+		for (Disciplina disciplina : disciplinas) {
+			disciplina.update();
+		}
+		
+		this.disciplinas = disciplinas;
 	}
 
 	/**
@@ -62,7 +64,12 @@ public class Grade {
 	 * @return Disciplina procurada ou Null em caso de mesma não existir.
 	 */
 	public Disciplina getDisciplinaPorNome(String nome) {
-		return disciplinaFinder.where().eq("nome", nome).findUnique();
+		for(Disciplina disc: disciplinas) {
+			if (disc.getNome().equals(nome))
+				return disc;
+		}
+
+		return null;
 	}
 	
 	/**
@@ -71,7 +78,12 @@ public class Grade {
 	 * @return Disciplina procurada ou Null em caso de mesma não existir.
 	 */
 	public Disciplina getDisciplinaPorCodigo(Long codigo) {
-		return disciplinaFinder.byId(codigo);
+		for(Disciplina disc: disciplinas) {
+			if (disc.codigo.equals(codigo))
+				return disc;
+		}
+
+		return null;
 	}
 
 	
@@ -80,6 +92,6 @@ public class Grade {
 	 * @return Conjunto de disciplinas.
 	 */
 	public List<Disciplina> getTodasDisciplinas() {
-		return disciplinaFinder.all();
+		return disciplinas;
 	}
 }

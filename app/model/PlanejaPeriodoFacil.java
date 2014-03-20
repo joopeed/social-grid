@@ -3,15 +3,13 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-import controllers.Grade;
-
 public class PlanejaPeriodoFacil implements PlanejaPeriodo {
 	private final int MIM_CREDITOS = 14;
 
 	@Override
 	public List<Disciplina> quaisAlocar(Plano plano) {
 		List<Disciplina> paraAlocar = new ArrayList<Disciplina>();
-		List<Disciplina> possiveis = filtraSemRequisitos(plano.getDisciplinasOfertadas(new Grade()), plano);
+		List<Disciplina> possiveis = filtraSemRequisitos(plano.getDisciplinasOfertadas(), plano);
 		Disciplina proximaFacil;
 		int creditos = 0;
 		

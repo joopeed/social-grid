@@ -106,18 +106,6 @@ public class Periodo extends Model {
 		return dificuldadeTotal;
 	}
 
-	public Disciplina getDisciplinaPorNome(String nome) {
-		Disciplina disciplinaEncontrada = null;
-		
-		for (Disciplina disciplina: disciplinas) {
-			if (disciplina.getNome().equals(nome)) {
-				disciplinaEncontrada = disciplina;
-			}
-		}
-		
-		return disciplinaEncontrada;
-	}	
-	
 	/**
 	 * Verifica se a disciplina está no período.
 	 * @param disciplinaPorNome Disciplina a ser pesquisada
