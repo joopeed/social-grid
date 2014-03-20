@@ -1,7 +1,14 @@
 package model;
 
-import static play.test.Helpers.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import static play.test.Helpers.fakeApplication;
+import static play.test.Helpers.inMemoryDatabase;
+import static play.test.Helpers.start;
 
 import java.io.IOException;
 
@@ -16,7 +23,7 @@ import controllers.Sistema;
 public class UsuariosTest {
 	private Usuario usuarioA, usuarioB, usuarioC;
 	private CadastroUsuario cadastro;
-	
+
 	@SuppressWarnings("unused")
 	private Sistema sistema; // É usado para iniciar a grade.
 
@@ -24,12 +31,11 @@ public class UsuariosTest {
 	public void setUp() throws IOException {
 		start(fakeApplication(inMemoryDatabase()));
 		
-		sistema = new Sistema(); // Necessário para iniciar a grade.
 		cadastro = new CadastroUsuario();
 		
-		usuarioA = new Usuario("Foo", "foo@gmail.com", "123456", new Plano(null));
-		usuarioB = new Usuario("Boo", "boo@gmail.com", "654321", new Plano(null));
-		usuarioC = new Usuario("FOo", "foo@gmail.com", "159753", new Plano(null));
+		usuarioA = new Usuario("Foo", "foo@gmail.com", "123456", new Plano());
+		usuarioB = new Usuario("Boo", "boo@gmail.com", "654321", new Plano());
+		usuarioC = new Usuario("FOo", "foo@gmail.com", "159753", new Plano());
 	}
 	
 	@Test
