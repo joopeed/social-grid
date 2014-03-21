@@ -1,5 +1,11 @@
 package controllers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.Scanner;
+
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import model.Disciplina;
@@ -41,6 +47,29 @@ public class Application extends Controller {
     	}
     	
     	return ok(views.html.cadastro.render());
+    }
+    
+    
+    
+    
+    public static Result populaUsuarios() throws FileNotFoundException, CadastroUsuarioException {
+    	InputStream usuariosArquivo = play.Play.application().resourceAsStream("res/usuarios.txt");
+		
+		if (usuariosArquivo == null) {
+			usuariosArquivo = new FileInputStream(new File("conf/res/usuarios.txt"));
+		}
+		
+		int cont = 0;
+		Scanner scUsuarios = new Scanner(usuariosArquivo);
+		
+		while(scUsuarios.hasNextLine()){
+			String[] dados = scUsuarios.nextLine().split(":");
+			CADASTRO.cadastrarUsuario(dados[0], dados[1], dados[2]);
+			cont++;
+		}
+		
+		scUsuarios.close();
+    	return ok("Banco de dados populado com "+ cont +" usuarios!");
     }
 
     public static Result desalocarDisciplina(String nomeDisciplina) {
