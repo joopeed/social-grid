@@ -1,11 +1,5 @@
 package controllers;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.util.Scanner;
-
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import model.Disciplina;
@@ -47,41 +41,6 @@ public class Application extends Controller {
     	}
     	
     	return ok(views.html.cadastro.render());
-    }
-    
-    
-    
-    
-    public static Result populaUsuarios() {
-    	InputStream usuariosArquivo = play.Play.application().resourceAsStream("res/usuarios.txt");
-		
-		if (usuariosArquivo == null) {
-			try {
-				usuariosArquivo = new FileInputStream(new File("conf/res/usuarios.txt"));
-			} catch (FileNotFoundException e) {
-				return badRequest();
-			}
-		}
-		
-		int novosCadastros = 0;
-		int jaCadastrados = 0;
-		
-		Scanner scUsuarios = new Scanner(usuariosArquivo);
-		
-		while(scUsuarios.hasNextLine()){
-			String[] dados = scUsuarios.nextLine().split(":");
-			
-			try {
-				CADASTRO.cadastrarUsuario(dados[0], dados[1], dados[2]);
-				novosCadastros++;
-			} catch (CadastroUsuarioException e) {
-				jaCadastrados++;
-			}
-		}
-		
-		scUsuarios.close();
-    	return ok("Banco de dados populado com " + String.valueOf(novosCadastros) + " novos usuarios! "
-    			+ "Já estavam cadastrados " + String.valueOf(jaCadastrados) + " usuários.");
     }
 
     public static Result desalocarDisciplina(String nomeDisciplina) {
