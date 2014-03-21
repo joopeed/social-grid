@@ -1,5 +1,9 @@
 package model;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -51,7 +55,7 @@ public class Usuario extends Model {
 	}
 
 	public void setSenha(String senha) {
-		this.senha = senha;
+		this.senha = calcularHash(senha);
 	}
 	
 	public Plano getPlano() {
@@ -65,7 +69,7 @@ public class Usuario extends Model {
 	public boolean autenticar(String senha) {
 		boolean autenticado = false;
 
-		if (getSenha().equals(senha)) {
+		if (getSenha().equals(calcularHash(senha))) {
 			autenticado = true;
 		}
 
@@ -96,5 +100,19 @@ public class Usuario extends Model {
 			return false;
 
 		return true;
+	}
+	
+	private String calcularHash(String senha) {
+		MessageDigest mdEnc;
+
+		try {
+			mdEnc = MessageDigest.getInstance("MD5");
+			mdEnc.update(senha.getBytes(), 0, senha.length());
+			senha = new BigInteger(1, mdEnc.digest()).toString(16);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		
+		return senha;
 	}
 }
