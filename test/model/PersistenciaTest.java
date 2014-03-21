@@ -17,6 +17,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
+import controllers.Grade;
 import play.db.ebean.Model.Finder;
 
 public class PersistenciaTest {
@@ -29,7 +30,7 @@ public class PersistenciaTest {
 	@Test
 	public void testDica() {
 		Finder<Integer, Dica> dicaFinder = new Finder<Integer, Dica>(Integer.class, Dica.class);
-		Usuario usuarioA = new Usuario("Foo", "foo@gmail.com", "123456", new Plano(null));
+		Usuario usuarioA = new Usuario("Foo", "foo@gmail.com", "123456", new Plano());
 
 		for (int i = 1; i <= 5; i++) {
 			Dica dica = new Dica(usuarioA, "Esta é uma dica! (" + String.valueOf(i) + ")");
@@ -64,12 +65,9 @@ public class PersistenciaTest {
 	@Test
 	public void testGrade() throws IOException, ParserConfigurationException, SAXException {
 		Finder<Integer, Grade> gradeFinder = new Finder<Integer, Grade>(Integer.class, Grade.class);
-
-		Grade grade = new Grade();
-		grade.preencheGrade();
 		
 		assertEquals(0, gradeFinder.findRowCount());
-		grade.save();
+		new Grade();
 		
 		assertEquals(1, gradeFinder.findRowCount());
 		

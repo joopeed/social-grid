@@ -19,9 +19,9 @@ public class DicaTest {
 	
 	@Test
 	public void AdicionaDicasEmDisciplina() {
-		Usuario usuarioA = new Usuario("Foo", "foo@gmail.com", "123456", new Plano(null));
-		Usuario usuarioB = new Usuario("Boo", "boo@gmail.com", "654321", new Plano(null));
-		Usuario usuarioC = new Usuario("FOo", "foo@gmail.com", "159753", new Plano(null));
+		Usuario usuarioA = new Usuario("Foo", "foo@gmail.com", "123456", new Plano());
+		Usuario usuarioB = new Usuario("Boo", "boo@gmail.com", "654321", new Plano());
+		Usuario usuarioC = new Usuario("FOo", "foo@gmail.com", "159753", new Plano());
 
 		Dica dica1 = new Dica(usuarioA, "Trancar!");
 		Dica dica2 = new Dica(usuarioB, "Estudar pelo livro.");
@@ -44,8 +44,8 @@ public class DicaTest {
 	
 	@Test
 	public void AdicionaERemoveLikeEmDica(){
-		Usuario usuarioA = new Usuario("Foo", "foo@gmail.com", "123456", new Plano(null));
-		Usuario usuarioB = new Usuario("Boo", "boo@gmail.com", "654321", new Plano(null));
+		Usuario usuarioA = new Usuario("Foo", "foo@gmail.com", "123456", new Plano());
+		Usuario usuarioB = new Usuario("Boo", "boo@gmail.com", "654321", new Plano());
 		Dica dica1 = new Dica(usuarioA, "Procurar tutoriais.");
 		
 		assertEquals(0, dica1.getQuantidadeDeLikes());
