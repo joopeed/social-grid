@@ -52,24 +52,36 @@ public class Application extends Controller {
     
     
     
-    public static Result populaUsuarios() throws FileNotFoundException, CadastroUsuarioException {
+    public static Result populaUsuarios() {
     	InputStream usuariosArquivo = play.Play.application().resourceAsStream("res/usuarios.txt");
 		
 		if (usuariosArquivo == null) {
-			usuariosArquivo = new FileInputStream(new File("conf/res/usuarios.txt"));
+			try {
+				usuariosArquivo = new FileInputStream(new File("conf/res/usuarios.txt"));
+			} catch (FileNotFoundException e) {
+				return badRequest();
+			}
 		}
 		
-		int cont = 0;
+		int novosCadastros = 0;
+		int jaCadastrados = 0;
+		
 		Scanner scUsuarios = new Scanner(usuariosArquivo);
 		
 		while(scUsuarios.hasNextLine()){
 			String[] dados = scUsuarios.nextLine().split(":");
-			CADASTRO.cadastrarUsuario(dados[0], dados[1], dados[2]);
-			cont++;
+			
+			try {
+				CADASTRO.cadastrarUsuario(dados[0], dados[1], dados[2]);
+				novosCadastros++;
+			} catch (CadastroUsuarioException e) {
+				jaCadastrados++;
+			}
 		}
 		
 		scUsuarios.close();
-    	return ok("Banco de dados populado com "+ cont +" usuarios!");
+    	return ok("Banco de dados populado com " + String.valueOf(novosCadastros) + " novos usuarios! "
+    			+ "Já estavam cadastrados " + String.valueOf(jaCadastrados) + " usuários.");
     }
 
     public static Result desalocarDisciplina(String nomeDisciplina) {
@@ -116,7 +128,7 @@ public class Application extends Controller {
     		return ok();
     }
     
-    public static Result verDisciplina() throws InterruptedException {
+    public static Result verDisciplina() {
     	if (!Autenticacao.existeUsuarioAutenticado()) {
     		return badRequest();
     	}
