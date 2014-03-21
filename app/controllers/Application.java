@@ -53,10 +53,10 @@ public class Application extends Controller {
     
     
     public static Result populaUsuarios() throws FileNotFoundException, CadastroUsuarioException {
-    	InputStream usuariosArquivo = play.Play.application().resourceAsStream("res/usuarios.txt");
+    	InputStream usuariosArquivo = play.Play.application().resourceAsStream("res/usuarios.xml");
 		
 		if (usuariosArquivo == null) {
-			usuariosArquivo = new FileInputStream(new File("conf/res/usuarios.txt"));
+			usuariosArquivo = new FileInputStream(new File("conf/res/usuarios.xml"));
 		}
 		
 		int cont = 0;
