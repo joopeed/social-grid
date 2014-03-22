@@ -148,6 +148,12 @@ public class Plano extends Model {
 		}
 	}
 		
+	/**
+	 * Retorna se uma disciplina tem os requisitos nos periodos anteriores
+	 * @param disciplina A disciplina
+	 * @param idxPeriodo Periodo Atual
+	 * @return True se tem requisitos, False se não
+	 */
 	public boolean temRequisitos(Disciplina disciplina, int  idxPeriodo) {
 		boolean temRequisitos = true;
 		for (Disciplina requisito: disciplina.getRequisitos()) {
@@ -155,7 +161,12 @@ public class Plano extends Model {
 		}
 		return temRequisitos;
 	}
-
+	
+    /**
+     * Diz se um periodo tem qualquer disciplina incorreta
+     * @param idxPeriodo O periodo a verificar
+     * @return True se sim, False, se não
+     */
 	public boolean temDisciplinaIncorreta(int idxPeriodo) {
 		boolean temTodosRequisitos = true;
 		for(Disciplina disciplina: periodos.get(idxPeriodo).getDisciplinas()){
@@ -164,11 +175,39 @@ public class Plano extends Model {
 		return !temTodosRequisitos;
 	}
 	
+	/**
+	 * Diz se uma determinada disciplina esta incorreta pela falta de um requisito
+	 * @param disciplina A disciplina a verificar
+	 * @param idxPeriodo O periodo relacionado
+	 * @return True se a disciplina nao tem todos os requisitos, False, se tem
+	 */
 	public boolean estaIncorreta(Disciplina disciplina, int idxPeriodo) {
 		return !temRequisitos(disciplina, idxPeriodo);
 		
 	}
 	
+	/**
+	 * Retorna uma lista de requisitos em falta para uma disciplina 
+	 * @param disciplina A disciplina a verificar
+	 * @param idxPeriodo O periodo em que a disciplina está
+	 * @return Lista de disciplinas em falta
+	 */
+	
+	public List<Disciplina> getRequisitosEmFaltaDe(Disciplina disciplina, int idxPeriodo) {
+		ArrayList<Disciplina> requisitosEmFalta = new ArrayList<Disciplina>();
+		for (Disciplina requisito: disciplina.getRequisitos()) {
+			if(!temDisciplinaAlocada(requisito, idxPeriodo))
+				requisitosEmFalta.add(requisito);
+		}
+		return requisitosEmFalta;
+	}
+	
+	/**
+	 * Veririfa se uma disciplina esta alocada em um periodo
+	 * @param disciplina A disciplina a verificar
+	 * @param idxPeriodo O periodo a verificar
+	 * @return True, se a disicplina esta no periodo, False, se não.
+	 */
 
 	private boolean temDisciplinaAlocada(Disciplina disciplina, int idxPeriodo) {
 		for (int i = 0; i < idxPeriodo; i++) {

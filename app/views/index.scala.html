@@ -104,30 +104,49 @@ bottom
         @for((periodo, i) <- periodos.zipWithIndex) {
             @if(plano.temDisciplinaIncorreta(i)){
             	@if(plano.isPeriodoAtual(i)){
-            		<div id="periodo_@(i + 1)" class="coluna_errada"> (Atual)
+            		<div id="periodo_@(i + 1)" class="coluna_errada" style="box-shadow: 0px 0px 15px #6d9ff0;"> (Atual)
           		} else {
             		<div id="periodo_@(i + 1)" class="coluna_errada">
           		}
           	} else {
             	@if(plano.isPeriodoAtual(i)){
-            		<div id="periodo_@(i + 1)" class="coluna"> (Atual)
+            		<div id="periodo_@(i + 1)" class="coluna" style="background-color: #6d9ff0; box-shadow: 0px 0px 15px #dc143c; "> (Atual)
           		} else {
             		<div id="periodo_@(i + 1)" class="coluna">
           		}
           	}
             <nome-periodo>Período @(1 + periodos.indexOf(periodo))</nome-periodo>
-            @for(disciplina <- periodo.getDisciplinas()){
-               @if(plano.estaIncorreta(disciplina, i)){
-            	 <div class="disciplina_incorreta" id="@disciplina.getNome()">
-         		} else {
-           		 <div class="disciplina" id="@disciplina.getNome()">
-          		}
-                    <nome>@disciplina.getNome()</nome><br/>
-                    <descricao>Créditos: @disciplina.getCreditos()<br />
-                    		   Dificuldade: @disciplina.getDificuldadeMedia()</descricao>
-                    
-                    <info name="@disciplina.codigo"><img src="@routes.Assets.at("images/info_small.png")" /></info>
-                </div>
+            @if(plano.isPeriodoAtual(i)){
+	            @for(disciplina <- periodo.getDisciplinas()){
+	               @if(plano.estaIncorreta(disciplina, i)){
+	            	 <div class="disciplina_incorreta" id="@disciplina.getNome()" title="As disciplinas: 
+	            	 @for(requisito <- plano.getRequisitosEmFaltaDe(disciplina, i)) { @requisito.getNome(), 
+	            	 } são pré-requisitos para esta.
+	            	 " style="position: relative;box-shadow: 0px 0px 15px #ffffff;">
+	         		} else {
+	           		 <div class="disciplina" id="@disciplina.getNome()" style="position: relative;box-shadow: 0px 0px 15px #ffffff;">
+	          		}
+	                    <nome>@disciplina.getNome()</nome><br/>
+	                    <descricao>Créditos: @disciplina.getCreditos()<br />
+	                    		   Dificuldade: @disciplina.getDificuldadeMedia()</descricao>
+	                    
+	                    <info name="@disciplina.codigo"><img src="@routes.Assets.at("images/info_small.png")" /></info>
+	                </div>
+	            }
+            } else {
+	            @for(disciplina <- periodo.getDisciplinas()){
+		               @if(plano.estaIncorreta(disciplina, i)){
+		            	 <div class="disciplina_incorreta" id="@disciplina.getNome()">
+		         		} else {
+		           		 <div class="disciplina" id="@disciplina.getNome()">
+		          		}
+		                    <nome>@disciplina.getNome()</nome><br/>
+		                    <descricao>Créditos: @disciplina.getCreditos()<br />
+		                    		   Dificuldade: @disciplina.getDificuldadeMedia()</descricao>
+		                    
+		                    <info name="@disciplina.codigo"><img src="@routes.Assets.at("images/info_small.png")" /></info>
+		                </div>
+		            }
             }
             <br />
             Créditos: @periodo.getTotalDeCreditos() <br />
