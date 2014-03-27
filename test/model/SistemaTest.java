@@ -146,38 +146,6 @@ public class SistemaTest extends WithApplication {
 		assertTrue(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Cálculo Diferencial e Integral I")));
 	}
 	
-	/* --> Disciplinas agora podem ser alocadas sem requisitos, ficando em vermelho. Modificar esse teste.
-	@Test
-	public void adicionaDisciplinaDoPlanejamento1() {
-		sistema.desalocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Programação I");
-		sistema.desalocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Introdução à Computação");
-		sistema.desalocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Laboratório de Programação I");
-		sistema.desalocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Programação II");
-		sistema.desalocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Laboratório de Programação II");
-		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Programação I")));
-		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Introdução à Computação")));
-		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Laboratório de Programação I")));
-		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Programação I")));
-		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Laboratório de Programação II")));
-		sistema.alocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Programação II", 1);
-		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Programação I")));
-		sistema.alocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Programação I", 0);
-		assertTrue(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Programação I")));
-		sistema.alocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Programação II", 1);
-		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Programação II")));
-		sistema.alocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Introdução à Computação", 0);
-		assertTrue(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Introdução à Computação")));
-		sistema.alocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Programação II", 1);
-		assertFalse(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Programação II")));
-		sistema.alocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Laboratório de Programação I", 0);
-		assertTrue(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Laboratório de Programação I")));
-		sistema.alocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Laboratório de Programação II", 1);
-		assertTrue(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Laboratório de Programação II")));
-		sistema.alocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Programação II", 1);
-		assertTrue(sistema.getDisciplinasAlocadas(cadastro.getUsuarioPorEmail("email@email.com")).contains(sistema.getDisciplinaPorNome("Programação II")));
-	}
-	*/
-	
 	@Test
 	public void removeDoPlanoSemRemoverDaGrade() {
 		sistema.desalocarDisciplina(cadastro.getUsuarioPorEmail("email@email.com"), "Programação I");

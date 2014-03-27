@@ -28,13 +28,13 @@ public class PlanoTest {
 		
 		grade = new Grade();
 		plano1 = new Plano();
-		plano1.iniciaPrePlano(grade);
+		plano1.iniciaPlanoSugerido(grade);
 	}
 	
 	@Test
 	public void comparaDeferencasEntrePlanos() {
 		Plano plano2 = new Plano();
-		plano2.iniciaPrePlano(grade);
+		plano2.iniciaPlanoSugerido(grade);
 		
 		assertEquals(0, plano1.getDiferencaDePlanos(plano2));
 		

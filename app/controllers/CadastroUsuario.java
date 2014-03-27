@@ -17,7 +17,7 @@ public class CadastroUsuario {
 		Grade grade = new Grade();
 		Plano plano = new Plano();
 		
-		plano.iniciaPrePlano(grade);
+		plano.iniciaPlanoSugerido(grade);
 		
 		Usuario usuario = new Usuario(nome, email, senha, plano);
 		
