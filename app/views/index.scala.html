@@ -104,13 +104,13 @@ bottom
         @for((periodo, i) <- periodos.zipWithIndex) {
             @if(plano.temDisciplinaIncorreta(i)){
             	@if(plano.isPeriodoAtual(i)){
-            		<div id="periodo_@(i + 1)" class="coluna_errada" style="box-shadow: 0px 0px 15px #6d9ff0;"> (Atual)
+            		<div id="periodo_@(i + 1)" class="coluna_errada" style="box-shadow: 0px 0px 15px #dc143c;"> (Atual)
           		} else {
             		<div id="periodo_@(i + 1)" class="coluna_errada">
           		}
           	} else {
             	@if(plano.isPeriodoAtual(i)){
-            		<div id="periodo_@(i + 1)" class="coluna" style="background-color: #6d9ff0; box-shadow: 0px 0px 15px #dc143c; "> (Atual)
+            		<div id="periodo_@(i + 1)" class="coluna" style="background-color: #6d9ff0; box-shadow: 0px 0px 15px #6d9ff0; "> (Atual)
           		} else {
             		<div id="periodo_@(i + 1)" class="coluna">
           		}
