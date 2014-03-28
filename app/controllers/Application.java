@@ -58,6 +58,16 @@ public class Application extends Controller {
     	return ok(views.html.search.render(query, CADASTRO.getUsuarioPorNome(query)));
     }
     
+    public static Result iniciaGradeComum() {
+    	SISTEMA.iniciaGradeComum(CADASTRO.getUsuarioPorEmail(session("usuario")));
+    	return redirect("/aplicacao");
+    }
+    
+    public static Result iniciaGradeSugerida() {
+    	SISTEMA.iniciaGradeComum(CADASTRO.getUsuarioPorEmail(session("usuario")));
+    	return redirect("/aplicacao");
+    }
+    
     public static Result planejaProximoPeriodoFacil() {
     	SISTEMA.planejaProximoPeriodoFacil(CADASTRO.getUsuarioPorEmail(session("usuario")));
     	return redirect("/aplicacao");

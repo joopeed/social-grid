@@ -59,6 +59,7 @@ public class Usuario extends Model {
 	}
 	
 	public Plano getPlano() {
+		
 		return plano;
 	}
 	

@@ -54,6 +54,17 @@ public class Sistema {
 		usuario.update();
 	}
 	
+	
+	public void iniciaGradeComum(Usuario usuario){
+		Grade grade = new Grade();
+		usuario.getPlano().iniciaPlanoComum(grade);
+	}
+	
+	public void iniciaGradeSugerida(Usuario usuario){
+		Grade grade = new Grade();
+		usuario.getPlano().iniciaPlanoSugerido(grade);
+	}
+	
 
 	public void desalocarDisciplina(Usuario usuario, String nome) {
 		usuario.getPlano().removeDisciplina(getGrade().getDisciplinaPorNome(nome));

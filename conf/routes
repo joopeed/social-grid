@@ -22,6 +22,8 @@ GET     /reduzPeriodo                   controllers.Application.reduzPeriodo()
 GET     /user/:email                    controllers.Application.getPerfil(email: String)
 GET     /search                         controllers.Application.buscaUsuario()
 GET     /search/                        controllers.Application.buscaUsuario()
+GET     /gradeComum                     controllers.Application.iniciaGradeComum()
+GET     /gradeSugerida                  controllers.Application.iniciaGradeSugerida()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

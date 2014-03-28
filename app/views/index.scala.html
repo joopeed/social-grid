@@ -75,16 +75,21 @@ $(function() {
      </div>
     </form>
     <form class="navbar-form pull-left">
-      <button type="button" class="btn" onclick="location.href = '@routes.Application.reduzPeriodo()';">Anterior</button>
-    </form>
+      </form>
     <form class="navbar-form pull-left">
-      <button type="button" class="btn" onclick="location.href = '@routes.Application.avancaPeriodo()';">Próximo</button>
+      
     </form>
     <form class="navbar-form pull-left">
       <button type="button" class="btn" onclick="location.href = '@routes.Application.planejaProximoPeriodoFacil()';">Planejar: Fácil</button>
     </form>
     <form class="navbar-form pull-left">
       <button type="button" class="btn" onclick="location.href = '@routes.Application.planejaProximoPeriodoFacil()';">Planejar: Difícil</button>
+    </form>
+    <form class="navbar-form pull-left">
+      <button type="button" class="btn" onclick="location.href = '@routes.Application.iniciaGradeComum()';">Comum</button>
+    </form>
+    <form class="navbar-form pull-left">
+      <button type="button" class="btn" onclick="location.href = '@routes.Application.iniciaGradeSugerida()';">Sugerida</button>
     </form>
     <form class="navbar-form pull-right">
       <button type="button" class="btn" onclick="location.href = '@routes.Autenticacao.logout()';">Sair</button>
@@ -104,18 +109,25 @@ bottom
         @for((periodo, i) <- periodos.zipWithIndex) {
             @if(plano.temDisciplinaIncorreta(i)){
             	@if(plano.isPeriodoAtual(i)){
-            		<div id="periodo_@(i + 1)" class="coluna_errada" style="box-shadow: 0px 0px 15px #dc143c;"> (Atual)
-          		} else {
+            		<div id="periodo_@(i + 1)" class="coluna_errada" style="box-shadow: 0px 0px 15px #dc143c;"> 
+          				} else {
             		<div id="periodo_@(i + 1)" class="coluna_errada">
           		}
           	} else {
             	@if(plano.isPeriodoAtual(i)){
-            		<div id="periodo_@(i + 1)" class="coluna" style="background-color: #6d9ff0; box-shadow: 0px 0px 15px #6d9ff0; "> (Atual)
+            		<div id="periodo_@(i + 1)" class="coluna" style="background-color: #6d9ff0; box-shadow: 0px 0px 15px #6d9ff0; "> 
+          			
           		} else {
             		<div id="periodo_@(i + 1)" class="coluna">
           		}
           	}
+          	@if(plano.isPeriodoAtual(i)){
+          		<button type="button" class="btn" onclick="location.href = '@routes.Application.reduzPeriodo()';"><</button>
+            }
             <nome-periodo>Período @(1 + periodos.indexOf(periodo))</nome-periodo>
+            @if(plano.isPeriodoAtual(i)){
+            	<button type="button" class="btn" onclick="location.href = '@routes.Application.avancaPeriodo()';">></button>
+            }
             @if(plano.isPeriodoAtual(i)){
 	            @for(disciplina <- periodo.getDisciplinas()){
 	               @if(plano.estaIncorreta(disciplina, i)){
