@@ -25,7 +25,7 @@ public class Plano extends Model {
 	public Long id;
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Periodo> periodos;
-	private PlanejaPeriodo planejadorProximoPeriodo;
+	private PlanejadorDePeriodo planejadorProximoPeriodo;
 	private int qntPeriodos;
 	private int idxPeriodoAtual;
 	
@@ -357,7 +357,7 @@ public class Plano extends Model {
 		return periodos;
 	}
 	
-	public void setPlanejadorProximoPeriodo(PlanejaPeriodo novoPlanejador) {
+	public void setPlanejadorProximoPeriodo(PlanejadorDePeriodo novoPlanejador) {
 		planejadorProximoPeriodo = novoPlanejador;
 	}
 	
@@ -379,13 +379,13 @@ public class Plano extends Model {
 		
 		idxPeriodoAtual = idxAtual;
 		
-		periodos.get(ultimo).setRegraDeAlocacao(new SemRestricao());
+		periodos.get(ultimo).setRegraDeAlocacao(new RestritorLivre());
 		for (int i = 0 ; i < idxAtual ; i++) {
-			periodos.get(i).setRegraDeAlocacao(new Maximo());
+			periodos.get(i).setRegraDeAlocacao(new RestritorDeMaximo());
 		}
 		
 		for (int i = idxAtual ; i < ultimo ; i++) {
-			periodos.get(i).setRegraDeAlocacao(new MaximoEMinimo());
+			periodos.get(i).setRegraDeAlocacao(new RestritorDeMaximoEMinimo());
 		}
 		
 	

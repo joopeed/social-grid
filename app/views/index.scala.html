@@ -109,7 +109,7 @@ bottom
         @for((periodo, i) <- periodos.zipWithIndex) {
             @if(plano.temDisciplinaIncorreta(i)){
             	@if(plano.isPeriodoAtual(i)){
-            		<div id="periodo_@(i + 1)" class="coluna_errada" style="box-shadow: 0px 0px 15px #dc143c;"> 
+            		<div id="periodo_@(i + 1)" class="coluna_errada"  style="box-shadow: 0px 0px 15px #dc143c;"> 
           				} else {
             		<div id="periodo_@(i + 1)" class="coluna_errada">
           		}
@@ -148,7 +148,10 @@ bottom
             } else {
 	            @for(disciplina <- periodo.getDisciplinas()){
 		               @if(plano.estaIncorreta(disciplina, i)){
-		            	 <div class="disciplina_incorreta" id="@disciplina.getNome()">
+		            	 <div class="disciplina_incorreta" title="As disciplinas: 
+	            	 @for(requisito <- plano.getRequisitosEmFaltaDe(disciplina, i)) { @requisito.getNome(), 
+	            	 } são pré-requisitos para esta.
+	            	 " id="@disciplina.getNome()">
 		         		} else {
 		           		 <div class="disciplina" id="@disciplina.getNome()">
 		          		}

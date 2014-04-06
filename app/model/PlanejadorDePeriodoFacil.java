@@ -5,39 +5,36 @@ import java.util.List;
 
 import controllers.Grade;
 
-public class PlanejaPeriodoDificil implements PlanejaPeriodo {
-	private final int MAX_CREDITOS = 28;
+public class PlanejadorDePeriodoFacil implements PlanejadorDePeriodo {
+	private final int MIM_CREDITOS = 14;
 
 	@Override
 	public List<Disciplina> quaisAlocar(Plano plano) {
 		List<Disciplina> paraAlocar = new ArrayList<Disciplina>();
 		List<Disciplina> possiveis = filtraSemRequisitos(plano.getDisciplinasOfertadas(new Grade()), plano);
-		Disciplina proximaDificil;
+		Disciplina proximaFacil;
 		int creditos = 0;
 		
-		while(true) {
-			proximaDificil = maisDificil(possiveis);
-			creditos += proximaDificil.getCreditos();
-			
-			if (creditos > MAX_CREDITOS) break;
-			
-			paraAlocar.add(proximaDificil);
-			possiveis.remove(proximaDificil);
+		while(creditos < MIM_CREDITOS) {
+			proximaFacil = maisFacil(possiveis);
+			creditos += proximaFacil.getCreditos();
+			paraAlocar.add(proximaFacil);
+			possiveis.remove(proximaFacil);
 		}
 		
 		return paraAlocar;
 	}
 
-	private Disciplina maisDificil(List<Disciplina> possiveis) {
-		Disciplina maisDificil = possiveis.get(0);
+	private Disciplina maisFacil(List<Disciplina> possiveis) {
+		Disciplina maisFacil = possiveis.get(0);
 		
 		for (Disciplina disciplina: possiveis) {
-			if (disciplina.getDificuldadeMedia() > maisDificil.getDificuldadeMedia()) {
-				maisDificil = disciplina;
+			if (disciplina.getDificuldadeMedia() < maisFacil.getDificuldadeMedia()) {
+				maisFacil = disciplina;
 			}
 		}
 		
-		return maisDificil;
+		return maisFacil;
 	}
 	
 	private List<Disciplina> filtraSemRequisitos(List<Disciplina> ofertadas, Plano plano) {

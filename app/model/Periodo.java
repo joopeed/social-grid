@@ -22,14 +22,14 @@ public class Periodo extends Model {
 	public Long id;
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Disciplina> disciplinas;
-	private RegraDeAlocacao regraDeAlocacao;
+	private RestritorDeAlocacao regraDeAlocacao;
 	
 	/**
 	 * Construtor
 	 */
 	public Periodo(){
 		disciplinas = new ArrayList<Disciplina>();
-		regraDeAlocacao = new Maximo();
+		regraDeAlocacao = new RestritorDeMaximo();
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class Periodo extends Model {
 	 * Define uma nova regra de alocação para o período.
 	 * @param novaRegra Nova regra de alocação.
 	 */
-	public void setRegraDeAlocacao(RegraDeAlocacao novaRegra) {
+	public void setRegraDeAlocacao(RestritorDeAlocacao novaRegra) {
 		regraDeAlocacao = novaRegra;
 	}
 
