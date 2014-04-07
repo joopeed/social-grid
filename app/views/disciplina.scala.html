@@ -10,6 +10,7 @@ $.ready(preencherTela());
 
 function preencherTela() {
 	preencherDicas();
+	preencherDificuldade();
 }
 
 function preencherDicas() {
@@ -19,6 +20,15 @@ function preencherDicas() {
 		$('#adicionar_dica').removeAttr("disabled");
 		$('#texto_dica').val("");	
 		$('#texto_dica').removeAttr("disabled");		
+	});
+}
+
+function preencherDificuldade() {
+	$.get("@routes.Application.carregarDificuldade(disciplina.codigo)", function(data) {
+		if (data.avaliacao > 0) {
+			var index = data.avaliacao - 1;
+			$('.dificuldade-star').rating('select', index);
+		}
 	});
 }
 
@@ -79,8 +89,14 @@ $('#adicionar_dica').click(function() {
 					if (typeof dificuldade == 'undefined') {
 						dificuldade = 0;
 					}
-					
-					alert(dificuldade);
+
+					$.get("/aplicacao/adicionarDificuldade/@disciplina.codigo/" + dificuldade, function(data) {
+						// alert(data.dificuldade_media);
+					})
+					.fail(function() {
+						alert( "Ocorreu um erro inesperado. :(" );
+					});
+									
 				}
 			});
 		});
@@ -99,6 +115,6 @@ $('#adicionar_dica').click(function() {
 	     </tr>
 	    </table>
 	</div>
-	<button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
+	<button id="fechar_tela" class="btn" data-dismiss="modal" aria-hidden="true" onclick="atualizarDisciplina()">Fechar</button>
 	<!-- <button class="btn btn-primary">Save changes</button>  -->
 </div>

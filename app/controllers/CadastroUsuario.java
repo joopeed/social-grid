@@ -13,7 +13,7 @@ public class CadastroUsuario {
 		finder = new Finder<String, Usuario>(String.class, Usuario.class);
 	}
 	
-	public void cadastrarUsuario(String nome, String email, String senha) throws CadastroUsuarioException {
+	public Usuario cadastrarUsuario(String nome, String email, String senha) throws CadastroUsuarioException {
 		Grade grade = new Grade();
 		Plano plano = new Plano();
 		
@@ -26,6 +26,8 @@ public class CadastroUsuario {
 		}
 		
 		usuario.save();
+		
+		return usuario;
 	}
 	
 	public Usuario autenticarUsuario(String email, String senha) {

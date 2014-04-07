@@ -5,6 +5,7 @@
 
 create table avaliacao_de_usuario (
   id                        bigint not null,
+  usuario_email             varchar(255),
   dificuldade               integer,
   constraint pk_avaliacao_de_usuario primary key (id))
 ;
@@ -97,10 +98,12 @@ create sequence plano_seq;
 
 create sequence usuario_seq;
 
-alter table dica add constraint fk_dica_autor_1 foreign key (autor_email) references usuario (email) on delete restrict on update restrict;
-create index ix_dica_autor_1 on dica (autor_email);
-alter table usuario add constraint fk_usuario_plano_2 foreign key (plano_id) references plano (id) on delete restrict on update restrict;
-create index ix_usuario_plano_2 on usuario (plano_id);
+alter table avaliacao_de_usuario add constraint fk_avaliacao_de_usuario_usuari_1 foreign key (usuario_email) references usuario (email) on delete restrict on update restrict;
+create index ix_avaliacao_de_usuario_usuari_1 on avaliacao_de_usuario (usuario_email);
+alter table dica add constraint fk_dica_autor_2 foreign key (autor_email) references usuario (email) on delete restrict on update restrict;
+create index ix_dica_autor_2 on dica (autor_email);
+alter table usuario add constraint fk_usuario_plano_3 foreign key (plano_id) references plano (id) on delete restrict on update restrict;
+create index ix_usuario_plano_3 on usuario (plano_id);
 
 
 

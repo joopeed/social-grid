@@ -12,11 +12,19 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
+import controllers.CadastroUsuario;
+import controllers.CadastroUsuarioException;
+
 public class DisciplinaTest {
 
+	Usuario usuario;
+	CadastroUsuario cadastro;
+	
 	@Before
-	public void setUp() {
+	public void setUp() throws CadastroUsuarioException {
 		start(fakeApplication(inMemoryDatabase()));
+		
+		cadastro = new CadastroUsuario();
 	}
 	
 	@Test
@@ -38,15 +46,15 @@ public class DisciplinaTest {
 	}
 	
 	@Test
-	public void verificaDificuldade() {
+	public void verificaDificuldade() throws CadastroUsuarioException {
 		Disciplina d1 = new Disciplina("d1", 4);
 		d1.save();
 		
 		assertEquals(0, d1.getDificuldadeMedia(), 0);
 		
-		Usuario usuarioA = new Usuario("Foo", "foo@gmail.com", "123456", new Plano());
-		Usuario usuarioB = new Usuario("Boo", "boo@gmail.com", "654321", new Plano());
-		Usuario usuarioC = new Usuario("FOo", "foo@gmail.com", "159753", new Plano());
+		Usuario usuarioA = cadastro.cadastrarUsuario("Foo", "foo@gmail.com", "123456");
+		Usuario usuarioB = cadastro.cadastrarUsuario("Boo", "boo@gmail.com", "654321");
+		Usuario usuarioC = cadastro.cadastrarUsuario("FOo", "xiriquita@gmail.com", "159753");
 		
 		d1.addDificuldade(usuarioA, 2);
 		d1.addDificuldade(usuarioB, 2);

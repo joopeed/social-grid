@@ -93,7 +93,9 @@ public class PeriodoTest {
 		assertEquals(0, primeiroPeriodo.getDificuldadeTotal(), 0);
 		
 		Usuario usuarioA = new Usuario("Foo", "foo@gmail.com", "123456", new Plano());
+		usuarioA.save();
 		Usuario usuarioB = new Usuario("Boo", "boo@gmail.com", "654321", new Plano());
+		usuarioB.save();
 
 		primeiroPeriodo.getDisciplinaPorNome("Cálculo Diferencial e Integral I").addDificuldade(usuarioA, 3);
 		primeiroPeriodo.getDisciplinaPorNome("Programação I").addDificuldade(usuarioB, 2);

@@ -107,13 +107,18 @@ public class Disciplina extends Model implements Comparable<Disciplina> {
 	 */
 	public double getDificuldadeMedia() {
 		double dificuldadeMedia = 0;
+		int dificuldadesComputadas = 0;
 		
 		for (AvaliacaoDeUsuario dificuldade: dificuldades) {
 			dificuldadeMedia += dificuldade.getDificuldade();
+			
+			if (dificuldade.getDificuldade() > 0) {
+				dificuldadesComputadas += 1;
+			}
 		}
 	
-		if (dificuldades.size() > 0) {
-			dificuldadeMedia /= dificuldades.size(); 
+		if (dificuldadesComputadas > 0) {
+			dificuldadeMedia /= dificuldadesComputadas; 
 		}
 		
 		return dificuldadeMedia;
@@ -130,7 +135,7 @@ public class Disciplina extends Model implements Comparable<Disciplina> {
 		
 		if (avaliacaoJaRealizada) {
 			dificuldadeObj.setDificuldade(dificuldade);
-			dificuldadeObj.update();
+			dificuldadeObj.save();
 		} else {
 			dificuldadeObj = new AvaliacaoDeUsuario(usuario, dificuldade);
 			dificuldadeObj.save();
@@ -148,15 +153,15 @@ public class Disciplina extends Model implements Comparable<Disciplina> {
 	 * @return avaliação de dificuldade realizada pelo Usuario <b>usuario</b>
 	 */
 	public AvaliacaoDeUsuario getDificuldade(Usuario usuario) {
-		AvaliacaoDeUsuario dificuldadeObj = null;
+		AvaliacaoDeUsuario avaliacaoObj = null;
 		
-		for (AvaliacaoDeUsuario dificuldade : dificuldades) {
-			if (dificuldade.getUsuario().equals(usuario)) {
-				dificuldadeObj = dificuldade;
+		for (AvaliacaoDeUsuario avaliacao : dificuldades) {
+			if (avaliacao.getUsuario().equals(usuario)) {
+				avaliacaoObj = avaliacao;
 			}
 		}
 		
-		return dificuldadeObj;
+		return avaliacaoObj;
 	}
 
 	@Override

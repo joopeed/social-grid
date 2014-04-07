@@ -2,6 +2,7 @@ package model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import play.db.ebean.Model;
 
@@ -15,6 +16,7 @@ public class AvaliacaoDeUsuario extends Model {
 	
 	@Id
 	public Long id;
+	@ManyToOne
 	private Usuario usuario;
 	private int dificuldade;
 	
@@ -25,6 +27,10 @@ public class AvaliacaoDeUsuario extends Model {
 
 	public Usuario getUsuario() {
 		return usuario;
+	}
+	
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public int getDificuldade() {
