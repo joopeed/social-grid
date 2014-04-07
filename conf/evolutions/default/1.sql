@@ -3,17 +3,17 @@
 
 # --- !Ups
 
+create table avaliacao_de_usuario (
+  id                        bigint not null,
+  dificuldade               integer,
+  constraint pk_avaliacao_de_usuario primary key (id))
+;
+
 create table dica (
   id                        bigint not null,
   autor_email               varchar(255),
   texto                     varchar(255),
   constraint pk_dica primary key (id))
-;
-
-create table dificuldade (
-  id                        bigint not null,
-  dificuldade               integer,
-  constraint pk_dificuldade primary key (id))
 ;
 
 create table disciplina (
@@ -68,10 +68,10 @@ create table disciplina_dica (
   constraint pk_disciplina_dica primary key (disciplina_codigo, dica_id))
 ;
 
-create table disciplina_dificuldade (
+create table disciplina_avaliacao_de_usuario (
   disciplina_codigo              bigint not null,
-  dificuldade_id                 bigint not null,
-  constraint pk_disciplina_dificuldade primary key (disciplina_codigo, dificuldade_id))
+  avaliacao_de_usuario_id        bigint not null,
+  constraint pk_disciplina_avaliacao_de_usuario primary key (disciplina_codigo, avaliacao_de_usuario_id))
 ;
 
 create table periodo_disciplina (
@@ -85,9 +85,9 @@ create table plano_periodo (
   periodo_id                     bigint not null,
   constraint pk_plano_periodo primary key (plano_id, periodo_id))
 ;
-create sequence dica_seq;
+create sequence avaliacao_de_usuario_seq;
 
-create sequence dificuldade_seq;
+create sequence dica_seq;
 
 create sequence disciplina_seq;
 
@@ -120,9 +120,9 @@ alter table disciplina_dica add constraint fk_disciplina_dica_disciplina_01 fore
 
 alter table disciplina_dica add constraint fk_disciplina_dica_dica_02 foreign key (dica_id) references dica (id) on delete restrict on update restrict;
 
-alter table disciplina_dificuldade add constraint fk_disciplina_dificuldade_dis_01 foreign key (disciplina_codigo) references disciplina (codigo) on delete restrict on update restrict;
+alter table disciplina_avaliacao_de_usuario add constraint fk_disciplina_avaliacao_de_us_01 foreign key (disciplina_codigo) references disciplina (codigo) on delete restrict on update restrict;
 
-alter table disciplina_dificuldade add constraint fk_disciplina_dificuldade_dif_02 foreign key (dificuldade_id) references dificuldade (id) on delete restrict on update restrict;
+alter table disciplina_avaliacao_de_usuario add constraint fk_disciplina_avaliacao_de_us_02 foreign key (avaliacao_de_usuario_id) references avaliacao_de_usuario (id) on delete restrict on update restrict;
 
 alter table periodo_disciplina add constraint fk_periodo_disciplina_periodo_01 foreign key (periodo_id) references periodo (id) on delete restrict on update restrict;
 
@@ -136,11 +136,11 @@ alter table plano_periodo add constraint fk_plano_periodo_periodo_02 foreign key
 
 SET REFERENTIAL_INTEGRITY FALSE;
 
+drop table if exists avaliacao_de_usuario;
+
 drop table if exists dica;
 
 drop table if exists dica_usuario;
-
-drop table if exists dificuldade;
 
 drop table if exists disciplina;
 
@@ -150,7 +150,7 @@ drop table if exists disciplinas_requisitos;
 
 drop table if exists disciplina_dica;
 
-drop table if exists disciplina_dificuldade;
+drop table if exists disciplina_avaliacao_de_usuario;
 
 drop table if exists periodo;
 
@@ -164,9 +164,9 @@ drop table if exists usuario;
 
 SET REFERENTIAL_INTEGRITY TRUE;
 
-drop sequence if exists dica_seq;
+drop sequence if exists avaliacao_de_usuario_seq;
 
-drop sequence if exists dificuldade_seq;
+drop sequence if exists dica_seq;
 
 drop sequence if exists disciplina_seq;
 
