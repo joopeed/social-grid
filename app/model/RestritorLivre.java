@@ -1,6 +1,6 @@
 package model;
 
-public class SemRestricao implements RegraDeAlocacao {
+public class RestritorLivre implements RestritorDeAlocacao {
 
 	@Override
 	public boolean podeSerAlocada(Disciplina disciplina, Periodo periodo) {

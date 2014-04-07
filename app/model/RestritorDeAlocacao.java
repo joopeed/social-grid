@@ -1,6 +1,6 @@
 package model;
 
-public interface RegraDeAlocacao {
+public interface RestritorDeAlocacao {
 
 	abstract boolean podeSerAlocada(Disciplina disciplina, Periodo periodo);
 	

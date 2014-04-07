@@ -105,7 +105,7 @@ public class PlanoTest {
 		grade.getDisciplinaPorNome("Informática e Sociedade").addDificuldade(null, 2);
 		grade.getDisciplinaPorNome("Direito e Cidadania").addDificuldade(null, 2);
 		
-		plano1.setPlanejadorProximoPeriodo(new PlanejaPeriodoFacil());
+		plano1.setPlanejadorProximoPeriodo(new PlanejadorDePeriodoFacil());
 		plano1.setPeriodoAtual(3);
 		plano1.planejaProximoPeriodo();
 		
@@ -126,7 +126,7 @@ public class PlanoTest {
 		grade.getDisciplinaPorNome("Inglês").addDificuldade(null, 5);
 		grade.getDisciplinaPorNome("Análise e Técnica de Algoritmos").addDificuldade(null, 4);
 		
-		plano1.setPlanejadorProximoPeriodo(new PlanejaPeriodoDificil());
+		plano1.setPlanejadorProximoPeriodo(new PlanejadorDePeriodoDificil());
 		plano1.setPeriodoAtual(3);
 		plano1.planejaProximoPeriodo();
 		

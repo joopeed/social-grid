@@ -25,7 +25,7 @@ public class Plano extends Model {
 	public Long id;
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Periodo> periodos;
-	private PlanejaPeriodo planejadorProximoPeriodo;
+	private PlanejadorDePeriodo planejadorProximoPeriodo;
 	private int qntPeriodos;
 	private int idxPeriodoAtual;
 	
@@ -43,6 +43,7 @@ public class Plano extends Model {
 	 * Inicia o plano com as disciplinas sugeridas.
 	 */
 	public void iniciaPlanoSugerido(Grade grade) {
+		periodos = new ArrayList<Periodo>();
 		qntPeriodos = 10;
 		for (int i = 0 ; i < qntPeriodos ; i++)
 			periodos.add(new Periodo());
@@ -105,6 +106,7 @@ public class Plano extends Model {
 	 * Inicia o plano comum.
 	 */
 	public void iniciaPlanoComum(Grade grade) {
+		periodos = new ArrayList<Periodo>();
 		qntPeriodos = 10;
 		for (int i = 0 ; i < qntPeriodos ; i++)
 			periodos.add(new Periodo());
@@ -116,50 +118,51 @@ public class Plano extends Model {
 		addDisciplina(grade.getDisciplinaPorNome("Introdução à Computação"), 0);
 		addDisciplina(grade.getDisciplinaPorNome("Laboratório de Programação I"), 0);
 		
-		addDisciplina(grade.getDisciplinaPorNome("Cálculo Diferencial e Integral II"), 1);
-		addDisciplina(grade.getDisciplinaPorNome("Programação II"), 1);
-		addDisciplina(grade.getDisciplinaPorNome("Laboratório de Programação II"), 1);
-		addDisciplina(grade.getDisciplinaPorNome("Teoria dos Grafos"), 1);
-		addDisciplina(grade.getDisciplinaPorNome("Matemática Discreta"), 1);
-		addDisciplina(grade.getDisciplinaPorNome("Metodologia Científica"), 1);
 		addDisciplina(grade.getDisciplinaPorNome("Fundamentos de Física Clássica"), 1);
+		addDisciplina(grade.getDisciplinaPorNome("Cálculo Diferencial e Integral II"), 1);
+		addDisciplina(grade.getDisciplinaPorNome("Matemática Discreta"), 1);
+		addDisciplina(grade.getDisciplinaPorNome("Informática e Sociedade"), 1);
+		addDisciplina(grade.getDisciplinaPorNome("Programação II"), 1);
+		addDisciplina(grade.getDisciplinaPorNome("Teoria dos Grafos"), 1);
+		addDisciplina(grade.getDisciplinaPorNome("Laboratório de Programação II"), 1);
 		
+		addDisciplina(grade.getDisciplinaPorNome("Fundamentos de Física Moderna"), 2);
 		addDisciplina(grade.getDisciplinaPorNome("Álgebra Linear I"), 2);
 		addDisciplina(grade.getDisciplinaPorNome("Probabilidade e Estatística"), 2);
 		addDisciplina(grade.getDisciplinaPorNome("Teoria da Computação"), 2);
 		addDisciplina(grade.getDisciplinaPorNome("Estrutura de Dados e Algoritmos"), 2);
-		addDisciplina(grade.getDisciplinaPorNome("Fundamentos de Física Moderna"), 2);
 		addDisciplina(grade.getDisciplinaPorNome("Gerência da Informação"), 2);
 		addDisciplina(grade.getDisciplinaPorNome("Laboratório de Estrutura de Dados e Algoritmos"), 2);
 		
-		addDisciplina(grade.getDisciplinaPorNome("Métodos Estatísticos"), 3);
+		addDisciplina(grade.getDisciplinaPorNome("Direito e Cidadania"), 3);
 		addDisciplina(grade.getDisciplinaPorNome("Paradigmas de Linguagem de Programação"), 3);
 		addDisciplina(grade.getDisciplinaPorNome("Lógica Matemática"), 3);
 		addDisciplina(grade.getDisciplinaPorNome("Organização e Arquitetura de Computadores I"), 3);
-		addDisciplina(grade.getDisciplinaPorNome("Engenharia de Software I"), 3);
-		addDisciplina(grade.getDisciplinaPorNome("Sistemas de Informação I"), 3);
 		addDisciplina(grade.getDisciplinaPorNome("Laboratório de Organização e Arquitetura de Computadores"), 3);
+		addDisciplina(grade.getDisciplinaPorNome("Sistemas de Informação I"), 3);
 		
-		addDisciplina(grade.getDisciplinaPorNome("Informática e Sociedade"), 4);
+		addDisciplina(grade.getDisciplinaPorNome("Métodos Estatísticos"), 4);
+		addDisciplina(grade.getDisciplinaPorNome("Engenharia de Software I"), 4);
 		addDisciplina(grade.getDisciplinaPorNome("Análise e Técnica de Algoritmos"), 4);
-		addDisciplina(grade.getDisciplinaPorNome("Compiladores"), 4);
-		addDisciplina(grade.getDisciplinaPorNome("Redes de Computadores"), 4);
 		addDisciplina(grade.getDisciplinaPorNome("Banco de Dados I"), 4);
-		addDisciplina(grade.getDisciplinaPorNome("Sistemas de Informação II"), 4);
-		addDisciplina(grade.getDisciplinaPorNome("Laboratório de Engenharia de Software"), 4);
 		
-		addDisciplina(grade.getDisciplinaPorNome("Direito e Cidadania"), 5);
-		addDisciplina(grade.getDisciplinaPorNome("Sistemas Operacionais"), 5);
-		addDisciplina(grade.getDisciplinaPorNome("Interconexão de Redes de Computadores"), 5);
-		addDisciplina(grade.getDisciplinaPorNome("Banco de Dados II"), 5);
-		addDisciplina(grade.getDisciplinaPorNome("Inteligência Artificial I"), 5);
-		addDisciplina(grade.getDisciplinaPorNome("Laboratório de Interconexão de Redes de Computadores"), 5);
+		addDisciplina(grade.getDisciplinaPorNome("Sistemas de Informação II"), 5);
+		addDisciplina(grade.getDisciplinaPorNome("Metodologia Científica"), 5);
+		addDisciplina(grade.getDisciplinaPorNome("Laboratório de Engenharia de Software"), 5);
+		addDisciplina(grade.getDisciplinaPorNome("Redes de Computadores"), 5);
 		
-		addDisciplina(grade.getDisciplinaPorNome("Métodos e Software Numéricos"), 6);
-		addDisciplina(grade.getDisciplinaPorNome("Avaliação de Desempenho de Sistemas Discretos"), 6);
-		addDisciplina(grade.getDisciplinaPorNome("Projeto em Computação I"), 6);
+		addDisciplina(grade.getDisciplinaPorNome("Laboratório de Interconexão de Redes de Computadores"), 6);
+		addDisciplina(grade.getDisciplinaPorNome("Interconexão de Redes de Computadores"), 6);
+		addDisciplina(grade.getDisciplinaPorNome("Sistemas Operacionais"), 6);
+		addDisciplina(grade.getDisciplinaPorNome("Banco de Dados II"), 6);
+
+		addDisciplina(grade.getDisciplinaPorNome("Projeto em Computação I"), 7);
+		addDisciplina(grade.getDisciplinaPorNome("Métodos e Software Numéricos"), 7);
+		addDisciplina(grade.getDisciplinaPorNome("Compiladores"), 7);
+		addDisciplina(grade.getDisciplinaPorNome("Inteligência Artificial I"), 7);
+		addDisciplina(grade.getDisciplinaPorNome("Avaliação de Desempenho de Sistemas Discretos"), 7);
 		
-		addDisciplina(grade.getDisciplinaPorNome("Projeto em Computação II"), 7);
+		addDisciplina(grade.getDisciplinaPorNome("Projeto em Computação II"), 8);
 
 	}
 	
@@ -354,7 +357,7 @@ public class Plano extends Model {
 		return periodos;
 	}
 	
-	public void setPlanejadorProximoPeriodo(PlanejaPeriodo novoPlanejador) {
+	public void setPlanejadorProximoPeriodo(PlanejadorDePeriodo novoPlanejador) {
 		planejadorProximoPeriodo = novoPlanejador;
 	}
 	
@@ -376,13 +379,13 @@ public class Plano extends Model {
 		
 		idxPeriodoAtual = idxAtual;
 		
-		periodos.get(ultimo).setRegraDeAlocacao(new SemRestricao());
+		periodos.get(ultimo).setRegraDeAlocacao(new RestritorLivre());
 		for (int i = 0 ; i < idxAtual ; i++) {
-			periodos.get(i).setRegraDeAlocacao(new Maximo());
+			periodos.get(i).setRegraDeAlocacao(new RestritorDeMaximo());
 		}
 		
 		for (int i = idxAtual ; i < ultimo ; i++) {
-			periodos.get(i).setRegraDeAlocacao(new MaximoEMinimo());
+			periodos.get(i).setRegraDeAlocacao(new RestritorDeMaximoEMinimo());
 		}
 		
 	

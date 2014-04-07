@@ -38,7 +38,7 @@ public class Disciplina extends Model implements Comparable<Disciplina> {
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Dica> dicas;
 	@ManyToMany(cascade = CascadeType.ALL)
-	private List<Dificuldade> dificuldades;
+	private List<AvaliacaoDeUsuario> dificuldades;
 	
 	
 	/**
@@ -53,7 +53,7 @@ public class Disciplina extends Model implements Comparable<Disciplina> {
 		dependentes = new HashSet<Disciplina>();
 		requisitos = new HashSet<Disciplina>();
 		dicas = new ArrayList<Dica>();
-		dificuldades = new ArrayList<Dificuldade>();
+		dificuldades = new ArrayList<AvaliacaoDeUsuario>();
 	}
 	
 	/**
@@ -108,7 +108,7 @@ public class Disciplina extends Model implements Comparable<Disciplina> {
 	public double getDificuldadeMedia() {
 		double dificuldadeMedia = 0;
 		
-		for (Dificuldade dificuldade: dificuldades) {
+		for (AvaliacaoDeUsuario dificuldade: dificuldades) {
 			dificuldadeMedia += dificuldade.getDificuldade();
 		}
 	
@@ -125,7 +125,7 @@ public class Disciplina extends Model implements Comparable<Disciplina> {
 	 * @param dificuldade Dificuldade estipulada pelo usuario.
 	 */
 	public void addDificuldade(Usuario usuario, int dificuldade) {
-		Dificuldade dificuldadeObj = new Dificuldade(usuario, dificuldade);
+		AvaliacaoDeUsuario dificuldadeObj = new AvaliacaoDeUsuario(usuario, dificuldade);
 		dificuldadeObj.save();
 		
 		dificuldades.add(dificuldadeObj);

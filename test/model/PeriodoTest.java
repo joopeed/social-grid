@@ -69,7 +69,7 @@ public class PeriodoTest {
 	
 	@Test
 	public void alocaSemRestricao() {
-		RegraDeAlocacao novaRegra = new SemRestricoes();
+		RestritorDeAlocacao novaRegra = new SemRestricoes();
 		primeiroPeriodo.setRegraDeAlocacao(novaRegra);
 		primeiroPeriodo.adicionaDisciplina(grade.getDisciplinaPorNome("Inglês"));
 		primeiroPeriodo.adicionaDisciplina(grade.getDisciplinaPorNome("Economia"));

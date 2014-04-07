@@ -5,8 +5,8 @@ import java.util.Set;
 
 import model.Dica;
 import model.Disciplina;
-import model.PlanejaPeriodoDificil;
-import model.PlanejaPeriodoFacil;
+import model.PlanejadorDePeriodoDificil;
+import model.PlanejadorDePeriodoFacil;
 import model.Usuario;
 
 public class Sistema {
@@ -34,13 +34,13 @@ public class Sistema {
 	}
 	
 	public void planejaProximoPeriodoFacil(Usuario usuario) {
-		usuario.getPlano().setPlanejadorProximoPeriodo(new PlanejaPeriodoFacil());
+		usuario.getPlano().setPlanejadorProximoPeriodo(new PlanejadorDePeriodoFacil());
 		usuario.getPlano().planejaProximoPeriodo();
 		usuario.update();
 	}
 
 	public void planejaProximoPeriodoDificil(Usuario usuario) {
-		usuario.getPlano().setPlanejadorProximoPeriodo(new PlanejaPeriodoDificil());
+		usuario.getPlano().setPlanejadorProximoPeriodo(new PlanejadorDePeriodoDificil());
 		usuario.getPlano().planejaProximoPeriodo();
 		usuario.update();
 	}
