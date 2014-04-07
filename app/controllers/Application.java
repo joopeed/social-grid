@@ -64,7 +64,7 @@ public class Application extends Controller {
     }
     
     public static Result iniciaGradeSugerida() {
-    	SISTEMA.iniciaGradeComum(CADASTRO.getUsuarioPorEmail(session("usuario")));
+    	SISTEMA.iniciaGradeSugerida(CADASTRO.getUsuarioPorEmail(session("usuario")));
     	return redirect("/aplicacao");
     }
     

@@ -58,11 +58,13 @@ public class Sistema {
 	public void iniciaGradeComum(Usuario usuario){
 		Grade grade = new Grade();
 		usuario.getPlano().iniciaPlanoComum(grade);
+		usuario.update();
 	}
 	
 	public void iniciaGradeSugerida(Usuario usuario){
 		Grade grade = new Grade();
 		usuario.getPlano().iniciaPlanoSugerido(grade);
+		usuario.update();
 	}
 	
 

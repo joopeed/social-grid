@@ -23,14 +23,14 @@ public class Plano extends Model {
 	
 	@Id
 	public Long id;
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL)																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															
 	private List<Periodo> periodos;
 	private PlanejadorDePeriodo planejadorProximoPeriodo;
 	private int qntPeriodos;
 	private int idxPeriodoAtual;
 	
 	/**
-	 * Construtor
+	 * Construtor																																																																																																																																																																																																																																																																	
 	 * @param nova_grade grade com todas as disciplinas do período do curso.
 	 */
 	public Plano() {
@@ -45,9 +45,13 @@ public class Plano extends Model {
 	public void iniciaPlanoSugerido(Grade grade) {
 		periodos = new ArrayList<Periodo>();
 		qntPeriodos = 10;
-		for (int i = 0 ; i < qntPeriodos ; i++)
-			periodos.add(new Periodo());
-		
+		if(periodos.isEmpty()){
+			for (int i = 0 ; i < qntPeriodos ; i++)
+				periodos.add(new Periodo());
+		} else {
+			for (int i = 0 ; i < qntPeriodos ; i++)
+				periodos.get(i).removeTodasAsDisciplinas();
+		}
 		addDisciplina(grade.getDisciplinaPorNome("Cálculo Diferencial e Integral I"), 0);
 		addDisciplina(grade.getDisciplinaPorNome("Álgebra Vetorial e Geometria Analítica"), 0);
 		addDisciplina(grade.getDisciplinaPorNome("Leitura e Produção de Textos"), 0);
@@ -108,9 +112,13 @@ public class Plano extends Model {
 	public void iniciaPlanoComum(Grade grade) {
 		periodos = new ArrayList<Periodo>();
 		qntPeriodos = 10;
-		for (int i = 0 ; i < qntPeriodos ; i++)
-			periodos.add(new Periodo());
-		
+		if(periodos.isEmpty()){
+			for (int i = 0 ; i < qntPeriodos ; i++)
+				periodos.add(new Periodo());
+		} else {
+			for (int i = 0 ; i < qntPeriodos ; i++)
+				periodos.get(i).removeTodasAsDisciplinas();
+		}
 		addDisciplina(grade.getDisciplinaPorNome("Cálculo Diferencial e Integral I"), 0);
 		addDisciplina(grade.getDisciplinaPorNome("Álgebra Vetorial e Geometria Analítica"), 0);
 		addDisciplina(grade.getDisciplinaPorNome("Leitura e Produção de Textos"), 0);
