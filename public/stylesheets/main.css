@@ -8,6 +8,12 @@ descricao {
 	font-size: 12px;
 }
 
+excluir {
+	position: absolute;
+    right:    0px;
+    top:      -3px;
+}
+
 info {
 	position: absolute;
     right:    -5px;
