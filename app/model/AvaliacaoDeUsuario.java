@@ -31,4 +31,8 @@ public class AvaliacaoDeUsuario extends Model {
 		return dificuldade;
 	}
 	
+	public void setDificuldade(int dificuldade) {
+		this.dificuldade = dificuldade ;
+	}
+	
 }

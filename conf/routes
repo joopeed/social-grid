@@ -24,6 +24,8 @@ GET     /search                         controllers.Application.buscaUsuario()
 GET     /search/                        controllers.Application.buscaUsuario()
 GET     /gradeComum                     controllers.Application.iniciaGradeComum()
 GET     /gradeSugerida                  controllers.Application.iniciaGradeSugerida()
+GET     /aplicacao/verDificuldade/:codigo	controllers.Application.carregarDificuldade(codigo: Long)
+GET     /aplicacao/adicionarDificuldade/:codigo/:dificuldade	controllers.Application.adicionarDificuldade(codigo: Long, dificuldade: Integer)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

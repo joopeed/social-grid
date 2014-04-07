@@ -6,7 +6,11 @@
 <link href="@routes.Assets.at("stylesheets/jquery.rating.css")" type="text/css" rel="stylesheet"/>
 
 <script>
-$.ready(preencherDicas());
+$.ready(preencherTela());
+
+function preencherTela() {
+	preencherDicas();
+}
 
 function preencherDicas() {
 	$.get("@routes.Application.carregarDicas(disciplina.codigo)", function(data) {

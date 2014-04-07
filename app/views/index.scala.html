@@ -137,7 +137,7 @@ bottom
 	          			<excluir name="@disciplina.getNome()"><img src="@routes.Assets.at("images/delete-x_small.png")" /></excluir>
 	                    <nome>@disciplina.getNome()</nome><br/>
 	                    <descricao>Créditos: @disciplina.getCreditos()<br />
-	                    		   Dificuldade: @disciplina.getDificuldadeMedia()</descricao>
+	                    		   Dificuldade: <dificuldade name="@disciplina.codigo">@disciplina.getDificuldadeMedia()</dificuldade></descricao>
 	                    
 	                    <info name="@disciplina.codigo"><img src="@routes.Assets.at("images/info_small.png")" /></info>
 	                </div>

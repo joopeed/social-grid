@@ -120,16 +120,43 @@ public class Disciplina extends Model implements Comparable<Disciplina> {
 	}
 
 	/**
-	 * Adiciona a avaliação de dificuldade de um usuário à disciplina.
+	 * Adiciona ou altera a avaliação de dificuldade de um usuário à disciplina.
 	 * @param usuario Usuário que faz a avaliação da dificuldade.
 	 * @param dificuldade Dificuldade estipulada pelo usuario.
 	 */
 	public void addDificuldade(Usuario usuario, int dificuldade) {
-		AvaliacaoDeUsuario dificuldadeObj = new AvaliacaoDeUsuario(usuario, dificuldade);
-		dificuldadeObj.save();
+		AvaliacaoDeUsuario dificuldadeObj = null;
+		boolean avaliacaoJaRealizada = (dificuldadeObj = getDificuldade(usuario)) != null;
 		
-		dificuldades.add(dificuldadeObj);
-		update();
+		if (avaliacaoJaRealizada) {
+			dificuldadeObj.setDificuldade(dificuldade);
+			dificuldadeObj.update();
+		} else {
+			dificuldadeObj = new AvaliacaoDeUsuario(usuario, dificuldade);
+			dificuldadeObj.save();
+
+			dificuldades.add(dificuldadeObj);		
+		}
+		
+		this.update();
+	}
+	
+	/**
+	 * Obtém a avaliação de dificuldade de um usuário à disciplina.
+	 * @param usuario Usuário que fez a avaliação da dificuldade.
+	 * 
+	 * @return avaliação de dificuldade realizada pelo Usuario <b>usuario</b>
+	 */
+	public AvaliacaoDeUsuario getDificuldade(Usuario usuario) {
+		AvaliacaoDeUsuario dificuldadeObj = null;
+		
+		for (AvaliacaoDeUsuario dificuldade : dificuldades) {
+			if (dificuldade.getUsuario().equals(usuario)) {
+				dificuldadeObj = dificuldade;
+			}
+		}
+		
+		return dificuldadeObj;
 	}
 
 	@Override

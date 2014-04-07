@@ -2,6 +2,7 @@ package controllers;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+import model.AvaliacaoDeUsuario;
 import model.Disciplina;
 import model.Usuario;
 import play.libs.Json;
@@ -155,4 +156,44 @@ public class Application extends Controller {
     	
     	return ok(views.html.dicas.render(disciplina.getDicas()));
     }
+    
+    public static Result carregarDificuldade(long codigo) {
+    	if (!Autenticacao.existeUsuarioAutenticado()) {
+    		return badRequest();
+    	}
+
+    	ObjectNode result = Json.newObject();
+    	
+    	Usuario usuario = CADASTRO.getUsuarioPorEmail(session("usuario"));
+    	Disciplina disciplina = SISTEMA.getDisciplinaPorCodigo(codigo);
+    	
+    	AvaliacaoDeUsuario avaliacao = disciplina.getDificuldade(usuario);
+    	int dificuldade = 0;
+    	
+    	if (avaliacao != null) {
+    		dificuldade = avaliacao.getDificuldade();
+    	}
+    	
+    	result.put("avaliacao", dificuldade);
+    	
+    	return ok(result);
+    }
+    
+    public static Result adicionarDificuldade(long codigo, int dificuldade) {
+    	if (!Autenticacao.existeUsuarioAutenticado()) {
+    		return badRequest();
+    	}
+
+    	ObjectNode result = Json.newObject();
+    	
+    	Usuario usuario = CADASTRO.getUsuarioPorEmail(session("usuario"));
+    	Disciplina disciplina = SISTEMA.getDisciplinaPorCodigo(codigo);
+    	
+    	disciplina.addDificuldade(usuario, dificuldade);
+    	
+    	result.put("dificuldade_media", disciplina.getDificuldadeMedia());
+    	
+    	return ok(result);
+    }
+
 }
